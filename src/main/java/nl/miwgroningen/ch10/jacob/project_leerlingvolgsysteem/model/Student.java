@@ -1,5 +1,8 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +12,7 @@ import javax.persistence.Id;
  * <p>
  * Dit is wat het programma doet.
  */
-@Entity
+@Entity @Getter @Setter
 public class Student {
 
     @Id
