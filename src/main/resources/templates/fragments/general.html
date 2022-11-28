@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title th:replace="${title}">Dit is een algemene titel</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="/css/StudentSystem.css" />
 </head>
 <body>
     <div th:fragment="navbar">
@@ -12,12 +13,12 @@
                 <a class="nav-link" th:href="@{/students/all}">Studenten</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/Assignments/all}">Opdrachten</a>
+                <a class="nav-link" th:href="@{/assignments/all}">Opdrachten</a>
             </li>
         </ul>
     </div>
 
-    <div th:fragment="footer">
+    <div class="text-center" th:fragment="footer">
         <footer>Copyright Jacob, Maaike & Robbin &copy;2022</footer>
     </div>
 
