@@ -19,8 +19,8 @@ public class Course {
     @GeneratedValue
     private Long courseId;
 
-    private String naam;
-    private String studierichting;
+    private String name;
+    private String fieldOfStudy;
 
 
 
