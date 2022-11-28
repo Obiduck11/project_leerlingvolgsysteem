@@ -5,5 +5,25 @@
 </head>
 <body>
     <h1>Alle studenten</h1>
+ <div><a th:href="@{/students/new}" >Voeg nieuwe student toe</a></div>
+<table>
+    <tr>
+        <th>voornaam</th>
+        <th>tussenvoegsel</th>
+        <th>achternaam</th>
+        <th>githubaccount</th>
+        <th>vak</th>
+    </tr>
+    <tr th:each="student : ${allStudents}">
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.inFixName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.githubAccount}"></td>
+        <td th:text="${student.courses}"></td>
+
+
+    </tr>
+</table>
+
 </body>
 </html>

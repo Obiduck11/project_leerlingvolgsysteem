@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+        <title>Voer een nieuwe student in</title>
+</head>
+<body>
+<h1>Voer een nieuwe student in</h1>
+<form th:action="@{/students/new}" method="post" th:object="${student}">
+        <table>
+        <tr>
+                <th>Voornaam</th>
+                <th>Tussenvoegsel</th>
+                <th>Achternaam</th>
+                <th>Githubaccount</th>
+        </tr>
+        <tr>>
+        <td>
+              <label th:for="firstName">voornaam</label>
+              <input type ="text" th:field="*{firstName}">
+        </td>
+        <td><input type ="text" th:field="*{inFixName}"></td>
+        <td><input type ="text" th:field="*{lastName}"></td>
+        <td><input type ="text" th:field="*{githubAccount}"></td>
+        <td><input type="submit" value = "voeg toe"></td>
+        </tr>
+        </table>
+</form>
+
+</body>
+</html>

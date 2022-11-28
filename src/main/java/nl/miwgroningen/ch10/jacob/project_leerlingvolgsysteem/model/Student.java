@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Author: Jacob Visser
  * <p>
- * Dit is wat het programma doet.
+ * Eigenschappen van een student
  */
 @Entity @Getter @Setter
 public class Student {
