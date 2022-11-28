@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="fragments/general :: baseheader(~{:: title})">
     <title>Create feedback</title>
 </head>
 <body>
     <h1>Create feedback</h1>
+
+    <form th:action="@{/feedback/new}" method="post" th:object="${feedback}">
+        <input type="hidden" th:field="*{feedbackId}">
+
+
+    </form>
 </body>
 </html>
