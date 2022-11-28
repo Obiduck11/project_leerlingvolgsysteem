@@ -5,5 +5,31 @@
 </head>
 <body>
     <h1>Alle studenten</h1>
+
+    <table class="table table-striped w-auto">
+        <tr>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Github</th>
+        </tr>
+        <tr>
+            <td>Hier komt een naam</td>
+            <td>    </td>
+            <td>Hier komt de achternaam</td>
+            <td>Githublink</td>
+        </tr>
+        <tr>
+            <td>Hier komt een naam</td>
+            <td>    </td>
+            <td>Hier komt de achternaam</td>
+            <td>Githublink</td>
+        </tr>
+    </table>
+
+    <div th:replace="fragments/general :: footer"></div>
+
+    <div th:replace="fragments/general :: bottomScripts"></div>
+
 </body>
 </html>
