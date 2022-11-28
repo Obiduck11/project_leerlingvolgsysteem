@@ -14,11 +14,11 @@ import javax.persistence.Id;
  */
 
 @Entity @Getter @Setter
-public class Feedbackregel {
+public class Feedback {
     @Id
     @GeneratedValue
     private Long feedbackId;
 
     private String feedbackTekst;
-    private String soortFeedback;
+    private String feedbackType;
 }
