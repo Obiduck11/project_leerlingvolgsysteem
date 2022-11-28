@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 /**
  * Author: Jacob Visser
@@ -22,6 +24,7 @@ public class Course {
     private String name;
     private String fieldOfStudy;
 
-
+    @OneToMany (mappedBy = "course")
+    private Set<Assignment> assignments;
 
 }
