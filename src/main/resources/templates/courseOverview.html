@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Overzicht van alle vakken</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+    <table>
+        <tr>
+            <th>Vaknaam</th>
+            <th>Studierichting</th>
+        </tr>
+        <tr th:each="course : ${allCourses}">
+            <td><a th:href="@{/courses/details/id/{courseId}(courseId=${course.courseId})}" th:text="${course.name}"></a></td>
+            <td th:text="${course.fieldOfStudy}"></td>
+        </tr>
+    </table>
+
+    <div><a th:href="@{/courses/new}">Voeg nieuw vak toe</a></div>
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+</body>
+</html>
