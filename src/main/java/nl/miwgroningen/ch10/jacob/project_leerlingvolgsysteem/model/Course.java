@@ -3,10 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -26,5 +23,9 @@ public class Course {
 
     @OneToMany (mappedBy = "course")
     private Set<Assignment> assignments;
+
+    @ManyToMany
+    private Set<Student> students;
+
 
 }
