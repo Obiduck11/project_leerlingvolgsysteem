@@ -1,9 +1,14 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -17,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AssignmentController {
 
     private final AssignmentRepository assignmentRepository;
+    private final CourseRepository courseRepository;
 
-    public AssignmentController(AssignmentRepository assignmentRepository) {
+    public AssignmentController(AssignmentRepository assignmentRepository, CourseRepository courseRepository) {
         this.assignmentRepository = assignmentRepository;
+        this.courseRepository = courseRepository;
     }
 
     @GetMapping("/all")
@@ -29,6 +36,26 @@ public class AssignmentController {
         return "assignments/assignmentOverview";
     }
 
+    @GetMapping("/new")
+    protected String showNewAssignmentForm(Model model){
+        return showAssignmentForm(model, new Assignment());
+    }
+
+    @PostMapping("/new")
+    protected String addNewAssignment(@ModelAttribute("assignment") Assignment assignmentToAdd, BindingResult result){
+      if(!result.hasErrors()){
+
+          assignmentRepository.save(assignmentToAdd);
+      }
+        return "redirect:/assignments/all";
+    }
+
+    private String showAssignmentForm(Model model, Assignment assignment){
+        model.addAttribute("assignment", assignment);
+        model.addAttribute("allCourses", courseRepository.findAll());
+
+        return "assignments/assignmentForm";
+    }
 
 
 

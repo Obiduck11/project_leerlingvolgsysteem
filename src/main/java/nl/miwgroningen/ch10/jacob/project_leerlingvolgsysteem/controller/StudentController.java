@@ -33,11 +33,6 @@ public class StudentController {
 
         return "studentOverview";
     }
-    @GetMapping("/new")
-    protected String showNewStudentForm(Model model){
-        return showFormForStudent(model, new Student());
-    }
-
     @GetMapping("/edit/{studentId}")
     protected String editStudent(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
@@ -54,6 +49,11 @@ public class StudentController {
         model.addAttribute("allCourses", courseRepository.findAll());
 
         return "studentForm";
+    }
+
+    @GetMapping("/new")
+    protected String showNewStudentForm(Model model){
+        return showFormForStudent(model, new Student());
     }
 
     @PostMapping("/new")
