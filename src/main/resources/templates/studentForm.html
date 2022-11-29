@@ -6,24 +6,28 @@
 <body>
 <h1>Voer een nieuwe student in</h1>
 <form th:action="@{/students/new}" method="post" th:object="${student}">
-        <table>
-        <tr>
-                <th>Voornaam</th>
-                <th>Tussenvoegsel</th>
-                <th>Achternaam</th>
-                <th>Githubaccount</th>
-        </tr>
-        <tr>>
-        <td>
-              <label th:for = "firstName">voornaam</label>
-              <input type ="text" th:field="*{firstName}">
-        </td>
-        <td><input type ="text" th:field="*{inFixName}"></td>
-        <td><input type ="text" th:field="*{lastName}"></td>
-        <td><input type ="text" th:field="*{githubAccount}"></td>
-        <td><input type="submit" value = "voeg toe"></td>
-        </tr>
-        </table>
+
+        <div>
+                <label th:for = "firstName">voornaam</label>
+                <input id="firstName" type ="text" th:field="*{firstName}">
+        </div>
+        <div>
+                <label th:for = "infixName">tussenvoegsel</label>
+                <input id="infixName" type ="text" th:field="*{inFixName}">
+        </div>
+        <div>
+                <label th:for = "lastName">achternaam</label>
+                <input id="lastName" type ="text" th:field="*{lastName}">
+        </div>
+        <div>
+                <label th:for = "githubAccount">githubaccount</label>
+                <input id="githubAccount" type ="text" th:field="*{githubAccount}">
+        </div>
+        <div>
+                <input type="submit" value = "voeg toe">
+        </div>
+
+
 </form>
 <footer th:replace="fragments/general :: footer"></footer>
 <div th:replace="fragments/general :: bottomScripts"></div>

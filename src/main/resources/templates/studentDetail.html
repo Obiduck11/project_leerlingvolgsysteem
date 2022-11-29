@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+
+
+    <title>Details van student</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class = "container">
+<table>
+    <tr>
+        <td>Voornaam</td>
+        <td th:text="${studentToShowDetailsFor.firstName}"></td>
+    </tr>
+    <tr>
+        <td>Tussenvoegsel</td>
+        <td th:text="${studentToShowDetailsFor.inFixName}"></td>
+    </tr>
+    <tr>
+        <td>Achternaam</td>
+        <td th:text="${studentToShowDetailsFor.lastName}"></td>
+    </tr>
+    <tr>
+        <td>Githubaccount</td>
+        <td th:text="${studentToShowDetailsFor.githubAccount}"></td>
+    </tr>
+
+</table>
+
+
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+</body>

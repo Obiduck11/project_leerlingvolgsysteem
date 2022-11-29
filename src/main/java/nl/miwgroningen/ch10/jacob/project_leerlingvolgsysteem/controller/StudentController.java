@@ -6,10 +6,9 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.Student
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * Author: Jacob Visser
@@ -43,6 +42,7 @@ public class StudentController {
 
         return "studentForm";
     }
+
     @PostMapping("/new")
     protected String addStudent(@ModelAttribute ("student") Student studentToAdd, BindingResult result){
             if(!result.hasErrors()){
@@ -50,6 +50,16 @@ public class StudentController {
             }
             return "redirect:/students/all";
     }
+    @GetMapping("/details/{studentId}")
+    protected String showStudentDetail(@PathVariable("studentId") Long studentId, Model model){
+        Optional<Student> student = studentRepository.findById(studentId);
 
+        if(student.isPresent()){
+            model.addAttribute("studentToShowDetailsFor", student.get());
+            return "studentDetail";
+        }
+
+        return "redirect:/students/all";
+    }
 
 }
