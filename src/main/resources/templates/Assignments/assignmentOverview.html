@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+
+
+    <title>Overzicht van opdrachten</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class = "container">
+
+    <table>
+
+        <tr th:each="assignment : ${allAssignments}">
+            <td th:text="${assignment.course.name}"></td>
+            <td th:text="${assignment.title}"></td>
+            <td th:text="${assignment.description}"></td>
+        </tr>
+
+
+    </table>
+
+
+
+
+
+</div>
+
+
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+</body>
