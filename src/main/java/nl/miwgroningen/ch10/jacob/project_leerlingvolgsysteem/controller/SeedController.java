@@ -4,11 +4,13 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Controller
 public class SeedController {
 
 private final CourseRepository courseRepository;
@@ -27,7 +29,7 @@ private final StudentRepository studentRepository;
 
     courseRepository.save(OOP);
 
-    Set<Course> courses = new HashSet<>();
+    Set<Course> courses= new HashSet<>();
     courses.add(OOP);
 
     Student jacob = new Student();
