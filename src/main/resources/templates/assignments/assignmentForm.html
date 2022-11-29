@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+
+
+    <title>Vul uw opdracht in/aan</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<form th:action="@{/assignments/new}" method = "post" th:object="${assignment}">
+    <input type="hidden" th:field="*{assignmentId}">
+    <div>
+        <label th:for="course">Vak</label>
+        <select id="course" th:field="*{course}">
+            <option th:each="course : ${allCourses}" th:value="course.courseId" th:text="${course.name}"></option>
+        </select>
+    </div>
+    <div>
+        <label th:for = "title">Titel</label>
+        <input id="title" type ="text" th:field="*{title}">
+    </div>
+    <div>
+        <label th:for = "description">Beschrijving</label>
+        <input id="description" type ="text" th:field="*{description}">
+    </div>
+    <div>
+        <label th:for = "serialNumber">volgnummer</label>
+        <input id="serialNumber" type ="text" th:field="*{serialNumber}">
+    </div>
+    <div>
+        <input type="submit" value = "voeg toe">
+    </div>
+
+
+
+</form>
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+</body>
