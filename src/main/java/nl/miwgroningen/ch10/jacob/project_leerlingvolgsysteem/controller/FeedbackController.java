@@ -1,7 +1,13 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Feedback;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.FeedbackRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -17,5 +23,23 @@ public class FeedbackController {
 
     public FeedbackController(FeedbackRepository feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
+    }
+
+    @GetMapping("/feedbackLines/new")
+    protected String showNewFeedbackForm(Model model) {
+        return showFeedbackForm(model, new Feedback());
+    }
+
+    private String showFeedbackForm(Model model, Feedback feedback) {
+        model.addAttribute("feedback", feedback);
+        return "feedbackForm";
+    }
+
+    @PostMapping("/feedbackLines/new")
+    protected String saveFeedback(@ModelAttribute("feedback") Feedback feedback, BindingResult result) {
+        if(!result.hasErrors()) {
+            feedbackRepository.save(feedback);
+        }
+        return "redirect:/feedbackLines";
     }
 }
