@@ -26,10 +26,10 @@ public class AssignmentController {
     protected String showAllAssignments(Model model){
         model.addAttribute("allAssignments", assignmentRepository.findAll());
 
-        return "Assignments/assignmentOverview";
-
-
+        return "assignments/assignmentOverview";
     }
+
+
 
 
 }
