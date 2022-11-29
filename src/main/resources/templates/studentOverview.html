@@ -16,7 +16,7 @@
         <th>vak</th>
     </tr>
     <tr th:each="student : ${allStudents}">
-        <td th:text="${student.firstName}"></td>
+        <td><a th:href="@{/students/details/{studentId}(studentId=${student.studentId})}"  th:text="${student.firstName}"></a></td>
         <td th:text="${student.inFixName}"></td>
         <td th:text="${student.lastName}"></td>
         <td th:text="${student.githubAccount}"></td>

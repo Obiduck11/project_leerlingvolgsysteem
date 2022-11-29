@@ -50,11 +50,12 @@ public class StudentController {
             }
             return "redirect:/students/all";
     }
-    @GetMapping("/{studentId}")
+    @GetMapping("/details/{studentId}")
     protected String showStudentDetail(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
 
         if(student.isPresent()){
+            model.addAttribute("studentToShowDetailsFor", student.get());
             return "studentDetail";
         }
 
