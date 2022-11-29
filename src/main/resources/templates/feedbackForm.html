@@ -13,7 +13,7 @@
                 <th>Tekst</th>
                 <th>Type</th>
             </tr>
-            <tr> th:each="feedback : ${allFeedbacks}">
+            <tr th:each="feedback : ${allFeedbacks}">
                 <td th:text="${feedback.content}"></td>
                 <td th:text="${feedback.soort}"></td>
             </tr>
@@ -25,5 +25,6 @@
             </tr>
 
         </table>
+    </form>
 </body>
 </html>
