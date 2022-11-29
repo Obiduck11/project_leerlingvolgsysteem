@@ -38,6 +38,17 @@ public class StudentController {
         return showFormForStudent(model, new Student());
     }
 
+    @GetMapping("/edit/{studentId}")
+    protected String editStudent(@PathVariable("studentId") Long studentId, Model model){
+        Optional<Student> student = studentRepository.findById(studentId);
+
+        if(student.isPresent()){
+            model.addAttribute("studentToShowDetailsFor", student.get());
+            return showFormForStudent(model, student.get());
+        }
+        return "redirect:/students/all";
+    }
+
     private String showFormForStudent(Model model, Student student){
         model.addAttribute("student", student);
         model.addAttribute("allCourses", courseRepository.findAll());
@@ -59,6 +70,17 @@ public class StudentController {
         if(student.isPresent()){
             model.addAttribute("studentToShowDetailsFor", student.get());
             return "studentDetail";
+        }
+
+        return "redirect:/students/all";
+    }
+
+    @GetMapping("/delete/{studentId}")
+    protected String deleteStudent(@PathVariable("studentId") Long studentId){
+        Optional<Student> student = studentRepository.findById(studentId);
+
+        if(student.isPresent()){
+            studentRepository.delete(student.get());
         }
 
         return "redirect:/students/all";

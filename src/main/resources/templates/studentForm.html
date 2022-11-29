@@ -6,7 +6,7 @@
 <body>
 <h1>Voer een nieuwe student in</h1>
 <form th:action="@{/students/new}" method="post" th:object="${student}">
-
+        <input type="hidden" th:field="*{studentId}">
         <div>
                 <label th:for = "firstName">voornaam</label>
                 <input id="firstName" type ="text" th:field="*{firstName}">

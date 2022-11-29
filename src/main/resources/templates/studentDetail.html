@@ -26,7 +26,14 @@
         <td>Githubaccount</td>
         <td th:text="${studentToShowDetailsFor.githubAccount}"></td>
     </tr>
-
+    <tr th:each="course : ${studentToShowDetailsFor.courses}">
+        <td>Vakken</td>
+        <td th:text="${course.name}"></td>
+    </tr>
+    <tr>
+    <td><a th:href="@{/students/edit/{studentId}(studentId=${studentToShowDetailsFor.studentId})}">Edit</a></td>
+    <td><a th:href="@{/students/delete/{studentId} (studentId=${studentToShowDetailsFor.studentId})}">Delete</a></td>
+    </tr>
 </table>
 
 
