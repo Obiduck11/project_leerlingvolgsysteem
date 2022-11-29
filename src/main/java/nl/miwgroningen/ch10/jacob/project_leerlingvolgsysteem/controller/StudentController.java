@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ import java.util.Optional;
 public class StudentController {
 
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
 
 
-    public StudentController(StudentRepository studentRepository) {
+    public StudentController(StudentRepository studentRepository, CourseRepository courseRepository) {
         this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
     }
     @GetMapping("/all")
     protected String showAll(Model model){
@@ -37,6 +40,7 @@ public class StudentController {
 
     private String showFormForStudent(Model model, Student student){
         model.addAttribute("student", student);
+        model.addAttribute("allCourses", courseRepository.findAll());
 
         return "studentForm";
     }

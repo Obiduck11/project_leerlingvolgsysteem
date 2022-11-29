@@ -23,6 +23,12 @@
                 <label th:for = "githubAccount">githubaccount</label>
                 <input id="githubAccount" type ="text" th:field="*{githubAccount}">
         </div>
+        <div class="form-group">
+                <label th:for = "courses" class="form-label">vakken</label>
+                <select id="courses" class="form-control" th:field="*{courses}" multiple>
+                        <option th:each="course : ${allCourses}" th:value="${course.courseId}" th:text="${course.name}"></option>
+                </select>
+        </div>
         <div>
                 <input type="submit" value = "voeg toe">
         </div>
