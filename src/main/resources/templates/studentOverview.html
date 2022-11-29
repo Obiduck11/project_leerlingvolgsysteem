@@ -20,8 +20,15 @@
         <td th:text="${student.inFixName}"></td>
         <td th:text="${student.lastName}"></td>
         <td th:text="${student.githubAccount}"></td>
-        <td th:text="${student.courses}"></td>
+        <td>
+            <table>
+                <tr th:each="course : ${student.courses}">
+                    <td th:text="${course.name}"></td>
+                </tr>
+            </table>
+        </td>
     </tr>
+
 </table>
 
     <div th:replace="fragments/general :: footer"></div>

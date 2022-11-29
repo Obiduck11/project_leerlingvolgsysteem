@@ -27,10 +27,16 @@ private final StudentRepository studentRepository;
     OOP.setName("OOP");
     OOP.setFieldOfStudy("Make IT work");
 
+    Course programming = new Course();
+    programming.setName("Programming");
+    programming.setFieldOfStudy("Make IT work");
+
     courseRepository.save(OOP);
+    courseRepository.save(programming);
 
     Set<Course> courses= new HashSet<>();
     courses.add(OOP);
+    courses.add(programming);
 
     Student jacob = new Student();
     jacob.setFirstName("Jacob");
