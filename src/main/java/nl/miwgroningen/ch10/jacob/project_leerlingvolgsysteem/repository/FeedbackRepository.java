@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
  * <p>
- * het programma doet
+ * regelt de feedback in de database
  */
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {

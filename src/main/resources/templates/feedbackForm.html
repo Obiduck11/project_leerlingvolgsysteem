@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="fragments/general :: baseheader(~{:: title})">
     <title>Create feedback</title>
 </head>
 <body>
     <h1>Create feedback</h1>
-
-    <form th:action="@{/feedback/new}" method="post" th:object="${feedback}">
+    <form th:action="@{/feedbackLines/new}" method="post" th:object="${feedback}">
         <input type="hidden" th:field="*{feedbackId}">
+        <table>
+            <tr>
+                <th>Tekst</th>
+                <th>Type</th>
+            </tr>
+            <tr> th:each="feedback : ${allFeedbacks}">
+                <td th:text="${feedback.content}"></td>
+                <td th:text="${feedback.soort}"></td>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{content}"></td>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{soort}"></td>
+            </tr>
 
-
-    </form>
+        </table>
 </body>
 </html>

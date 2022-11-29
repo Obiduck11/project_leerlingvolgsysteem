@@ -15,10 +15,11 @@ import javax.persistence.Id;
 
 @Entity @Getter @Setter
 public class Feedback {
+
     @Id
     @GeneratedValue
     private Long feedbackId;
 
-    private String feedbackTekst;
-    private String feedbackType;
+    private String content;
+    private String soort;
 }
