@@ -15,7 +15,7 @@
         </tr>
         <tr>>
         <td>
-              <label th:for="firstName">voornaam</label>
+              <label th:for = "firstName">voornaam</label>
               <input type ="text" th:field="*{firstName}">
         </td>
         <td><input type ="text" th:field="*{inFixName}"></td>
@@ -25,6 +25,8 @@
         </tr>
         </table>
 </form>
+<footer th:replace="fragments/general :: footer"></footer>
+<div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
 </html>
