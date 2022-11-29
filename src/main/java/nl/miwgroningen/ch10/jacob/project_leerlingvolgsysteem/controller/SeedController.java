@@ -1,7 +1,9 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
@@ -16,9 +18,12 @@ public class SeedController {
 private final CourseRepository courseRepository;
 private final StudentRepository studentRepository;
 
-    public SeedController(CourseRepository courseRepository, StudentRepository studentRepository) {
+private final AssignmentRepository assignmentRepository;
+
+    public SeedController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
+        this.assignmentRepository = assignmentRepository;
     }
 
 @GetMapping("/seed")
@@ -46,6 +51,15 @@ private final StudentRepository studentRepository;
     jacob.setCourses(courses);
 
     studentRepository.save(jacob);
+
+    Assignment verslag = new Assignment();
+    verslag.setTitle("reflectie");
+    verslag.setCourse(programming);
+    verslag.setDescription("Dit verslag is bedoeld om na te denken over de zin en onzin van programming");
+    verslag.setSerialNumber(1);
+
+    assignmentRepository.save(verslag);
+
 
     return "redirect:/students/all";
 }
