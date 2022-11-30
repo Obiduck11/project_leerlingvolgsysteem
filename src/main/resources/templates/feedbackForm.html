@@ -11,17 +11,17 @@
         <table>
             <tr>
                 <th>Tekst</th>
-                <th>Type</th>
+                <th>Categorie</th>
             </tr>
-            <tr th:each="feedback : ${allFeedbacks}">
+            <tr th:each="feedback : ${feedback}">
                 <td th:text="${feedback.content}"></td>
-                <td th:text="${feedback.soort}"></td>
+                <td th:text="${feedback.category}"></td>
             </tr>
             <tr>
                 <td><input type="text" th:field="*{content}"></td>
             </tr>
             <tr>
-                <td><input type="text" th:field="*{soort}"></td>
+                <td><input type="text" th:field="*{category}"></td>
             </tr>
 
         </table>
