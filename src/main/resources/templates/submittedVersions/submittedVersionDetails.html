@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title span th:text="Ingeleverde opdrachten van ${submittedVersionToShow.studentDisplayName}"></title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<table class="center">
+    <tr th:each="submittedVersion : ${submittedVersionToShowToShow.students}">
+        <th>Opdracht</th>
+        <th>Inleverdatum</th>
+        <th>Beoordeling</th>
+    </tr>
+</table>
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+</body>
+</html>
