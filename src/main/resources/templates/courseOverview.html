@@ -10,10 +10,12 @@
         <tr>
             <th>Vaknaam</th>
             <th>Studierichting</th>
+            <th>Aantal studenten</th>
         </tr>
         <tr th:each="course : ${allCourses}">
             <td><a th:href="@{/courses/details/id/{courseId}(courseId=${course.courseId})}" th:text="${course.name}"></a></td>
             <td th:text="${course.fieldOfStudy}"></td>
+            <td th:text="${course.students.size()}"></td>
             <td><a th:href="@{/courses/edit/id/{courseId}(courseId=${course.courseId})}" th:text="edit"></a></td>
         </tr>
     </table>
