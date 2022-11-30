@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+
+
+    <title>Hier komt een gegenereerde titel</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class = "container">
+    <table>
+        <tr>
+            <td>Vak</td>
+            <td th:text="${assignmentToShowDetailsFor.course.name}"></td>
+        </tr>
+        <tr>
+            <td>Titel</td>
+            <td th:text="${assignmentToShowDetailsFor.title}"></td>
+        </tr>
+        <tr>
+            <td>Beschrijving</td>
+            <td th:text="${assignmentToShowDetailsFor.description}"></td>
+        </tr>
+        <tr>
+            <td>Volgnummer</td>
+            <td th:text="${assignmentToShowDetailsFor.serialNumber}"></td>
+        </tr>
+        <tr>
+            <td><a>Wijzig opdracht</a></td>
+            <td><a>Verwijder opdracht</a></td>
+        </tr>
+    </table>
+</div>
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+</body>

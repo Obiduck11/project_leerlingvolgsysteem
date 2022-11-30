@@ -6,10 +6,9 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseR
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * Author: Jacob Visser
@@ -62,6 +61,17 @@ public class AssignmentController {
         return "/assignments/assignmentForm";
     }
 
+    @GetMapping("/details/{assignmentId}")
+    protected String showDetailsAssignment(@PathVariable("assignmentId") Long assignmentId, Model model){
+        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
+
+        if(assignment.isPresent()){
+            model.addAttribute("assignmentToShowDetailsFor", assignment.get());
+            return "/assignments/assignmentDetail";
+        }
+
+        return "redirect:/assignments/all";
+    }
 
 
 }
