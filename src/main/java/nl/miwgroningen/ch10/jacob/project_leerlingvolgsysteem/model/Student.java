@@ -30,5 +30,17 @@ public class Student {
     @ManyToMany
     private Set<Course> courses;
 
+    public String getDisplayName() {
+        String displayName = firstName;
 
+        if (!inFixName.equals("")) {
+            displayName += " " + inFixName;
+        }
+
+        return displayName += " " + lastName;
+    }
+
+    public String toString() {
+        return getDisplayName();
+    }
 }
