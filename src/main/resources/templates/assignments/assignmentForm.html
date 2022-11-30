@@ -13,7 +13,7 @@
     <div>
         <label th:for="course">Vak</label>
         <select id="course" th:field="*{course}">
-            <option th:each="course : ${allCourses}" th:value="course.courseId" th:text="${course.name}"></option>
+            <option th:each="course : ${allCourses}" th:value="${course.courseId}" th:text="${course.name}"></option>
         </select>
     </div>
     <div>
@@ -26,7 +26,7 @@
     </div>
     <div>
         <label th:for = "serialNumber">volgnummer</label>
-        <input id="serialNumber" type ="text" th:field="*{serialNumber}">
+        <input id="serialNumber" type ="number" th:field="*{serialNumber}">
     </div>
     <div>
         <input type="submit" value = "voeg toe">

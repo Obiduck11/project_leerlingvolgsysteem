@@ -42,11 +42,16 @@ public class AssignmentController {
     }
 
     @PostMapping("/new")
-    protected String addNewAssignment(@ModelAttribute("assignment") Assignment assignmentToAdd, BindingResult result){
+    protected String addAssignment(@ModelAttribute("assignment") Assignment assignmentToAdd, BindingResult result){
       if(!result.hasErrors()){
 
           assignmentRepository.save(assignmentToAdd);
       }
+
+      if(result.hasErrors()){
+          System.out.println(result.getFieldError().toString());
+      }
+
         return "redirect:/assignments/all";
     }
 
@@ -54,7 +59,7 @@ public class AssignmentController {
         model.addAttribute("assignment", assignment);
         model.addAttribute("allCourses", courseRepository.findAll());
 
-        return "assignments/assignmentForm";
+        return "/assignments/assignmentForm";
     }
 
 
