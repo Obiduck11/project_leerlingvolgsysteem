@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="fragments/general :: baseHeader(~{:: title})">
-    <title>Vak details</title>
+    <title span th:text="${courseToShow.name}"></title>
 </head>
 <body>
     <div th:replace="fragments/general :: navbar"></div>
@@ -21,10 +21,10 @@
     <h2>Studenten in deze klas:</h2>
     <table class="center">
         <tr>
-            <th>voornaam</th>
-            <th>tussenvoegsel</th>
-            <th>achternaam</th>
-            <th>githubaccount</th>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Githubaccount</th>
         </tr>
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.firstName}"></td>
@@ -40,6 +40,5 @@
     <div th:replace="fragments/general :: bottomScripts"></div>
 
 </body>
-
 
 </html>

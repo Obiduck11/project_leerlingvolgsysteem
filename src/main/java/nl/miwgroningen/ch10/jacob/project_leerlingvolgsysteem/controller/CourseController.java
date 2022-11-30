@@ -42,7 +42,7 @@ public class CourseController {
     }
 
     @PostMapping ("/new")
-    protected String saveCourse(@ModelAttribute("book") Course courseToBeSaved, BindingResult result) {
+    protected String saveCourse(@ModelAttribute("course") Course courseToBeSaved, BindingResult result) {
         if (!result.hasErrors()){
             courseRepository.save(courseToBeSaved);
         }
@@ -79,7 +79,5 @@ public class CourseController {
         model.addAttribute("allStudents", studentRepository.findAll());
         return "courseForm";
     }
-
-
 
 }
