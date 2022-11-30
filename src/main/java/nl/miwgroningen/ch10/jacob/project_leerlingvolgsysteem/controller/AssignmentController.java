@@ -73,5 +73,26 @@ public class AssignmentController {
         return "redirect:/assignments/all";
     }
 
+    @GetMapping("/delete/{assignmentId}")
+    protected String deleteStudent(@PathVariable("assignmentId") Long assignmentId){
+        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
+
+        if(assignment.isPresent()){
+            assignmentRepository.delete(assignment.get());
+        }
+
+        return "redirect:/assignments/all";
+    }
+    @GetMapping("/edit/{assignmentId}")
+    protected String editAssignment(@PathVariable("assignmentId") Long assignmentId, Model model){
+        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
+
+        if(assignment.isPresent()){
+            model.addAttribute("assignmentToEdit", assignment );
+            return showAssignmentForm(model, assignment.get());
+        }
+        return "/assignments/all";
+
+    }
 
 }

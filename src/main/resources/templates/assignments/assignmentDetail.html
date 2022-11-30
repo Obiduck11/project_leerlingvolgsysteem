@@ -27,9 +27,8 @@
             <td th:text="${assignmentToShowDetailsFor.serialNumber}"></td>
         </tr>
         <tr>
-            <td><a>Wijzig opdracht</a></td>
-            <td><a>Verwijder opdracht</a></td>
-        </tr>
+            <td><a th:href="@{/assignments/delete/{assignmentId}(assignmentId=${assignmentToShowDetailsFor.assignmentId})}">Verwijder opdracht</a></td>
+            <td><a th:href="@{/assignments/edit/{assignmentId}(assignmentId=${assignmentToShowDetailsFor.assignmentId})}">Bewerk opdracht</a></td>
     </table>
 </div>
 <div th:replace="fragments/general :: footer"></div>
