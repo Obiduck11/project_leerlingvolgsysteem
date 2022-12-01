@@ -18,8 +18,6 @@ public class SubmittedVersion {
     @GeneratedValue
     private Long versionId;
 
-    private boolean rating;
-
     private LocalDate dateSubmitted;
 
     @ManyToOne
