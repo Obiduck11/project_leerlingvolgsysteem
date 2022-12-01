@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.transaction.UserTransaction;
 import java.time.LocalDate;
-import java.util.Set;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -27,8 +25,8 @@ public class SubmittedVersion {
     @ManyToOne
     private Student student;
 
-    @ManyToMany
-    private Set<Assignment> assignments;
+    @ManyToOne
+    private Assignment assignments;
 
     public String getStudentDisplayName() {
         return student.toString();
