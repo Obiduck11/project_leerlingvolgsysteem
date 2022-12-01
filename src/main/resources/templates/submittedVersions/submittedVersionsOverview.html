@@ -15,8 +15,8 @@
     </tr>
     <tr th:each="submittedVersion : ${allSubmittedVersions}">
 
-        <td th:text="${submittedVersion.getAssignments()}"></a></td>
         <td th:text="${submittedVersion.studentDisplayName}"></td>
+        <td th:text="${submittedVersion.assignmentName}"></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
     </tr>
 </table>

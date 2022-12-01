@@ -34,4 +34,12 @@ public class SubmittedVersion {
         return student.toString();
     }
 
+    public String getAssignmentName() {
+        return assignments.toString();
+    }
+
+    public String toString(){
+        return String.format("%s%d", getAssignmentName(), versionId);
+    }
+
 }

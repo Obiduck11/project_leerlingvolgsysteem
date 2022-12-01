@@ -1,6 +1,6 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
@@ -43,7 +43,10 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/details/{versionId}")
-    protected String showSubmittedVersionDetails(@PathVariable("versionId") Long versionId, Model model) {
+    protected String showSubmittedVersionDetails(@PathVariable("versionId")
+                                                     Long versionId, Model model) {
+//        Optional<Student> student = studentRepository.findById(studentId);
+//        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
 
         if (submittedVersion.isPresent()) {
@@ -58,15 +61,20 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/submittedVersionsPerStudent/{studentId}")
-    protected String showSubmittedPerStudent(@PathVariable("studentId") Long studentId, Model model){
-        Optional<Student> student = studentRepository.findById(studentId);
+    protected String showSubmittedPerStudent(@PathVariable("studentId") Long versionId, Model model){
+        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
 
-        if(student.isPresent()){
-            model.addAttribute("studentToShow", student.get());
-            return "/submittedVersions/submittedVersionsPerStudent";
+        if(submittedVersion.isPresent()){
+            model.addAttribute("submittedVersionToShow", submittedVersion.get());
+            return showVersionsPerStudent(model, submittedVersion);
         }
 
         return "redirect:/students/all";
     }
+    private static String showVersionsPerStudent(Model model, Optional<SubmittedVersion> submittedVersion) {
+        model.addAttribute("submittedVersionToShow", submittedVersion.get());
+        return "/submittedVersions/submittedVersionPerStudent";
+    }
+
 
 }
