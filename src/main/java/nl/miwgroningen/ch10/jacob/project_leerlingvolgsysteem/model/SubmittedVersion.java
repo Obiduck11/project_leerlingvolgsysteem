@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.transaction.UserTransaction;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -13,7 +12,8 @@ import java.util.Set;
  * <p>
  * Dit is wat het programma doet.
  */
-@Entity @Getter @Setter
+@Entity
+@Getter @Setter
 public class SubmittedVersion {
 
     @Id
@@ -27,19 +27,15 @@ public class SubmittedVersion {
     @ManyToOne
     private Student student;
 
-    @ManyToMany
-    private Set<Assignment> assignments;
+    @ManyToOne
+    private Assignment assignment;
 
     public String getStudentDisplayName() {
         return student.toString();
     }
 
-    public String getAssignmentName() {
-        return assignments.toString();
-    }
-
     public String toString(){
-        return String.format("%s%d", getAssignmentName(), versionId);
+        return String.format("%s%d", assignment, versionId);
     }
 
 }

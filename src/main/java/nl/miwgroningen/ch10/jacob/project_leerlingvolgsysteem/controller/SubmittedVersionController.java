@@ -76,5 +76,21 @@ public class SubmittedVersionController {
         return "/submittedVersions/submittedVersionPerStudent";
     }
 
+    @GetMapping("/submittedVersionsPerStudent/{assignmentId}")
+    protected String showSubmittedPerAssignment(@PathVariable("assignmentId") Long versionId, Model model) {
+        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+
+        if (submittedVersion.isPresent()) {
+            model.addAttribute("submittedVersionToShow", submittedVersion.get());
+            return showVersionsPerAssignment(model, submittedVersion);
+        }
+
+        return "redirect:/assignemnts/all";
+    }
+
+    private static String showVersionsPerAssignment(Model model, Optional<SubmittedVersion> submittedVersion) {
+        model.addAttribute("submittedVersionToShow", submittedVersion.get());
+        return "/submittedVersions/submittedVersionPerAssignment";
+    }
 
 }
