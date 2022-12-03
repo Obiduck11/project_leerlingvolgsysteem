@@ -25,4 +25,12 @@ public class Assignment {
     @ManyToOne
     private Course course;
 
+
+
+
+    public String getTitle() {
+        return title;
+    }
+
+
 }
