@@ -61,36 +61,24 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/submittedVersionsPerStudent/{studentId}")
-    protected String showSubmittedPerStudent(@PathVariable("studentId") Long versionId, Model model){
-        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+    protected String showSubmittedPerStudent(@PathVariable("studentId") Long studentId, Model model){
+        Optional<Student> student = studentRepository.findById(studentId);
 
-        if(submittedVersion.isPresent()){
-            model.addAttribute("submittedVersionToShow", submittedVersion.get());
-            return showVersionsPerStudent(model, submittedVersion);
+        if(student.isPresent()){
+            return showVersionsPerStudent(model, student);
         }
 
         return "redirect:/students/all";
     }
-    private static String showVersionsPerStudent(Model model, Optional<SubmittedVersion> submittedVersion) {
-        model.addAttribute("submittedVersionToShow", submittedVersion.get());
-        return "/submittedVersions/submittedVersionPerStudent";
+    private String showVersionsPerStudent(Model model, Optional<Student> student) {
+        model.addAttribute("studentToShow2", student.get());
+
+
+        return "/submittedVersions/submittedVersionsPerStudent";
     }
 
-    @GetMapping("/submittedVersionsPerStudent/{assignmentId}")
-    protected String showSubmittedPerAssignment(@PathVariable("assignmentId") Long versionId, Model model) {
-        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
 
-        if (submittedVersion.isPresent()) {
-            model.addAttribute("submittedVersionToShow", submittedVersion.get());
-            return showVersionsPerAssignment(model, submittedVersion);
-        }
 
-        return "redirect:/assignemnts/all";
-    }
 
-    private static String showVersionsPerAssignment(Model model, Optional<SubmittedVersion> submittedVersion) {
-        model.addAttribute("submittedVersionToShow", submittedVersion.get());
-        return "/submittedVersions/submittedVersionPerAssignment";
-    }
 
 }

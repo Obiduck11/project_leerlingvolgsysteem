@@ -3,10 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -29,6 +26,9 @@ public class Student {
 
     @ManyToMany
     private Set<Course> courses;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {
         String displayName = firstName;
