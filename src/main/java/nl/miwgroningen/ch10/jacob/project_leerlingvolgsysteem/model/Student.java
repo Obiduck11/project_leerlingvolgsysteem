@@ -27,7 +27,7 @@ public class Student {
     @ManyToMany
     private Set<Course> courses;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student")
     private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {
