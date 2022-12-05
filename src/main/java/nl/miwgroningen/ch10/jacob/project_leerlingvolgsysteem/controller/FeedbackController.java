@@ -25,6 +25,12 @@ public class FeedbackController {
         this.feedbackRepository = feedbackRepository;
     }
 
+    @GetMapping({"/all"})
+    protected String showFeedbackOverview(Model model) {
+        model.addAttribute("allFeedback", feedbackRepository.findAll());
+        return "feedbackOverview";
+    }
+
     @GetMapping("/new")
     protected String showNewFeedbackForm(Model model) {
         return showFeedbackForm(model, new Feedback());
@@ -40,6 +46,6 @@ public class FeedbackController {
         if(!result.hasErrors()) {
             feedbackRepository.save(feedback);
         }
-        return "redirect:/feedback";
+        return "redirect:/feedback/all";
     }
 }
