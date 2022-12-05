@@ -24,10 +24,10 @@ public class Student {
 
     private String githubAccount;
 
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Course> courses;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {

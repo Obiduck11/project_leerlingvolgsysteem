@@ -24,7 +24,7 @@ public class Course {
     @OneToMany (mappedBy = "course", cascade = CascadeType.REMOVE)
     private Set<Assignment> assignments;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Student> students;
 
     public void removeStudent(Student student){

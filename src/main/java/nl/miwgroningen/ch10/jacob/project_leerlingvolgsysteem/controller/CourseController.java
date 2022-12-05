@@ -75,7 +75,7 @@ public class CourseController {
     @GetMapping ("/edit/id/{courseId}")
     protected String showEditCourseForm(@PathVariable("courseId") Long courseId, Model model) {
         Optional<Course> course = courseRepository.findById(courseId);
-
+        
         if (course.isPresent()) {
             return showEditCourse(model, course.get());
         }
