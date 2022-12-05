@@ -32,8 +32,8 @@
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.githubAccount}"></td>
         </tr>
-
     </table>
+    <table>
         <tr>
             <td><a th:href="@{/courses/delete/{courseId}(courseId=${courseToShow.courseId})}">Delete</a></td>
         </tr>

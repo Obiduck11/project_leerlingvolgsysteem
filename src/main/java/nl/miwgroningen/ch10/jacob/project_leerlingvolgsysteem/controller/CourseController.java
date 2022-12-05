@@ -38,7 +38,7 @@ public class CourseController {
     @GetMapping ("/new")
     protected String showNewCourseForm(Model model) {
         model.addAttribute("course", new Course());
-        model.addAttribute("allCourses", courseRepository.findAll());
+        model.addAttribute("allStudents", studentRepository.findAll());
         return "courseForm";
     }
 
