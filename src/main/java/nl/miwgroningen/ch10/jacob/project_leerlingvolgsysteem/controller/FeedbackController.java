@@ -5,10 +5,9 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.Feedbac
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
@@ -45,6 +44,16 @@ public class FeedbackController {
     protected String saveFeedback(@ModelAttribute("feedback") Feedback feedback, BindingResult result) {
         if(!result.hasErrors()) {
             feedbackRepository.save(feedback);
+        }
+        return "redirect:/feedback/all";
+    }
+
+    @GetMapping("/feedback/delete/{feedbackId}")
+    protected String deleteFeedback(@PathVariable("feedbackId") Long feedbackId) {
+        Optional<Feedback> feedback = feedbackRepository.findById(feedbackId);
+
+        if (feedback.isPresent()) {
+            feedbackRepository.delete(feedback.get());
         }
         return "redirect:/feedback/all";
     }
