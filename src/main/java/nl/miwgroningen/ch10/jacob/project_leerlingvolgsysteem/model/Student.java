@@ -30,6 +30,11 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private Set<SubmittedVersion> submittedVersions;
 
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getStudents().add(this);
+    }
+
     public String getDisplayName() {
         String displayName = firstName;
 
