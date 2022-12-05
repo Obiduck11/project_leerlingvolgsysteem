@@ -62,6 +62,7 @@ private final AssignmentRepository assignmentRepository;
     students.add(dommy);
 
     studentRepository.save(jacob);
+    studentRepository.save(dommy);
 
     Assignment verslag = new Assignment();
     verslag.setTitle("reflectie");
