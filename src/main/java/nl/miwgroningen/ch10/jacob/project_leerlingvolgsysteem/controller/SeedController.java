@@ -44,11 +44,22 @@ private final AssignmentRepository assignmentRepository;
     courses.add(programming);
 
     Student jacob = new Student();
-    jacob.setFirstName("Jacob");
+    jacob.setFirstName("Dummy");
     jacob.setInFixName("tussen");
-    jacob.setLastName("Visser");
+    jacob.setLastName("Dommy");
     jacob.setGithubAccount("Obiduck11");
     jacob.setCourses(courses);
+
+    Student dommy = new Student();
+    dommy.setFirstName("dommy2");
+    dommy.setInFixName("van");
+    dommy.setLastName("test");
+    dommy.setGithubAccount("narnja");
+    dommy.setCourses(courses);
+
+    Set<Student> students = new HashSet<>();
+    students.add(jacob);
+    students.add(dommy);
 
     studentRepository.save(jacob);
 
@@ -59,6 +70,8 @@ private final AssignmentRepository assignmentRepository;
     verslag.setSerialNumber(1);
 
     assignmentRepository.save(verslag);
+
+    OOP.setStudents(students);
 
 
     return "redirect:/students/all";
