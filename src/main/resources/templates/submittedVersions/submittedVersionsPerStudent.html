@@ -5,14 +5,31 @@
 </head>
 <body>
 <div th:replace="fragments/general :: navbar"></div>
-<h1>Ingeleverde opdrachten per <span th:text="${studentToShow2.displayName}"></span></h1>
+<h1>Ingeleverde opdrachten van <span th:text="${studentToShow.displayName}"></span></h1>
+
 <table class="center">
+    <tr>
+        <th>Voornaam</th>
+        <td th:text="${studentToShow.firstName}"></td>
+
+    </tr>
+    <tr>
+        <th>Tussenvoegsel</th>
+        <td th:text="${studentToShow.inFixName}"></td>
+    </tr>
+    <tr>
+        <th>Achternaam</th>
+        <td th:text="${studentToShow.lastName}"></td>
+    </tr>
+</table>
+<table class="center">
+
     <tr>
         <th>Opdracht</th>
         <th>Inleverdatum</th>
         <th>Student Naam</th>
     </tr>
-    <tr th:each="submittedVersion : ${studentToShow2.submittedVersions}">
+    <tr th:each="submittedVersion : ${studentToShow.submittedVersions}">
         <td th:text="${submittedVersion.getAssignment().getTitle()}"></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
         <td th:text="${submittedVersion.getStudentDisplayName()}"></td>

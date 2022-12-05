@@ -34,6 +34,10 @@
         </tr>
 
     </table>
+        <tr>
+            <td><a th:href="@{/courses/delete/{courseId}(courseId=${courseToShow.courseId})}">Delete</a></td>
+        </tr>
+    </table>
 
     <div th:replace="fragments/general :: footer"></div>
 
