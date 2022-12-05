@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
@@ -80,10 +81,19 @@ public class StudentController {
         Optional<Student> student = studentRepository.findById(studentId);
 
         if(student.isPresent()){
+
+            deleteStudentFromCourse(student.get());
             studentRepository.delete(student.get());
         }
 
         return "redirect:/students/all";
     }
 
+    protected void deleteStudentFromCourse(Student student){
+        for (Course course : courseRepository.findAll()) {
+            if(student.getCourses().contains(course)){
+                student.removeCourse(course);
+            }
+        }
+    }
 }

@@ -40,6 +40,11 @@ public class Student {
         return displayName += " " + lastName;
     }
 
+    public void removeCourse(Course course){
+        this.courses.remove(course);
+        course.getStudents().remove(this);
+    }
+
     public String toString() {
         return getDisplayName();
     }
