@@ -21,11 +21,21 @@ public class Course {
     private String name;
     private String fieldOfStudy;
 
-    @OneToMany (mappedBy = "course")
+    @OneToMany (mappedBy = "course", cascade = CascadeType.REMOVE)
     private Set<Assignment> assignments;
 
     @ManyToMany
     private Set<Student> students;
+
+    public void removeStudent(Student student){
+        students.remove(student);
+        student.getCourses().remove(this);
+    }
+
+    public void addStudent(Student student){
+        students.add(student);
+        student.getCourses().add(this);
+    }
 
 
 }

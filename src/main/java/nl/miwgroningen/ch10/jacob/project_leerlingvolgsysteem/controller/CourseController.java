@@ -45,9 +45,16 @@ public class CourseController {
     @PostMapping ("/new")
     protected String saveCourse(@ModelAttribute("course") Course courseToBeSaved, BindingResult result) {
         if (!result.hasErrors()){
+            addCourseToStudents(courseToBeSaved);
             courseRepository.save(courseToBeSaved);
         }
         return "redirect:/courses/all";
+    }
+
+    protected void addCourseToStudents(Course course){
+        for (Student student : course.getStudents()) {
+            course.addStudent(student);
+        }
     }
 
     @GetMapping ("/details/id/{courseId}")
@@ -86,10 +93,18 @@ public class CourseController {
         Optional<Course> course = courseRepository.findById(courseId);
 
         if(course.isPresent()){
+            deleteCourseFromStudent(course.get());
             courseRepository.delete(course.get());
         }
 
         return "redirect:/courses/all";
     }
 
+    protected void deleteCourseFromStudent(Course course){
+        for (Student student : studentRepository.findAll()) {
+            if(course.getStudents().contains(student)){
+                course.removeStudent(student);
+            }
+        }
+    }
 }
