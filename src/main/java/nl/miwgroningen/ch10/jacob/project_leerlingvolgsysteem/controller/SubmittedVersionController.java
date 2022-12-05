@@ -45,8 +45,6 @@ public class SubmittedVersionController {
     @GetMapping("/details/{versionId}")
     protected String showSubmittedVersionDetails(@PathVariable("versionId")
                                                      Long versionId, Model model) {
-//        Optional<Student> student = studentRepository.findById(studentId);
-//        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
 
         if (submittedVersion.isPresent()) {
@@ -71,7 +69,7 @@ public class SubmittedVersionController {
         return "redirect:/students/all";
     }
     private String showVersionsPerStudent(Model model, Optional<Student> student) {
-        model.addAttribute("studentToShow2", student.get());
+        model.addAttribute("studentToShow", student.get());
 
 
         return "/submittedVersions/submittedVersionsPerStudent";
