@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
  * <p>
- * het programma doet
+ * het programma geeft toegang tot alle feedback
  */
 
 @Controller
-@RequestMapping("/feedbacklines")
+@RequestMapping("/feedback")
 public class FeedbackController {
     private final FeedbackRepository feedbackRepository;
 
@@ -25,7 +25,7 @@ public class FeedbackController {
         this.feedbackRepository = feedbackRepository;
     }
 
-    @GetMapping("/feedbackLines/new")
+    @GetMapping("/new")
     protected String showNewFeedbackForm(Model model) {
         return showFeedbackForm(model, new Feedback());
     }
@@ -35,11 +35,11 @@ public class FeedbackController {
         return "feedbackForm";
     }
 
-    @PostMapping("/feedbackLines/new")
+    @PostMapping("/new")
     protected String saveFeedback(@ModelAttribute("feedback") Feedback feedback, BindingResult result) {
         if(!result.hasErrors()) {
             feedbackRepository.save(feedback);
         }
-        return "redirect:/feedbackLines";
+        return "redirect:/feedback";
     }
 }

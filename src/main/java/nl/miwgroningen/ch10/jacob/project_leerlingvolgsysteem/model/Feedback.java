@@ -21,5 +21,5 @@ public class Feedback {
     private Long feedbackId;
 
     private String content;
-    private String category;
+    private String title;
 }
