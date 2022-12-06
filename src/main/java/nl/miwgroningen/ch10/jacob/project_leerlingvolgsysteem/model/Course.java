@@ -28,8 +28,10 @@ public class Course {
     private Set<Student> students;
 
     public void removeStudent(Student student){
+        System.out.println(students.toString());
         students.remove(student);
         student.getCourses().remove(this);
+        System.out.println(students.toString());
     }
 
     public void addStudent(Student student){

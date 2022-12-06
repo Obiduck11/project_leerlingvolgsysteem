@@ -90,13 +90,12 @@ public class StudentController {
     @GetMapping("/remove-student/{courseId}/{studentId}")
     protected String removeStudentFromCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId){
         Optional<Course> course = courseRepository.findById(courseId);
-        System.out.println(course.isPresent());
-
         if(course.isPresent()){
             Optional<Student> student = studentRepository.findById(studentId);
-            System.out.println(student.isPresent()  );
             if(student.isPresent()){
                 course.get().removeStudent(student.get());
+                courseRepository.save(course.get());
+                studentRepository.save(student.get());
             }
         }
         return "redirect:/courses/all";
