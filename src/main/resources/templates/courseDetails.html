@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:replace="fragments/general :: baseHeader(~{:: title})">
-    <title span th:text="${courseToShow.name}"></title>
+    <title th:text="${courseToShow.name}"></title>
 </head>
 <body>
     <div th:replace="fragments/general :: navbar"></div>
@@ -31,6 +31,7 @@
             <td th:text="${student.inFixName}"></td>
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.githubAccount}"></td>
+            <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}">Verwijder student</a></td>
         </tr>
     </table>
     <table>

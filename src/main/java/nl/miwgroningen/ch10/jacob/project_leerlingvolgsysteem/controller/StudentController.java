@@ -81,14 +81,27 @@ public class StudentController {
         Optional<Student> student = studentRepository.findById(studentId);
 
         if(student.isPresent()){
-
             deleteStudentFromCourse(student.get());
             studentRepository.delete(student.get());
         }
 
         return "redirect:/students/all";
     }
+    @GetMapping("/remove-student/{courseId}/{studentId}")
+    protected String removeStudentFromCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId){
+        Optional<Course> course = courseRepository.findById(courseId);
+        System.out.println(course.isPresent());
 
+        if(course.isPresent()){
+            Optional<Student> student = studentRepository.findById(studentId);
+            System.out.println(student.isPresent()  );
+            if(student.isPresent()){
+                course.get().removeStudent(student.get());
+                student.get().removeCourse(course.get());
+            }
+        }
+        return "redirect:/courses/all/";
+    }
     protected void deleteStudentFromCourse(Student student){
         for (Course course : courseRepository.findAll()) {
             if(student.getCourses().contains(course)){
