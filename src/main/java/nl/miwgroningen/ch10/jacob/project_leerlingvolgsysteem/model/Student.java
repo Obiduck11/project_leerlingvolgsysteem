@@ -30,11 +30,6 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubmittedVersion> submittedVersions;
 
-    public void addCourse(Course course) {
-        courses.add(course);
-        course.getStudents().add(this);
-    }
-
     public String getDisplayName() {
         String displayName = firstName;
 
@@ -48,6 +43,11 @@ public class Student {
     public void removeCourse(Course course){
         this.courses.remove(course);
         course.getStudents().remove(this);
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getStudents().add(this);
     }
 
     public String toString() {

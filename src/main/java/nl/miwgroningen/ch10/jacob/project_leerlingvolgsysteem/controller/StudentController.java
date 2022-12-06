@@ -81,7 +81,7 @@ public class StudentController {
         Optional<Student> student = studentRepository.findById(studentId);
 
         if(student.isPresent()){
-            deleteStudentFromCourse(student.get());
+            deleteStudentFromAllCourses(student.get());
             studentRepository.delete(student.get());
         }
 
@@ -97,12 +97,11 @@ public class StudentController {
             System.out.println(student.isPresent()  );
             if(student.isPresent()){
                 course.get().removeStudent(student.get());
-                student.get().removeCourse(course.get());
             }
         }
-        return "redirect:/courses/all/";
+        return "redirect:/courses/all";
     }
-    protected void deleteStudentFromCourse(Student student){
+    protected void deleteStudentFromAllCourses(Student student){
         for (Course course : courseRepository.findAll()) {
             if(student.getCourses().contains(course)){
                 student.removeCourse(course);
