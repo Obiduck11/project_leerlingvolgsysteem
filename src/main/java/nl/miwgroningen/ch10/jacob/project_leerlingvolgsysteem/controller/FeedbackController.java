@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
  * <p>
- * het programma geeft toegang tot alle feedback
+ * het programma beheert alle feedback
  */
 
 @Controller
@@ -48,7 +48,17 @@ public class FeedbackController {
         return "redirect:/feedback/all";
     }
 
-    @GetMapping("/feedback/delete/{feedbackId}")
+    @GetMapping("/edit/{feedbackId}")
+    protected String showEditFeedbackform(@PathVariable("feedbackId") Long feedbackId, Model model) {
+        Optional<Feedback> feedback = feedbackRepository.findById(feedbackId);
+
+        if (feedback.isPresent()) {
+            return showFeedbackForm(model, feedback.get());
+        }
+        return "redirect:/feedback/all";
+    }
+
+    @GetMapping("/delete/{feedbackId}")
     protected String deleteFeedback(@PathVariable("feedbackId") Long feedbackId) {
         Optional<Feedback> feedback = feedbackRepository.findById(feedbackId);
 
