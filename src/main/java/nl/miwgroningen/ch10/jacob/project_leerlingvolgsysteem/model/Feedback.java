@@ -22,4 +22,9 @@ public class Feedback {
 
     private String content;
     private String title;
+
+    @Override
+    public String toString() {
+        return title + ": " + content;
+    }
 }

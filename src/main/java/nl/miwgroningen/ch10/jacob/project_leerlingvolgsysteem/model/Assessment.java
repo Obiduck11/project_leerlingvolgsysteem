@@ -21,12 +21,13 @@ public class Assessment {
     private Long assessmentId;
 
     private boolean pass;
+    private String specifiekeFeedback;
 
     @ManyToMany
     private Set<Feedback> feedbacks;
 
     @OneToOne
-    private Assignment assignment;
+    private SubmittedVersion submittedVersion;
 
 
 }

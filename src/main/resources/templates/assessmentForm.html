@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+    <title>Beoordeling</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class="container">
+    <h1>Nieuwe beoordeling</h1>
+
+    <form class="center" th:action="@{/assessments/new}" method="post" th:object="${assessment}">
+        <input type="hidden" th:field="*{assessmentId}">
+
+        <div class="form-group">
+            <label th:for="assessment">gehaald</label>
+            <input id="pass" type="checkbox">
+        </div>
+
+
+        <div class="form-group">
+            <label for="feedback" class="form-label">Feedback keuzemenu</label>
+            <select id="feedback" class="form-control" th:field="*{feedbacks}" multiple>
+                <option th:each="feedback : ${allFeedback}" th:value="${feedback}" th:text="${feedback}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="specifiekeFeedback" class="form-label">Feedback vrije invoer</label>
+            <input id="specifiekeFeedback" type="text" class="form-control" th:field="*{specifiekeFeedback}">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Sla assessment op</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
+</body>
+</html>
