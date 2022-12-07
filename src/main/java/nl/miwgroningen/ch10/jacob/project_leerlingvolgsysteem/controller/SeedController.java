@@ -131,14 +131,21 @@ private final AssessmentRepository assessmentRepository;
     submittedVersion1.setDateSubmitted(LocalDate.of(2022,9,11));
     submittedVersion1.setStudent(student1);
 
+
     SubmittedVersion submittedVersion2 = new SubmittedVersion();
     submittedVersion2.setAssignment(practicum);
     submittedVersion2.setDateSubmitted(LocalDate.of(2022,5,3));
     submittedVersion2.setStudent(student2);
 
+    SubmittedVersion submittedVersion3 = new SubmittedVersion();
+    submittedVersion3.setAssignment(werkstuk);
+    submittedVersion3.setDateSubmitted(LocalDate.of(2022, 4, 12));
+    submittedVersion3.setStudent(student3);
+
 
     submittedVersionRepository.save(submittedVersion1);
     submittedVersionRepository.save(submittedVersion2);
+    submittedVersionRepository.save(submittedVersion3);
 
 
     Assessment assessment1 = new Assessment();
