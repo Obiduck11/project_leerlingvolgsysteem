@@ -30,7 +30,7 @@ public class AssessmentController {
         this.submittedVersionRepository = submittedVersionRepository;
     }
 
-    @GetMapping({"/assessments"})
+    @GetMapping({"/assessments/all"})
     protected String showAssessmentOverview(Model model) {
         model.addAttribute("allAssessments", assessmentRepository.findAll());
         model.addAttribute("allFeedback", feedbackRepository.findAll());
@@ -54,7 +54,7 @@ public class AssessmentController {
         if(!result.hasErrors()) {
             assessmentRepository.save(assessment);
         }
-        return "redirect:/assessments";
+        return "redirect:/assessments/all";
     }
 
     @GetMapping("assessments/edit/{assessmentId}")
@@ -64,7 +64,7 @@ public class AssessmentController {
         if (assessment.isPresent()) {
             return showAssessmentForm(model, assessment.get());
         }
-        return "redirect:/assessments";
+        return "redirect:/assessments/all";
     }
 
     @GetMapping("/assessments/delete/{assessmentId}")
@@ -74,7 +74,7 @@ public class AssessmentController {
         if (assessment.isPresent()) {
             assessmentRepository.delete(assessment.get());
         }
-        return "redirect:/assessments";
+        return "redirect:/assessments/all";
     }
 
 }

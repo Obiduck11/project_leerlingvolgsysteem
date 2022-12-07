@@ -36,7 +36,7 @@ public class Assessment {
         if(pass) {
             result = "Gehaald";
         } else {
-            result = "Nog niet gehaald";
+            result = "Niet gehaald";
         }
         return result;
     }
