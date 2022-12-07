@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+
+
+    <title>Voeg een ingeleverde versie toe</title>
+</head>
+<body>
+<div th:replace="fragments/general :: navbar"></div>
+
+<h1>Voeg een ingeleverde versie toe</h1>
+<form th:action="@{/submittedVersions/new}" method="post" th:object="${submittedVersion}">
+    <div class="form-group">
+        <label th:for = "student" class="form-label">Student</label>
+        <select id="student" class="form-control" th:field="*{student}">
+            <option th:each="student : ${allStudents}" th:value="${student.studentId}" th:text="${student.displayName}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+    <label th:for = "assignment" class="form-label">Opdracht</label>
+    <select id="assignment" class="form-control" th:field="*{assignment}">
+        <option th:each="assignment : ${allAssignments}" th:value="${assignment.assignmentId}" th:text="${assignment.title}"></option>
+    </select>
+</div>
+    <div class="form-group">
+        <label th:for="dateSubmitted">Inleverdatum</label>
+        <input id="dateSubmitted" type="date" th:field="*{dateSubmitted}">
+    </div>
+    <div>
+        <input type="submit" value="voeg toe">
+    </div>
+</form>
+
+<div th:replace="fragments/general :: footer"></div>
+
+<div th:replace="fragments/general :: bottomScripts"></div>
+
+
+
+</body>
