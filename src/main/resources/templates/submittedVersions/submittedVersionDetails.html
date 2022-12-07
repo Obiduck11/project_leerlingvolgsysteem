@@ -7,11 +7,32 @@
 <div th:replace="fragments/general :: navbar"></div>
 <h1>Ingeleverde versie</h1>
 <table class="center">
-    <tr th:each="submittedVersion : ${submittedVersionToShowToShow}">
-        <th>Opdracht</th>
-        <th>Inleverdatum</th>
-        <th>Beoordeling</th>
+    <tr>
+        <th>Naam student</th>
+        <td th:text="${submittedVersionToShow.student.displayName}"></td>
     </tr>
+    <tr>
+        <th>Opdracht</th>
+        <td th:text="${submittedVersionToShow.assignment.getTitle()}"></td>
+    </tr>
+    <tr>
+        <th>Opdrachtbeschrijving</th>
+        <td th:text="${submittedVersionToShow.assignment.description}"></td>
+    </tr>
+    <tr>
+        <th>Inleverdatum</th>
+        <td th:text="${submittedVersionToShow.getDateSubmitted()}"></td>
+    </tr>
+    <tr>
+        <th>Beoordeling</th>
+        <td>
+            <span th:if="${submittedVersionToShow.getAssessment.assessmentId == null}">Nog niet beoordeeld</span>
+            <span th:if="${submittedVersionToShow.getAssessment().isPass()}">Voldoende</span>
+            <span th:unless="${submittedVersionToShow.getAssessment().isPass()}">Onvoldoende</span>
+        </td>
+    </tr>
+
+
 </table>
 
 <div th:replace="fragments/general :: footer"></div>
