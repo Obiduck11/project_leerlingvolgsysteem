@@ -98,7 +98,7 @@ public class StudentController {
                 studentRepository.save(student.get());
             }
         }
-        return "redirect:/courses/all";
+        return "redirect:/courses/details/id/" + course.get().getCourseId();
     }
     protected void deleteStudentFromAllCourses(Student student){
         for (Course course : courseRepository.findAll()) {
