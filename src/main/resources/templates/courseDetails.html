@@ -34,6 +34,18 @@
             <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}">Verwijder student</a></td>
         </tr>
     </table>
+    <h2>Opdrachten betreffende deze klas</h2>
+    <table class="center">
+        <tr>
+            <th>Titel</th>
+            <th>Beschrijving</th>
+        </tr>
+        <tr th:each="course : ${courseToShow.assignments}">
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.description}"></td>
+        </tr>
+
+    </table>
     <table>
         <tr>
             <td><a th:href="@{/courses/delete/{courseId}(courseId=${courseToShow.courseId})}">Delete</a></td>
