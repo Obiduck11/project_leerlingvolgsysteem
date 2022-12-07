@@ -11,12 +11,19 @@
     <tr>
         <th>Naam Student</th>
         <th>Opdracht</th>
+        <th>Versie</th>
         <th>Inleverdatum</th>
+        <th>Beoordeling</th>
     </tr>
     <tr th:each="submittedVersion : ${allSubmittedVersions}">
         <td><a th:href="@{/submittedVersions/submittedVersionsPerStudent/{studentId}(studentId=${submittedVersion.student.getStudentId()})}" th:text="${submittedVersion.studentDisplayName}"></a></td>
         <td><a th:href="@{/assignments/details/{assignmentId}(assignmentId=${submittedVersion.assignment.getAssignmentId()})}" th:text="${submittedVersion.getAssignment().getTitle()}"></a></td>
+        <td><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" th:text="${submittedVersion.versionId}"></a></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
+        <td>
+            <span th:if="${submittedVersion.getAssessment.pass}">Ga naar beoordeling</span>
+            <span th:unless="${submittedVersion.getAssessment.pass}"><a th:href="@{/assessments/assessVersion/{versionId}(versionId=${submittedVersion.versionId})}">Beoordeel</a></span>
+        </td>
     </tr>
 </table>
 
