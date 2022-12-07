@@ -1,6 +1,5 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
@@ -8,9 +7,8 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.Student
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -38,7 +36,6 @@ public class SubmittedVersionController {
     @GetMapping("/all")
     protected String showSubmittedVersionsOverview(Model model) {
         model.addAttribute("allSubmittedVersions", submittedVersionRepository.findAll());
-
         return "submittedVersions/submittedVersionsOverview";
     }
 
@@ -70,12 +67,27 @@ public class SubmittedVersionController {
     }
     private String showVersionsPerStudent(Model model, Optional<Student> student) {
         model.addAttribute("studentToShow", student.get());
-
-
         return "/submittedVersions/submittedVersionsPerStudent";
     }
+    @GetMapping("/new")
+    private String showNewSubmitForm(Model model){
+        return showSubmitForm(model, new SubmittedVersion());
+    }
 
+    @PostMapping("/new")
+    private String addNewSubmittedVersion(@ModelAttribute("newSubmit") SubmittedVersion submittedVersion, BindingResult result) {
+        if(!result.hasErrors()){
+            submittedVersionRepository.save(submittedVersion);
+        }
+        return "redirect:/submittedVersions/all";
+    }
 
+    private String showSubmitForm(Model model, SubmittedVersion submittedVersion){
+        model.addAttribute("submittedVersion", submittedVersion);
+        model.addAttribute("allAssignments", assignmentRepository.findAll());
+        model.addAttribute("allStudents", studentRepository.findAll());
+        return "submittedVersionForm";
+    }
 
 
 
