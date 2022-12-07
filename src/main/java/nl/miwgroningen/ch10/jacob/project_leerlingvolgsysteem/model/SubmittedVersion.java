@@ -39,7 +39,7 @@ public class SubmittedVersion {
 
 
     public String toString(){
-        return String.format("%s%d", assignment, versionId);
+        return String.format("%s%d", assignment.getTitle(), versionId);
     }
 
 }

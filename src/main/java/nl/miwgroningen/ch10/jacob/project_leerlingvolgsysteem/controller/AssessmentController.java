@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
@@ -50,6 +53,26 @@ public class AssessmentController {
     protected String saveAssessment(@ModelAttribute ("assessment") Assessment assessment, BindingResult result) {
         if(!result.hasErrors()) {
             assessmentRepository.save(assessment);
+        }
+        return "redirect:/assessments";
+    }
+
+    @GetMapping("assessments/edit/{assessmentId}")
+    protected String showEditAssessmentForm(@PathVariable("assessmentId") Long AssessmentId, Model model) {
+        Optional<Assessment> assessment = assessmentRepository.findById(AssessmentId);
+
+        if (assessment.isPresent()) {
+            return showAssessmentForm(model, assessment.get());
+        }
+        return "redirect:/assessments";
+    }
+
+    @GetMapping("/assessments/delete/{assessmentId}")
+    protected String deleteAssessment(@PathVariable("assessmentId") Long assessmentId) {
+        Optional<Assessment> assessment = assessmentRepository.findById(assessmentId);
+
+        if (assessment.isPresent()) {
+            assessmentRepository.delete(assessment.get());
         }
         return "redirect:/assessments";
     }

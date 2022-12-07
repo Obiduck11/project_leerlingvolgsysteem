@@ -11,6 +11,7 @@
   <h1>Overzicht beoordelingen</h1>
   <table>
     <tr>
+      <th>student</th>
       <th>ingeleverde opdracht</th>
       <th>gehaald / niet gehaald</th>
       <th>feedback</th>
@@ -18,20 +19,16 @@
       <th>edit</th>
       <th>delete</th>
     </tr>
-    <tr th:each="assessment : ${allAssessments}">
-      <td>
-        <table>
-          <tr th:each="submittedVersion : ${assessment.submittedVersion}">
-            <td th:text="${submittedVersion}"></td>
-          </tr>
-        </table>
-      </td>
 
-      <td th:text="${assessment.feedbacks}"></td>
+    <tr th:each="submittedVersion : ${allSubmittedVersions}">
+      <td th:text="${submittedVersion.student}">student</td>
+      <td th:text="${submittedVersion}">opdracht</td>
+      <td th:text="${submittedVersion.assessment.pass}">gehaald of niet gehaald</td>
+      <td th:text="${submittedVersion.assessment.feedbacks}">tekst</td>
+      <td th:text="${submittedVersion.assessment.specifiekeFeedback}">tekst</td>
 
-      <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}">Edit</a></td>
-      <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}">Delete</a></td>
-
+      <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${submittedVersion.assessment.assessmentId})}">Edit</a></td>
+      <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${submittedVersion.assessment.assessmentId})}">Delete</a></td>
     </tr>
   </table>
 
