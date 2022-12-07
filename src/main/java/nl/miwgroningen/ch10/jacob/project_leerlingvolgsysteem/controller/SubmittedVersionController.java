@@ -86,7 +86,8 @@ public class SubmittedVersionController {
         model.addAttribute("submittedVersion", submittedVersion);
         model.addAttribute("allAssignments", assignmentRepository.findAll());
         model.addAttribute("allStudents", studentRepository.findAll());
-        return "submittedVersionForm";
+
+        return "submittedVersions/submittedVersionForm";
     }
 
 
