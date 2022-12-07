@@ -97,7 +97,6 @@ private final AssessmentRepository assessmentRepository;
     practicum.setSerialNumber(3);
 
 
-
     assignmentRepository.save(verslag);
     assignmentRepository.save(werkstuk);
     assignmentRepository.save(practicum);

@@ -3,6 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 import lombok.Getter;
 import lombok.Setter;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class SubmittedVersion {
     @GeneratedValue
     private Long versionId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateSubmitted;
 
     @OneToOne (mappedBy = "submittedVersion")
@@ -34,7 +36,7 @@ public class SubmittedVersion {
     private Assignment assignment;
 
     @OneToMany
-    private Set<SubmittedVersion> submittedVersions =new HashSet<>();
+    private Set<SubmittedVersion> submittedVersions = new HashSet<>();
 
     public String getStudentDisplayName() {
         return student.toString();

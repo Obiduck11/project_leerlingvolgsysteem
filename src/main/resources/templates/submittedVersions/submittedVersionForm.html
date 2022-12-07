@@ -24,7 +24,8 @@
 </div>
     <div class="form-group">
         <label th:for="dateSubmitted">Inleverdatum</label>
-        <input id="dateSubmitted" type="date" th:field="*{dateSubmitted}">
+        <input id="dateSubmitted" type="date" th:field="*{{dateSubmitted}}">
+
     </div>
     <div>
         <input type="submit" value="voeg toe">
