@@ -26,12 +26,21 @@
     <tr>
         <th>Beoordeling</th>
         <td>
-            <span th:if="${submittedVersionToShow.getAssessment.assessmentId == null}">Nog niet beoordeeld</span>
-            <span th:if="${submittedVersionToShow.getAssessment().isPass()}">Voldoende</span>
-            <span th:unless="${submittedVersionToShow.getAssessment().isPass()}">Onvoldoende</span>
+            <span th:if="${submittedVersionToShow.assessment == null}">Nog niet beoordeeld</span>
+            <span th:if="${submittedVersionToShow.assessment != null and submittedVersionToShow.getAssessment().isPass()}">Voldoende</span>
+            <span th:if="${submittedVersionToShow.assessment != null and not submittedVersionToShow.getAssessment().isPass()}">Onvoldoende</span>
         </td>
     </tr>
-
+    <tr th:if="${submittedVersionToShow.assessment != null}">
+        <th>Feedback</th>
+        <td th:text="${submittedVersionToShow.assessment.getSpecifiekeFeedback()}"></td>
+    </tr>
+    <p th:if="${submittedVersionToShow.assessment != null}">
+        <tr th:each="Feedback : ${submittedVersionToShow.assessment.feedbacks}">
+            <th>Feedbackregel</th>
+            <td th:text="${Feedback}"></td>
+        </tr>
+    </p>
 
 </table>
 
