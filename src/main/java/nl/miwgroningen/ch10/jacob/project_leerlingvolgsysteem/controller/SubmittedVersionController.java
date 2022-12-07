@@ -24,7 +24,6 @@ public class SubmittedVersionController {
     private final SubmittedVersionRepository submittedVersionRepository;
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
-
     private final AssessmentRepository assessmentRepository;
 
     public SubmittedVersionController(
@@ -82,6 +81,8 @@ public class SubmittedVersionController {
     private String addNewSubmittedVersion(@ModelAttribute("newSubmit") SubmittedVersion submittedVersion, BindingResult result) {
         if(!result.hasErrors()){
             submittedVersionRepository.save(submittedVersion);
+        } else {
+            System.out.println(result.getFieldError().toString());
         }
         return "redirect:/submittedVersions/all";
     }
