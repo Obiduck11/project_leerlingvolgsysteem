@@ -19,9 +19,12 @@ public class SubmittedVersion {
     @GeneratedValue
     private Long versionId;
 
-    private boolean rating;
+
 
     private LocalDate dateSubmitted;
+
+    @OneToOne (mappedBy = "submittedVersion")
+    private Assessment assessment;
 
     @ManyToOne
     private Student student;

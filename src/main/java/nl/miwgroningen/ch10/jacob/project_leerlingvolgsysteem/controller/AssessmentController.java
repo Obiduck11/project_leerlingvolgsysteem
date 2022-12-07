@@ -27,6 +27,14 @@ public class AssessmentController {
         this.submittedVersionRepository = submittedVersionRepository;
     }
 
+    @GetMapping({"/assessments"})
+    protected String showAssessmentOverview(Model model) {
+        model.addAttribute("allAssessments", assessmentRepository.findAll());
+        model.addAttribute("allFeedback", feedbackRepository.findAll());
+        model.addAttribute("allSubmittedVersions", submittedVersionRepository.findAll());
+        return "assessmentOverview";
+    }
+
     @GetMapping("/assessments/new")
     protected String showNewAssessmentForm(Model model) {
         return showAssessmentForm(model, new Assessment());
@@ -43,7 +51,7 @@ public class AssessmentController {
         if(!result.hasErrors()) {
             assessmentRepository.save(assessment);
         }
-        return "redirect:/assessments/new";
+        return "redirect:/assessments";
     }
 
 }
