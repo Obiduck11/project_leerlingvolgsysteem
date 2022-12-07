@@ -2,6 +2,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssessmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
@@ -24,13 +25,16 @@ public class SubmittedVersionController {
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
 
+    private final AssessmentRepository assessmentRepository;
+
     public SubmittedVersionController(
             SubmittedVersionRepository submittedVersionRepository,
             StudentRepository studentRepository,
-            AssignmentRepository assignmentRepository) {
+            AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
         this.submittedVersionRepository = submittedVersionRepository;
         this.studentRepository = studentRepository;
         this.assignmentRepository = assignmentRepository;
+        this.assessmentRepository = assessmentRepository;
     }
 
     @GetMapping("/all")
