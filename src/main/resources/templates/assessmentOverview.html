@@ -23,7 +23,7 @@
     <tr th:each="submittedVersion : ${allSubmittedVersions}">
       <td th:text="${submittedVersion.student}">student</td>
       <td th:text="${submittedVersion}">opdracht</td>
-      <td th:text="${submittedVersion.assessment.pass}">gehaald of niet gehaald</td>
+      <td th:text="${submittedVersion.assessment.passOrFail()}">gehaald of niet gehaald</td>
       <td th:text="${submittedVersion.assessment.feedbacks}">tekst</td>
       <td th:text="${submittedVersion.assessment.specifiekeFeedback}">tekst</td>
 
