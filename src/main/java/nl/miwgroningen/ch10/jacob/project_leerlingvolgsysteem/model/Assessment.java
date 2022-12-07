@@ -21,6 +21,8 @@ public class Assessment {
     private Long assessmentId;
 
     private boolean pass;
+    private String result;
+
     private String specifiekeFeedback;
 
     @ManyToMany
@@ -28,6 +30,16 @@ public class Assessment {
 
     @OneToOne
     private SubmittedVersion submittedVersion;
+
+    public String passOrFail(){
+
+        if(pass) {
+            result = "Gehaald";
+        } else {
+            result = "Nog niet gehaald";
+        }
+        return result;
+    }
 
 
 }

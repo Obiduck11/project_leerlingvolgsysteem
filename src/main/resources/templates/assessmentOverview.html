@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/general :: baseHeader(~{:: title})">
+  <title>Overzicht beoordelingen</title>
+</head>
+<body>
+
+<div th:replace="fragments/general :: navbar"></div>
+
+<div class="center">
+  <h1>Overzicht beoordelingen</h1>
+  <table>
+    <tr>
+      <th>ingeleverde opdracht</th>
+      <th>gehaald / niet gehaald</th>
+      <th>feedback</th>
+      <th>extra feedback</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+    <tr th:each="assessment : ${allAssessments}">
+      <td>
+        <table>
+          <tr th:each="submittedVersion : ${assessment.submittedVersion}">
+            <td th:text="${submittedVersion}"></td>
+          </tr>
+        </table>
+      </td>
+
+      <td th:text="${assessment.feedbacks}"></td>
+
+      <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}">Edit</a></td>
+      <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}">Delete</a></td>
+
+    </tr>
+  </table>
+
+  <a th:href="@{/assessments/new}">Maak een beoordeling</a>
+</div>
+
+<div th:replace="fragments/general :: footer"></div>
+<div th:replace="fragments/general :: bottomScripts"></div>
+</body>
+</html>
