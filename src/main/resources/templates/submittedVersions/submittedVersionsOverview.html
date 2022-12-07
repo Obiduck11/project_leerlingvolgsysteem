@@ -21,7 +21,7 @@
         <td><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" th:text="${submittedVersion.versionId}"></a></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
         <td>
-            <span th:if="${submittedVersion.assessment == null}"><a th:href="@{/assesments/new}">Beoordeel</a></span>
+            <span th:if="${submittedVersion.assessment == null}"><a th:href="@{/assessments/new}">Beoordeel</a></span>
             <span th:unless="${submittedVersion.assessment == null}"><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}">Ga naar beoordeling</a></span>
         </td>
     </tr>
