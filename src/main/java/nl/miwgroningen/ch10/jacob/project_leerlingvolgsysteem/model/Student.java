@@ -40,6 +40,16 @@ public class Student {
         return displayName + (" " + lastName);
     }
 
+    public String getCoursesToString() {
+        String allCourses = "";
+
+        for (Course course : courses) {
+            allCourses += String.format("%s<br />", course.getName());
+        }
+
+        return allCourses;
+    }
+
     public void removeCourse(Course course){
         this.courses.remove(course);
         course.getStudents().remove(this);
