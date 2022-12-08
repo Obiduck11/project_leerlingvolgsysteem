@@ -37,7 +37,7 @@ public class Student {
             displayName += " " + inFixName;
         }
 
-        return displayName += " " + lastName;
+        return displayName + (" " + lastName);
     }
 
     public void removeCourse(Course course){
