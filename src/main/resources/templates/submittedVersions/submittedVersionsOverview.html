@@ -24,7 +24,7 @@
         <td th:text="${submittedVersion.dateSubmitted}"></td>
         <td th:text="${submittedVersion.submittedVersions.size()}"></td>
         <td>
-            <span th:if="${submittedVersion.assessment == null}"><a th:href="@{/assessments/new}" class="link-dark">Beoordeel</a></span>
+            <span th:if="${submittedVersion.assessment == null}"><a th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}" class="link-dark">Beoordeel</a></span>
             <span th:unless="${submittedVersion.assessment == null}"><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" class="link-dark">Ga naar beoordeling</a></span>
         </td>
         <td> <a th:href="@{/submittedVersions/delete/{versionId}(versionId=${submittedVersion.versionId})}">Delete</a></td>
