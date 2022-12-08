@@ -1,6 +1,7 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assessment;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +53,7 @@ public class AssessmentController {
     @PostMapping("/assessments/new")
     protected String saveAssessment(@ModelAttribute ("assessment") Assessment assessment, BindingResult result) {
         if(!result.hasErrors()) {
+
             assessmentRepository.save(assessment);
         }
         return "redirect:/assessments/all";
@@ -75,6 +77,27 @@ public class AssessmentController {
             assessmentRepository.delete(assessment.get());
         }
         return "redirect:/assessments/all";
+    }
+
+    @GetMapping("/assessments/new/{versionId}")
+    protected String showAssessmentFormForSubmittedVersion(@PathVariable ("versionId") Long versionId, Model model){
+        return showAssessmentForm(model, new Assessment());
+    }
+
+
+    @PostMapping("/assessments/new/{versionId}")
+    protected String addAssessmentToSubmittedVersion(@PathVariable ("versionId") Long versionId, @ModelAttribute ("assessment") Assessment assessment, BindingResult result){
+        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+        if(submittedVersion.isPresent()){
+            if(!result.hasErrors()){
+                assessment.setSubmittedVersion(submittedVersion.get());
+                submittedVersion.get().setAssessment(assessment);
+                assessmentRepository.save(assessment);
+                submittedVersionRepository.save(submittedVersion.get());
+                return "redirect:/submittedVersions/all";
+            }
+        }
+        return "redirect:/submittedVersions/all";
     }
 
 }
