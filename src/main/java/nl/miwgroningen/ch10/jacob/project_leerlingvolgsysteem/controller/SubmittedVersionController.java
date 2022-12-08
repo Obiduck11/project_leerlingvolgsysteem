@@ -79,9 +79,8 @@ public class SubmittedVersionController {
     @PostMapping("/new")
     private String addNewSubmittedVersion(@ModelAttribute("newSubmit") SubmittedVersion submittedVersion, BindingResult result) {
         if(!result.hasErrors()){
+            submittedVersion.collectSubmittedVersions(submittedVersionRepository);
             submittedVersionRepository.save(submittedVersion);
-        } else {
-            System.out.println(result.getFieldError().toString());
         }
         return "redirect:/submittedVersions/all";
     }
@@ -92,6 +91,15 @@ public class SubmittedVersionController {
         model.addAttribute("allStudents", studentRepository.findAll());
 
         return "submittedVersions/submittedVersionForm";
+    }
+
+    @GetMapping("/delete/{versionId}")
+    private String deleteSubmission(@PathVariable ("versionId") Long versionId){
+        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+        if(submittedVersion.isPresent()){
+            submittedVersionRepository.delete(submittedVersion.get());
+        }
+        return "redirect:/submittedVersions/all";
     }
 
 
