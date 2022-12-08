@@ -11,9 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
@@ -81,26 +79,11 @@ public class SubmittedVersionController {
     @PostMapping("/new")
     private String addNewSubmittedVersion(@ModelAttribute("submittedVersion") SubmittedVersion newSubmit, BindingResult result) {
         if(!result.hasErrors()){
-            submittedVersionRepository.save(newSubmit);
-            System.out.println(newSubmit.getVersionId());
-            newSubmit.setSubmittedVersions(sameAssignmentStudent(newSubmit));
+            newSubmit.addSubmittedVersion(submittedVersionRepository);
             submittedVersionRepository.save(newSubmit);
         }
         return "redirect:/submittedVersions/all";
     }
-
-    private Set<SubmittedVersion> sameAssignmentStudent(SubmittedVersion newSubmit){
-        Set<SubmittedVersion> submittedVersions = new HashSet<>();
-        for (SubmittedVersion submit : submittedVersionRepository.findAll()) {
-            if(submit.getStudent().getStudentId().equals(newSubmit.getStudent().getStudentId())){
-                if(submit.getAssignment().equals(newSubmit.getAssignment())){
-                    submittedVersions.add(submit);
-                }
-            }
-        }
-        return submittedVersions;
-    }
-
 
     private String showSubmitForm(Model model, SubmittedVersion submittedVersion){
         model.addAttribute("submittedVersion", submittedVersion);
@@ -113,6 +96,7 @@ public class SubmittedVersionController {
     private String deleteSubmission(@PathVariable ("versionId") Long versionId){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
         if(submittedVersion.isPresent()){
+            submittedVersion.get().removeSubmittedVersion(submittedVersionRepository);
             submittedVersionRepository.delete(submittedVersion.get());
         }
         return "redirect:/submittedVersions/all";
