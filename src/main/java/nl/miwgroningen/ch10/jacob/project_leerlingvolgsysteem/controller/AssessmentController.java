@@ -6,10 +6,7 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -25,7 +22,8 @@ public class AssessmentController {
     private final FeedbackRepository feedbackRepository;
     private final SubmittedVersionRepository submittedVersionRepository;
 
-    public AssessmentController(AssessmentRepository assessmentRepository, FeedbackRepository feedbackRepository, SubmittedVersionRepository submittedVersionRepository) {
+    public AssessmentController(AssessmentRepository assessmentRepository, FeedbackRepository feedbackRepository,
+                                SubmittedVersionRepository submittedVersionRepository) {
         this.assessmentRepository = assessmentRepository;
         this.feedbackRepository = feedbackRepository;
         this.submittedVersionRepository = submittedVersionRepository;
@@ -39,10 +37,6 @@ public class AssessmentController {
         return "assessmentOverview";
     }
 
-//    @GetMapping("/assessments/new")
-//    protected String showNewAssessmentForm(Model model) {
-//        return showAssessmentForm(model, new Assessment());
-//    }
 
     private String showAssessmentForm(Model model, Assessment assessment) {
         model.addAttribute("assessment", assessment);
@@ -50,14 +44,6 @@ public class AssessmentController {
         return "assessmentForm";
     }
 
-//    @PostMapping("/assessments/new")
-//    protected String saveAssessment(@ModelAttribute ("assessment") Assessment assessment, BindingResult result) {
-//        if(!result.hasErrors()) {
-//
-//            assessmentRepository.save(assessment);
-//        }
-//        return "redirect:/assessments/all";
-//    }
 
     @GetMapping("assessments/edit/{assessmentId}")
     protected String showEditAssessmentForm(@PathVariable("assessmentId") Long AssessmentId, Model model) {
@@ -103,7 +89,12 @@ public class AssessmentController {
         }
         return "redirect:/submittedVersions/all";
     }
-
+    @RequestMapping(value = "/test")
+    public String showCheckbox(Model model) {
+        boolean pass = false;
+        model.addAttribute("pass", pass);
+        return "assessmentForm";
+    }
 }
 
 
