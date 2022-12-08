@@ -7,7 +7,7 @@
 <body>
 <div th:replace="fragments/general :: navbar"></div>
 
-    <div class="container">
+
         <h1>Create feedback</h1>
 
         <form class="center" th:action="@{/feedback/new}" method="post" th:object="${feedback}">
@@ -27,7 +27,7 @@
                 <button type="submit" class="btn btn-primary">Sla op</button>
             </div>
         </form>
-    </div>
+
 
 <div th:replace="fragments/general :: footer"></div>
 <div th:replace="fragments/general :: bottomScripts"></div>

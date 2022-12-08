@@ -5,9 +5,9 @@
 </head>
 <body>
     <div th:replace="fragments/general :: navbar"></div>
-    <h1>Details van het vak: <span th:text="${courseToShow.name}"></span></h1>
+    <h1>Details van <span th:text="${courseToShow.name}"></span></h1>
 
-    <table class="center">
+    <table class="table table-striped table-hover">
         <tr>
             <th>Klas</th>
             <td th:text="${courseToShow.name}"></td>
@@ -18,13 +18,14 @@
         </tr>
     </table>
 
-    <h2>Studenten in deze klas:</h2>
-    <table class="center">
+    <h2>Studenten die <span th:text="${courseToShow.name}"></span> volgen</h2>
+    <table class="table table-striped table-hover">
         <tr>
             <th>Voornaam</th>
             <th>Tussenvoegsel</th>
             <th>Achternaam</th>
             <th>Githubaccount</th>
+            <th></th>
         </tr>
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.firstName}"></td>
@@ -34,8 +35,8 @@
             <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}">Verwijder student</a></td>
         </tr>
     </table>
-    <h2>Opdrachten betreffende deze klas</h2>
-    <table class="center">
+    <h2>Opdrachten van dit vak</h2>
+    <table class="table table-striped table-hover">
         <tr>
             <th>Titel</th>
             <th>Beschrijving</th>

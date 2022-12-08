@@ -9,7 +9,7 @@
 <div th:replace="fragments/general :: navbar"></div>
 
 <h1>Voeg een ingeleverde versie toe</h1>
-<form th:action="@{/submittedVersions/new}" method="post" th:object="${submittedVersion}">
+<form class="center" th:action="@{/submittedVersions/new}" method="post" th:object="${submittedVersion}">
     <div class="form-group">
         <label th:for = "student" class="form-label">Student</label>
         <select id="student" class="form-control" th:field="*{student}">
