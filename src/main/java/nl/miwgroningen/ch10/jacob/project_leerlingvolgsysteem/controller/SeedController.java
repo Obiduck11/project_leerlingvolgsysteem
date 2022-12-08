@@ -91,7 +91,7 @@ private final AssessmentRepository assessmentRepository;
     werkstuk.setSerialNumber(2);
 
     Assignment practicum = new Assignment();
-    practicum.setTitle("werkstuk");
+    practicum.setTitle("practicum");
     practicum.setCourse(programming);
     practicum.setDescription("Oefenen met variabelen in Java.");
     practicum.setSerialNumber(3);
