@@ -8,14 +8,22 @@
 <h1>Ingeleverde opdrachten van <span th:text="${studentToShow.displayName}"></span></h1>
 
 
-<table class="center">
-    <tr>
-        <th>Opdracht</th>
-        <th>Datum ingeleverd</th>
-    </tr>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Opdracht</th>
+            <th>Datum ingeleverd</th>
+            <th>Beoordeling</th>
+        </tr>
+    </thead>
     <tr th:each="submittedVersion : ${studentToShow.submittedVersions}">
         <td th:text="${submittedVersion.getAssignment().getTitle()}"></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
+        <td th:if="${submittedVersion.assessment != null}">
+            <span th:if="${submittedVersion.assessment.pass}">Voldoende</span>
+            <span th:unless="${submittedVersion.assessment.pass}">Onvoldoende</span>
+        </td>
+        <td th:unless="${submittedVersion.assessment != null}">Niet beoordeeld</td>
     </tr>
 </table>
 

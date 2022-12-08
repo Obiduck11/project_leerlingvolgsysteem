@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="feedback" class="form-label">Feedback keuzemenu</label>
             <select id="feedback" class="form-control" th:field="*{feedbacks}" multiple>
-                <option th:each="feedback : ${allFeedback}" th:value="${feedback}" th:text="${feedback}">
+                <option th:each="feedback : ${allFeedback}" th:value="${feedback.feedbackId}" th:text="${feedback.feedbackId}">
                 </option>
             </select>
         </div>
