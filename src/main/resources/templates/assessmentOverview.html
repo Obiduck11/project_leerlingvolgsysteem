@@ -21,7 +21,7 @@
     </tr>
 
     <tr th:each="assessment : ${allAssessments}">
-<!--      <td th:text="${assessment.submittedVersion.student.displayName}">student</td>-->
+      <td th:text="${assessment.submittedVersion.student.displayName}">student</td>
       <td th:text="${assessment.submittedVersion}">opdracht</td>
       <td th:text="${assessment.passOrFail()}">gehaald of niet gehaald</td>
       <td th:text="${assessment.feedbacks}">tekst</td>

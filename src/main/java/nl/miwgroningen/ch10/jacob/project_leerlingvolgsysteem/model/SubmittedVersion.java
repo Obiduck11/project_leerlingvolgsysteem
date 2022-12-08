@@ -35,7 +35,7 @@ public class SubmittedVersion {
     @ManyToOne
     private Assignment assignment;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.PERSIST)
     private Set<SubmittedVersion> submittedVersions = new HashSet<>();
 
     public String getStudentDisplayName() {
@@ -44,16 +44,19 @@ public class SubmittedVersion {
 
 
 
-    private Set<SubmittedVersion> numberOfSubmittedPerAssignmentPerStudent(SubmittedVersionRepository submittedVersionRepository){
+    public void collectSubmittedVersions(SubmittedVersionRepository submittedVersionRepository){
         for (SubmittedVersion submittedVersion: submittedVersionRepository.findAll()) {
-            if(submittedVersion.getStudent().equals(student)){
-                if(submittedVersion.getAssignment().equals(assignment)){
-                   submittedVersions.add(submittedVersion);
+            if (submittedVersion.versionId != this.versionId) {
+                if (submittedVersion.getStudent().equals(student)) {
+                    if (submittedVersion.getAssignment().equals(assignment)) {
+                        submittedVersions.add(submittedVersion);
+                        System.out.println("hier ben ik gekomen");
+                    }
                 }
             }
         }
-        return submittedVersions;
     }
+
 
     public String toString(){
         return String.format("%s%d", assignment.getTitle(), versionId);

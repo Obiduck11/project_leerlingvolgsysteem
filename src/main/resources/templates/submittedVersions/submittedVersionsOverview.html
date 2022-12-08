@@ -13,17 +13,21 @@
         <th>Opdracht</th>
         <th>Versie</th>
         <th>Inleverdatum</th>
+        <th>Aantal pogingen</th>
         <th>Beoordeling</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="submittedVersion : ${allSubmittedVersions}">
         <td><a th:href="@{/submittedVersions/submittedVersionsPerStudent/{studentId}(studentId=${submittedVersion.student.getStudentId()})}" th:text="${submittedVersion.studentDisplayName}"></a></td>
         <td><a th:href="@{/assignments/details/{assignmentId}(assignmentId=${submittedVersion.assignment.getAssignmentId()})}" th:text="${submittedVersion.getAssignment().getTitle()}"></a></td>
         <td><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" th:text="${submittedVersion.versionId}"></a></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
+        <td th:text="${submittedVersion.submittedVersions.size()+1}"></td>
         <td>
             <span th:if="${submittedVersion.assessment == null}"><a th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}">Beoordeel</a></span>
             <span th:unless="${submittedVersion.assessment == null}"><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}">Ga naar beoordeling</a></span>
         </td>
+        <td> <a th:href="@{/submittedVersions/delete/{versionId}(versionId=${submittedVersion.versionId})}">Delete</a></td>
     </tr>
 </table>
 
