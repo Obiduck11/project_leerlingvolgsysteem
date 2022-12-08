@@ -26,7 +26,7 @@ public class SubmittedVersion {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateSubmitted;
 
-    @OneToOne (mappedBy = "submittedVersion")
+    @OneToOne (mappedBy = "submittedVersion", cascade = CascadeType.REMOVE)
     private Assessment assessment;
 
     @ManyToOne

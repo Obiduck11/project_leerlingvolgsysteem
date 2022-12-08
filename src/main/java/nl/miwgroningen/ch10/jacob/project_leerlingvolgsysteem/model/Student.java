@@ -27,7 +27,7 @@ public class Student {
     @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Course> courses;
 
-    @OneToMany(mappedBy = "student", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.REMOVE})
     private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {
