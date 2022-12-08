@@ -41,4 +41,14 @@ public class Assessment {
         return result;
     }
 
+    public String getFeedbackLines() {
+        String feedbackLines = "";
+
+        for (Feedback feedback : feedbacks) {
+            feedbackLines += String.format(" - %s<br />", feedback);
+        }
+
+        return feedbackLines;
+    }
+
 }
