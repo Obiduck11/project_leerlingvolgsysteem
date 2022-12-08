@@ -2,7 +2,6 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -35,26 +34,11 @@ public class SubmittedVersion {
     @ManyToOne
     private Assignment assignment;
 
-    @OneToMany (cascade = CascadeType.PERSIST)
+    @ManyToMany (cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Set<SubmittedVersion> submittedVersions = new HashSet<>();
 
     public String getStudentDisplayName() {
         return student.toString();
-    }
-
-
-
-    public void collectSubmittedVersions(SubmittedVersionRepository submittedVersionRepository){
-        for (SubmittedVersion submittedVersion: submittedVersionRepository.findAll()) {
-            if (submittedVersion.versionId != this.versionId) {
-                if (submittedVersion.getStudent().equals(student)) {
-                    if (submittedVersion.getAssignment().equals(assignment)) {
-                        submittedVersions.add(submittedVersion);
-                        System.out.println("hier ben ik gekomen");
-                    }
-                }
-            }
-        }
     }
 
 
