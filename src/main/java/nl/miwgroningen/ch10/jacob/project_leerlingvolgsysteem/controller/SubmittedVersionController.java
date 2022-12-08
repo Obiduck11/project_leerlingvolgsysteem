@@ -43,8 +43,7 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/details/{versionId}")
-    protected String showSubmittedVersionDetails(@PathVariable("versionId")
-                                                     Long versionId, Model model) {
+    protected String showSubmittedVersionDetails(@PathVariable("versionId") Long versionId, Model model) {
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
 
         if (submittedVersion.isPresent()) {

@@ -35,12 +35,10 @@
         <th>Feedback</th>
         <td th:text="${submittedVersionToShow.assessment.getSpecifiekeFeedback()}"></td>
     </tr>
-    <p th:if="${submittedVersionToShow.assessment != null}">
-        <tr th:each="Feedback : ${submittedVersionToShow.assessment.feedbacks}">
-            <th>Feedbackregel</th>
-            <td th:text="${Feedback}"></td>
-        </tr>
-    </p>
+    <tr th:if="${submittedVersionToShow.assessment != null}">
+        <th>Feedbackregels</th>
+        <td th:utext="${submittedVersionToShow.assessment.getFeedbackLines()}"></td>
+    </tr>
 
 </table>
 
