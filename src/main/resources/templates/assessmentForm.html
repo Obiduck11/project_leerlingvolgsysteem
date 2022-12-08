@@ -10,11 +10,11 @@
 <div class="container">
     <h1>Nieuwe beoordeling</h1>
 
-    <form class="center" th:action="@{/assessments/new}" method="post" th:object="${assessment}">
+    <form class="center" th:action="@{/assessments/new/{versionId}(versionId=${assessment.submittedVersion.versionId})}" method="post" th:object="${assessment}">
         <input type="hidden" th:field="*{assessmentId}">
 
         <div class="form-group">
-            <label th:for="assessment">gehaald</label>
+            <label th:for="pass">gehaald</label>
             <input id="pass" type="checkbox">
         </div>
 

@@ -39,10 +39,10 @@ public class AssessmentController {
         return "assessmentOverview";
     }
 
-    @GetMapping("/assessments/new")
-    protected String showNewAssessmentForm(Model model) {
-        return showAssessmentForm(model, new Assessment());
-    }
+//    @GetMapping("/assessments/new")
+//    protected String showNewAssessmentForm(Model model) {
+//        return showAssessmentForm(model, new Assessment());
+//    }
 
     private String showAssessmentForm(Model model, Assessment assessment) {
         model.addAttribute("assessment", assessment);
@@ -50,14 +50,14 @@ public class AssessmentController {
         return "assessmentForm";
     }
 
-    @PostMapping("/assessments/new")
-    protected String saveAssessment(@ModelAttribute ("assessment") Assessment assessment, BindingResult result) {
-        if(!result.hasErrors()) {
-
-            assessmentRepository.save(assessment);
-        }
-        return "redirect:/assessments/all";
-    }
+//    @PostMapping("/assessments/new")
+//    protected String saveAssessment(@ModelAttribute ("assessment") Assessment assessment, BindingResult result) {
+//        if(!result.hasErrors()) {
+//
+//            assessmentRepository.save(assessment);
+//        }
+//        return "redirect:/assessments/all";
+//    }
 
     @GetMapping("assessments/edit/{assessmentId}")
     protected String showEditAssessmentForm(@PathVariable("assessmentId") Long AssessmentId, Model model) {
@@ -81,7 +81,12 @@ public class AssessmentController {
 
     @GetMapping("/assessments/new/{versionId}")
     protected String showAssessmentFormForSubmittedVersion(@PathVariable ("versionId") Long versionId, Model model){
-        return showAssessmentForm(model, new Assessment());
+        Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+        Assessment assessment = new Assessment();
+        if(submittedVersion.isPresent()){
+            assessment.setSubmittedVersion(submittedVersion.get());
+        }
+        return showAssessmentForm(model, assessment);
     }
 
 
@@ -94,7 +99,6 @@ public class AssessmentController {
                 submittedVersion.get().setAssessment(assessment);
                 assessmentRepository.save(assessment);
                 submittedVersionRepository.save(submittedVersion.get());
-                return "redirect:/submittedVersions/all";
             }
         }
         return "redirect:/submittedVersions/all";
