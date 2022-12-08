@@ -16,3 +16,10 @@ h2 {
     margin-left: 15%;
 }
 
+a.nav-link{
+    color: white;
+}
+
+a.nav-link:hover {
+    color: lightskyblue;
+}

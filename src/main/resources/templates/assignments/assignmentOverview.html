@@ -23,8 +23,10 @@
             <td><a th:href="@{/assignments/details/{assignmentId}(assignmentId=${assignment.assignmentId})}">Details</a></td>
         </tr>
     </table>
-    <div class="center"><a class="center" th:href="@{/assignments/new}"> Voeg opdracht toe</a></div>
 
+    <div class="center">
+        <a th:href="@{/assignments/new}"><button type="button" class="btn btn-primary">Voeg opdracht toe</button></a>
+    </div>
 
 
 

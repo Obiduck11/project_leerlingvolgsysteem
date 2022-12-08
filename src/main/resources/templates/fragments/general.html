@@ -7,28 +7,29 @@
     <link rel="stylesheet" type="text/css" href="/css/StudentSystem.css" />
 </head>
 <body>
-    <div th:fragment="navbar">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/students/all}">Studenten</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/courses/all}">Vakken</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/assignments/all}">Opdrachten</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/submittedVersions/all}">Ingeleverde stukken</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/feedback/all}">Feedback</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/assessments/all}">Beoordeling</a>
-            </li>
-        </ul>
-    </div>
+        <div class="center navbar navbar-dark bg-primary" th:fragment="navbar">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students/all}">Studenten</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/courses/all}">Vakken</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/assignments/all}">Opdrachten</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/submittedVersions/all}">Ingeleverde stukken</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/feedback/all}">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/assessments/all}">Beoordeling</a>
+                </li>
+            </ul>
+        </div>
+
 
     <div class="text-center fixed-bottom" th:fragment="footer">
         <footer>Copyright Jacob, Maaike & Robbin &copy;2022</footer>

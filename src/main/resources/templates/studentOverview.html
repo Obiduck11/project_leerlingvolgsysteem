@@ -23,7 +23,10 @@
             <td th:utext="${student.getCoursesToString()}"></td>
         </tr>
     </table>
-    <div class="center"><a th:href="@{/students/new}" >Voeg nieuwe student toe</a></div>
+
+    <div class="center">
+        <a th:href="@{/students/new}"><button type="button" class="btn btn-primary" >Voeg nieuwe student toe</button></a>
+    </div>
 
     <div th:replace="fragments/general :: footer"></div>
 
