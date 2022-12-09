@@ -7,33 +7,34 @@
     <div th:replace="fragments/general :: navbar"></div>
 
         <h1>Maak een nieuw vak</h1>
-
+    <div>
         <form class="center" th:action="@{/courses/new}" method="post" th:object="${course}">
         <input type="hidden" th:field="*{courseId}">
 
         <div>
-            <label th:for="name">Naam</label>
-            <input id="name" type ="text" th:field="*{name}">
+            <label th:for="name"></label>
+            <input id="name" type ="text" class="form-control" th:placeholder="Vaknaam" th:field="*{name}">
         </div>
         <div>
-            <label th:for="fieldOfStudy">Studierichting</label>
-            <input id="fieldOfStudy" type ="text" th:field="*{fieldOfStudy}">
+            <label th:for="fieldOfStudy"></label>
+            <input id="fieldOfStudy" type ="text" class="form-control" th:placeholder="Studierichting" th:field="*{fieldOfStudy}">
         </div>
         <div class="form-group">
-            <label th:for="students" class="form-label">Studenten</label>
+            <label th:for="students" class="form-label"></label>
             <select id="students" class="form-control" th:field="*{students}" multiple>
                 <option th:each="student : ${allStudents}" th:value="${student.studentId}" th:text="${student.firstName}"></option>
             </select>
         </div>
 
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Sla op</button>
+        <div class="form-group padding-button" >
+            <button type="submit" class="btn btn-primary">Sla vak op</button>
         </div>
 
-        <div th:replace="fragments/general :: footer"></div>
-
-        <div th:replace="fragments/general :: bottomScripts"></div>
         </form>
+    </div>
+    <div th:replace="fragments/general :: footer"></div>
+
+    <div th:replace="fragments/general :: bottomScripts"></div>
 </body>
 </html>

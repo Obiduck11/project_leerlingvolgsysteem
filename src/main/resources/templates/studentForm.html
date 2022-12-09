@@ -24,7 +24,7 @@
         </div>
         <div>
                 <label th:for = "githubAccount"></label>
-                <input id="githubAccount" type ="text"  class="form-control" th:placeholder="Githubaccount" th:field="*{githubAccount}">
+                <input id="githubAccount" type ="text" class="form-control" th:placeholder="Githubaccount" th:field="*{githubAccount}">
         </div>
         <div class="form-group">
                 <label th:for = "courses" class="form-label"></label>
@@ -32,7 +32,7 @@
                         <option th:each="course : ${allCourses}" th:value="${course.courseId}" th:text="${course.name}"></option>
                 </select>
         </div>
-        <div class="form-group">
+        <div class="form-group padding-button">
                 <button type="submit" class="btn btn-primary">Sla student op</button>
         </div>
         </div>
