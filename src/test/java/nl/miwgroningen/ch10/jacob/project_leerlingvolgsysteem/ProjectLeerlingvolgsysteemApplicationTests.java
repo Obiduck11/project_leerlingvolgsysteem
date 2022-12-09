@@ -13,7 +13,7 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 	@Test
 	@DisplayName("DisplayNameWithoutInfixName")
 	void StudentDisplayNameTest() {
-		Student student = new Student("Robbin", "Drent");
+		Student student = new Student();
 		String expectedStudentName = "Robbin Drent";
 
 		String studentName = student.getDisplayName();
@@ -24,7 +24,7 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 	@Test
 	@DisplayName("DisplayNameWithInfixName")
 	void StudentDisplayNameWithInfixTest() {
-		Student student = new Student("Henk", "van", "Dijk");
+		Student student = new Student();
 		String expectedStudentName = "Henk van Dijk";
 
 		String studentName = student.getDisplayName();
