@@ -21,7 +21,7 @@ public class Course {
     private String name;
     private String fieldOfStudy;
 
-    @OneToMany (mappedBy = "course", cascade = CascadeType.REMOVE)
+    @OneToMany (mappedBy = "course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Assignment> assignments;
 
     @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -36,6 +36,8 @@ public class Course {
         students.add(student);
         student.getCourses().add(this);
     }
+
+
 
 
 }
