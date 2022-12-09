@@ -23,3 +23,7 @@ a.nav-link{
 a.nav-link:hover {
     color: lightskyblue;
 }
+
+.padding-button{
+    padding-top: 10px;
+}
