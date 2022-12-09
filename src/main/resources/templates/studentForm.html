@@ -7,36 +7,37 @@
 <div th:replace="fragments/general :: navbar"></div>
 <h1>Voer een nieuwe student in</h1>
 <form class="center" th:action="@{/students/new}" method="post" th:object="${student}">
+        <div class="form-group">
         <input type="hidden" th:field="*{studentId}">
 
-        <div>
-                <label th:for = "firstName">voornaam</label>
-                <input id="firstName" type ="text" th:field="*{firstName}">
+        <div class="form-group">
+                <label th:for = "firstName" class="form-label"></label>
+                <input id="firstName" type ="text" class="form-control" th:placeholder="Voornaam" th:field="*{firstName}">
         </div>
         <div>
-                <label th:for = "infixName">tussenvoegsel</label>
-                <input id="infixName" type ="text" th:field="*{inFixName}">
+                <label th:for = "infixName"></label>
+                <input id="infixName" type ="text" class="form-control" th:placeholder="Tussenvoegsel" th:field="*{inFixName}">
         </div>
         <div>
-                <label th:for = "lastName">achternaam</label>
-                <input id="lastName" type ="text" th:field="*{lastName}">
+                <label th:for = "lastName"></label>
+                <input id="lastName" type ="text" class="form-control" th:placeholder="Achternaam" th:field="*{lastName}">
         </div>
         <div>
-                <label th:for = "githubAccount">githubaccount</label>
-                <input id="githubAccount" type ="text" th:field="*{githubAccount}">
+                <label th:for = "githubAccount"></label>
+                <input id="githubAccount" type ="text"  class="form-control" th:placeholder="Githubaccount" th:field="*{githubAccount}">
         </div>
         <div class="form-group">
-                <label th:for = "courses" class="form-label">vakken</label>
+                <label th:for = "courses" class="form-label"></label>
                 <select id="courses" class="form-control" th:field="*{courses}" multiple>
                         <option th:each="course : ${allCourses}" th:value="${course.courseId}" th:text="${course.name}"></option>
                 </select>
         </div>
-        <div>
-                <input type="submit" value = "voeg toe">
+        <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sla student op</button>
         </div>
-
-
+        </div>
 </form>
+
 <footer th:replace="fragments/general :: footer"></footer>
 <div th:replace="fragments/general :: bottomScripts"></div>
 
