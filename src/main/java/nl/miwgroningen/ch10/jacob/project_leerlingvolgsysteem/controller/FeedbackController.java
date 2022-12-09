@@ -57,14 +57,4 @@ public class FeedbackController {
         }
         return "redirect:/feedback/all";
     }
-
-    @GetMapping("/delete/{feedbackId}")
-    protected String deleteFeedback(@PathVariable("feedbackId") Long feedbackId) {
-        Optional<Feedback> feedback = feedbackRepository.findById(feedbackId);
-
-        if (feedback.isPresent()) {
-            feedbackRepository.delete(feedback.get());
-        }
-        return "redirect:/feedback/all";
-    }
 }
