@@ -89,7 +89,7 @@ public class AssessmentController {
         }
         return "redirect:/submittedVersions/all";
     }
-    @RequestMapping(value = "/test")
+    @RequestMapping("/test")
     public String showCheckbox(Model model) {
         boolean pass = false;
         model.addAttribute("pass", pass);
