@@ -17,7 +17,10 @@
             <th></th>
         </tr>
         <tr th:each="assignment : ${allAssignments}">
-            <td th:text="${assignment.course.name}"></td>
+            <td>
+                <span th:if="${assignment.course == null}">niet toegekend aan vak</span>
+                <span th:unless="${assignment.course == null}" th:text="${assignment.course.name}"></span>
+            </td>
             <td th:text="${assignment.title}"></td>
             <td th:text="${assignment.description}"></td>
             <td><a th:href="@{/assignments/details/{assignmentId}(assignmentId=${assignment.assignmentId})}">Details</a></td>

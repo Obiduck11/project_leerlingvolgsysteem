@@ -11,14 +11,12 @@
         <tr>
             <th>Soort feedback</th>
             <th>Tekst feedback</th>
-            <th>delete</th>
             <th>edit</th>
 
         </tr>
         <tr th:each="feedback : ${allFeedback}">
             <td th:text="${feedback.title}">Soort feedback</td>
             <td th:text="${feedback.content}">Tekst feedback</td>
-            <td><a th:href="@{/feedback/delete/{feedbackId}(feedbackId=${feedback.feedbackId})}">Delete</a></td>
             <td><a th:href="@{/feedback/edit/{feedbackId}(feedbackId=${feedback.feedbackId})}">Edit</a></td>
         </tr>
     </table>
