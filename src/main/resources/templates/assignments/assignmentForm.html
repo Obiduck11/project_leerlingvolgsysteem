@@ -3,11 +3,11 @@
 <head th:replace="fragments/general :: baseHeader(~{:: title})">
 
 
-    <title>Vul uw opdracht in/aan</title>
+    <title>Maak nieuwe opdracht</title>
 </head>
 <body>
 <div th:replace="fragments/general :: navbar"></div>
-<h1>Nieuwe opdracht</h1>
+<h1>Voeg nieuwe opdracht toe</h1>
 <div class="form-group">
 <form class="center" th:action="@{/assignments/new}" method = "post" th:object="${assignment}">
     <input type="hidden" th:field="*{assignmentId}">
@@ -30,7 +30,7 @@
         <input id="serialNumber" type ="number" class="form-control" th:field="*{serialNumber}">
     </div>
     <div class="form-group padding-button">
-        <Button type="submit" value = "sla op" class="btn btn-primary">Sla op</Button>
+        <Button type="submit" value = "sla op" class="btn btn-primary">Voeg opdracht toe</Button>
     </div>
 
 </form>

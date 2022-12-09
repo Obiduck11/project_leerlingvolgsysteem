@@ -6,7 +6,7 @@
 <body>
     <div th:replace="fragments/general :: navbar"></div>
 
-        <h1>Maak een nieuw vak</h1>
+        <h1>Voeg een nieuw vak toe</h1>
     <div>
         <form class="center" th:action="@{/courses/new}" method="post" th:object="${course}">
         <input type="hidden" th:field="*{courseId}">
@@ -28,7 +28,7 @@
 
 
         <div class="form-group padding-button" >
-            <button type="submit" class="btn btn-primary">Sla vak op</button>
+            <button type="submit" class="btn btn-primary">Voeg vak toe</button>
         </div>
 
         </form>
