@@ -35,9 +35,10 @@
 <!--            <td th:text="${student.githubAccount}"></td>-->
             <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId},
             courseId=${courseToShow.courseId})}"><i class="fa-solid fa-trash-can"></i></a></td>
-            <td> <a th:href="@{students}"><i class="fa-solid fa-circle-plus"></i></a>
-<!--                <span th:if="${assignments == null}"><a th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fa-regular fa-circle-xmark"></i></span>-->
-<!--                <span th:unless="${assessment == null}"><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" class="link-dark">Ga naar beoordeling</a></span>-->
+            <td><a th:href="@{/submittedVersions/new/}"><i class="fa-solid fa-circle-plus"></i></a>
+<!--                <td>-->
+<!--                 <span th:if="${courseToShow.assignments == null}"><a th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fa-solid fa-circle-plus"></i></a></span>-->
+<!--                <span th:unless="${courseToShow.assignments == null}"><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" class="link-dark">Ga naar beoordeling</a></span>-->
             </td>
         </tr>
     </table>

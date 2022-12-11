@@ -3,9 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,12 +23,16 @@ public class CourseController {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
+    private final AssessmentRepository assessmentRepository;
+    private final SubmittedVersionRepository submittedVersionRepository;
 
 
-    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository) {
+    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository, SubmittedVersionRepository submittedVersionRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.assignmentRepository = assignmentRepository;
+        this.assessmentRepository = assessmentRepository;
+        this.submittedVersionRepository = submittedVersionRepository;
     }
 
     @GetMapping ("/all")
@@ -91,6 +93,9 @@ public class CourseController {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
         model.addAttribute("allAssignments", assignmentRepository.findAll());
+        model.addAttribute("allAssessments", assignmentRepository.findAll());
+        model.addAttribute("allSubmittedVersions", assessmentRepository.findAll());
+
         return "courseForm";
     }
 
