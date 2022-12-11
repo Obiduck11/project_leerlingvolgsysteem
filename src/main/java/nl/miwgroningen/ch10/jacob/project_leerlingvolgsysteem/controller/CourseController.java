@@ -3,6 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,13 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
+    private final AssignmentRepository assignmentRepository;
 
-    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository) {
+
+    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
+        this.assignmentRepository = assignmentRepository;
     }
 
     @GetMapping ("/all")
@@ -86,6 +90,7 @@ public class CourseController {
     private String showEditCourse(Model model, Course course) {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
+        model.addAttribute("allAssignments", assignmentRepository.findAll());
         return "courseForm";
     }
 
