@@ -29,7 +29,7 @@
         <th>Datum ingeleverd</th>
         <th>Beoordeling</th>
     </tr>
-    <tr th:each="submittedVersion : ${studentToShowDetailsFor.submittedVersions}">
+    <tr th:each="submittedVersion : ${versionsByDate}">
         <td th:text="${submittedVersion.getAssignment().getTitle()}"></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
         <td th:if="${submittedVersion.assessment != null}">

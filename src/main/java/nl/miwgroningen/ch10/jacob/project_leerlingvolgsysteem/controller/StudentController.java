@@ -4,6 +4,7 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,11 +23,13 @@ public class StudentController {
 
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
+    private final SubmittedVersionRepository submittedVersionRepository;
 
 
-    public StudentController(StudentRepository studentRepository, CourseRepository courseRepository) {
+    public StudentController(StudentRepository studentRepository, CourseRepository courseRepository, SubmittedVersionRepository submittedVersionRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.submittedVersionRepository = submittedVersionRepository;
     }
     @GetMapping("/all")
     protected String showAll(@RequestParam(required = false)String sortBy, Model model){
@@ -78,6 +81,7 @@ public class StudentController {
 
         if(student.isPresent()){
             model.addAttribute("studentToShowDetailsFor", student.get());
+            model.addAttribute("versionsByDate", submittedVersionRepository.findByStudentOrderByDateSubmittedDesc(student.get()));
             return "studentDetail";
         }
 
