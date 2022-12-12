@@ -33,7 +33,7 @@ public class StudentController {
     }
     @GetMapping("/all")
     protected String showAll(Model model){
-        model.addAttribute("allStudents", studentRepository.findAll());
+        model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
 
         return "studentOverview";
     }

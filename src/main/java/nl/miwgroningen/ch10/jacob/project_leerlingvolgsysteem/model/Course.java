@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +24,9 @@ public class Course {
     private String fieldOfStudy;
 
     @OneToMany (mappedBy = "course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Assignment> assignments;
+    private List<Assignment> assignments;
+
+
 
     @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Student> students;
@@ -38,6 +42,5 @@ public class Course {
     }
 
 
-
-
 }
+
