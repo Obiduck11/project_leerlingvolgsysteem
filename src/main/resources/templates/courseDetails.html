@@ -35,6 +35,7 @@
 <!--            <td th:text="${student.githubAccount}"></td>-->
             <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId},
             courseId=${courseToShow.courseId})}"><i class="fa-solid fa-trash-can"></i></a></td>
+
             <td><a th:href="@{/submittedVersions/new/}"><i class="fa-solid fa-circle-plus"></i></a>
 <!--                <td>-->
 <!--                 <span th:if="${courseToShow.assignments == null}"><a th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fa-solid fa-circle-plus"></i></a></span>-->
@@ -48,9 +49,9 @@
             <th>Titel</th>
             <th>Beschrijving</th>
         </tr>
-        <tr th:each="course : ${courseToShow.assignments}">
-            <td th:text="${course.title}"></td>
-            <td th:text="${course.description}"></td>
+        <tr th:each="assignment : ${courseToShow.assignments}">
+            <td th:text="${assignment.title}"></td>
+            <td th:text="${assignment.description}"></td>
         </tr>
 
     </table>

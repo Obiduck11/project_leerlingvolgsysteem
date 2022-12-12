@@ -4,11 +4,13 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -71,6 +73,7 @@ public class CourseController {
         if (course.isPresent()) {
             return showDetailsForCourse(model, course);
         }
+
         return "redirect:/courses/all";
     }
 
@@ -93,8 +96,9 @@ public class CourseController {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
         model.addAttribute("allAssignments", assignmentRepository.findAll());
-        model.addAttribute("allAssessments", assignmentRepository.findAll());
+        model.addAttribute("allAssessments", assessmentRepository.findAll());
         model.addAttribute("allSubmittedVersions", assessmentRepository.findAll());
+        Collections.sort(course.getAssignments());
 
         return "courseForm";
     }
@@ -124,5 +128,7 @@ public class CourseController {
             assignment.setCourse(null);
             }
         }
+
+
 
 }
