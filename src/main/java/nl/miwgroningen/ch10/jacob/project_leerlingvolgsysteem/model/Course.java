@@ -2,10 +2,9 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -44,6 +43,20 @@ public class Course {
         student.getCourses().add(this);
     }
 
+    public List<Assignment> editAssignmentOrder(Assignment assignment, int count){
+        List<Assignment> assignmentsInNewOrder = new ArrayList<>();
+        int memory = assignment.getSerialNumber();
+        int newIndex = memory + count;
+        for (Assignment task : assignments) {
+            if(task.getSerialNumber() == newIndex){
+                task.setSerialNumber(memory);
+            }
+            assignmentsInNewOrder.add(task);
+        }
+        assignment.setSerialNumber(newIndex);
+        assignmentsInNewOrder.add(assignment);
+        return assignmentsInNewOrder;
+    }
 
 }
 

@@ -40,10 +40,18 @@
             <th>Volgnummer</th>
             <th>Beschrijving</th>
         </tr>
-        <tr th:each="assignments : ${courseToShow.assignments}">
-            <td th:text="${assignments.title}"></td>
-            <td th:text="${assignments.serialNumber}"></td>
-            <td th:text="${assignments.description}"></td>
+        <tr th:each="assignment : ${courseToShow.assignments}">
+            <td th:text="${assignment.title}"></td>
+            <td >
+                <span th:text="${assignment.serialNumber}"></span>
+                <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='plus', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
+                    <button type="button" class="btn"><i class="fa-solid fa-plus"></i></button>
+                </a>
+                <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='min', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
+                    <button type="button" class="btn"><i class="fa-solid fa-minus"></i></button>
+                </a>
+            </td>
+            <td th:text="${assignment.description}"></td>
         </tr>
 
     </table>

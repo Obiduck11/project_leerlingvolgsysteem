@@ -4,14 +4,10 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,15 +23,12 @@ public class CourseController {
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
     private final AssessmentRepository assessmentRepository;
-    private final SubmittedVersionRepository submittedVersionRepository;
 
-
-    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository, SubmittedVersionRepository submittedVersionRepository) {
+    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.assignmentRepository = assignmentRepository;
         this.assessmentRepository = assessmentRepository;
-        this.submittedVersionRepository = submittedVersionRepository;
     }
 
     @GetMapping ("/all")
@@ -118,6 +111,28 @@ public class CourseController {
         return "redirect:/courses/all";
     }
 
+    @GetMapping("/editOrderAssignment/{courseId}/{assignmentId}")
+    protected String editOrder(@PathVariable("courseId") Long courseId, @PathVariable("assignmentId") Long assignmentId, @RequestParam String add){
+        Optional <Course> courseToEdit = courseRepository.findById(courseId);
+        Assignment assignmentToReplace = new Assignment();
+        int count;
+        if (add.equals("plus")) {
+            count = 1;
+        } else {
+            count = -1;
+        }
+
+        for (Assignment assignment : courseToEdit.get().getAssignments()) {
+            if(assignment.getAssignmentId().equals(assignmentId)){
+                assignmentToReplace = assignment;
+            }
+        }
+        if(courseToEdit.isPresent()){
+           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, count));
+           courseRepository.save(courseToEdit.get());
+        }
+        return  "redirect:/courses/details/id/" + courseId;
+    }
     protected void deleteCourseFromStudent(Course course){
         for (Student student : studentRepository.findAll()) {
             if(course.getStudents().contains(student)){
@@ -130,7 +145,6 @@ public class CourseController {
             assignment.setCourse(null);
             }
         }
-
 
 
 }

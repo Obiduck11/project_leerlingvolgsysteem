@@ -3,7 +3,6 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,14 +43,9 @@ public class AssignmentController {
     @PostMapping("/new")
     protected String addAssignment(@ModelAttribute("assignment") Assignment assignmentToAdd, BindingResult result){
       if(!result.hasErrors()){
-
+          assignmentToAdd.addAssignment();
           assignmentRepository.save(assignmentToAdd);
       }
-
-      if(result.hasErrors()){
-          System.out.println(result.getFieldError().toString());
-      }
-
         return "redirect:/assignments/all";
     }
 
