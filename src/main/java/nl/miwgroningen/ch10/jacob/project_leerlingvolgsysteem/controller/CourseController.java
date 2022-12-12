@@ -27,6 +27,7 @@ public class CourseController {
     public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
+
         this.assignmentRepository = assignmentRepository;
         this.assessmentRepository = assessmentRepository;
     }
@@ -89,11 +90,6 @@ public class CourseController {
     private String showEditCourse(Model model, Course course) {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
-        model.addAttribute("allAssignments", assignmentRepository.findAll());
-
-        model.addAttribute("allAssessments", assessmentRepository.findAll());
-        model.addAttribute("allSubmittedVersions", assessmentRepository.findAll());
-
 
         return "courseForm";
     }
@@ -145,6 +141,7 @@ public class CourseController {
             assignment.setCourse(null);
             }
         }
+
 
 
 }
