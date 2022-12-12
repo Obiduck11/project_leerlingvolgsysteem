@@ -96,11 +96,6 @@ public class CourseController {
     private String showEditCourse(Model model, Course course) {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
-        model.addAttribute("allAssignments", assignmentRepository.findAll());
-
-        model.addAttribute("allAssessments", assessmentRepository.findAll());
-        model.addAttribute("allSubmittedVersions", assessmentRepository.findAll());
-
 
         return "courseForm";
     }
