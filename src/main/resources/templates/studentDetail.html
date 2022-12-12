@@ -22,6 +22,16 @@
             <td th:utext="${studentToShowDetailsFor.getCoursesToString()}"></td>
         </tr>
     </table>
+
+    <h1>Resultaten</h1>
+
+    <table class="table table-striped table-hover">
+        <tr th:each="course : ${studentToShowDetailsFor.courses}">
+            <th th:if="${course != null}" th:text="${course.name}"></th>
+            <td th:each="assignment : ${course.assignments}"><i class="fa-solid fa-circle-plus"></i></td>
+        </tr>
+    </table>
+
     <h2>Ingeleverde stukken</h2>
     <table class="table table-striped table-hover">
     <tr>
@@ -30,7 +40,7 @@
         <th>Beoordeling</th>
     </tr>
     <tr th:each="submittedVersion : ${versionsByDate}">
-        <td th:text="${submittedVersion.getAssignment().getTitle()}"></td>
+        <td><a th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}" th:text="${submittedVersion.assignment.title}" class="link-dark"></a></td>
         <td th:text="${submittedVersion.dateSubmitted}"></td>
         <td th:if="${submittedVersion.assessment != null}">
             <span th:if="${submittedVersion.assessment.pass}">Voldoende</span>

@@ -1,7 +1,9 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
@@ -10,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -78,10 +82,19 @@ public class StudentController {
     @GetMapping("/details/{studentId}")
     protected String showStudentDetail(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
+        List<Assignment> assignmentList = new ArrayList<>();
 
         if(student.isPresent()){
+            for (Course course : student.get().getCourses()) {
+                for (Assignment assignment : course.getAssignments()) {
+                    assignmentList.add(assignment);
+                }
+            }
+
             model.addAttribute("studentToShowDetailsFor", student.get());
             model.addAttribute("versionsByDate", submittedVersionRepository.findByStudentOrderByDateSubmittedDesc(student.get()));
+            model.addAttribute("assignmentsToShow", assignmentList);
+
             return "studentDetail";
         }
 
