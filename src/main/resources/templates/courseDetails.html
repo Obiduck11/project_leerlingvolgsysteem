@@ -27,7 +27,7 @@
         </tr>
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.toString()}"></td>
-            <td th:each="assignment : ${courseToShow.assignments}"><i class="fas fa-arrow-up"></i></td>
+            <td th:each="assignment : ${courseToShow.assignments}"><i class="fa-solid fa-circle-plus"></i></td>
             <td> <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId},
             courseId=${courseToShow.courseId})}"><i class="fa-solid fa-trash-can"></i></a></td>
         </tr>
@@ -52,6 +52,9 @@
         <a th:href="@{/courses/delete/{courseId}(courseId=${courseToShow.courseId})}">
             <button type="button" class="btn btn-primary">Delete vak</button>
         </a>
+<!--        <a th:href="@{/courses/edit/id/{courseId}(courseId=${courseToShow.courseId})}">-->
+<!--            <button type="button" class="btn btn-primary">Edit</button>-->
+<!--        </a>-->
     </div>
 
     <div th:replace="fragments/general :: footer"></div>
