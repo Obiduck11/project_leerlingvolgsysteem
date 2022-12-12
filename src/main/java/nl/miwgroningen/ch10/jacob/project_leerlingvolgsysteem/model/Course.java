@@ -2,6 +2,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.criterion.Order;
 
 import javax.persistence.*;
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class Course {
     private String fieldOfStudy;
 
     @OneToMany (mappedBy = "course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OrderBy("serialNumber")
     private List<Assignment> assignments;
 
 
@@ -43,4 +45,5 @@ public class Course {
 
 
 }
+
 
