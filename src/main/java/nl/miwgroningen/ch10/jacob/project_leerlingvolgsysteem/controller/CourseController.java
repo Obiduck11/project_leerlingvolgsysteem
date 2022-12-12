@@ -25,17 +25,12 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
-    private final AssignmentRepository assignmentRepository;
-    private final AssessmentRepository assessmentRepository;
-    private final SubmittedVersionRepository submittedVersionRepository;
 
 
     public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository, SubmittedVersionRepository submittedVersionRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
-        this.assignmentRepository = assignmentRepository;
-        this.assessmentRepository = assessmentRepository;
-        this.submittedVersionRepository = submittedVersionRepository;
+
     }
 
     @GetMapping ("/all")
