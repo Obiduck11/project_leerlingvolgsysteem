@@ -31,6 +31,7 @@ public class Course {
 
 
     @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OrderBy("lastName")
     private Set<Student> students;
 
     public void removeStudent(Student student){
