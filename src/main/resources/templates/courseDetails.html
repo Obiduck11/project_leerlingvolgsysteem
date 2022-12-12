@@ -46,11 +46,13 @@
     <table class="table table-striped table-hover">
         <tr>
             <th>Titel</th>
+            <th>Volgnummer</th>
             <th>Beschrijving</th>
         </tr>
-        <tr th:each="course : ${courseToShow.assignments}">
-            <td th:text="${course.title}"></td>
-            <td th:text="${course.description}"></td>
+        <tr th:each="assignments : ${courseToShow.assignments}">
+            <td th:text="${assignments.title}"></td>
+            <td th:text="${assignments.serialNumber}"></td>
+            <td th:text="${assignments.description}"></td>
         </tr>
 
     </table>
