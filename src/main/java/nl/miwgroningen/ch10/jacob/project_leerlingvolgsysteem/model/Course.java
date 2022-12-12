@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,9 +24,13 @@ public class Course {
     private String fieldOfStudy;
 
     @OneToMany (mappedBy = "course", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Set<Assignment> assignments;
+    @OrderBy("serialNumber")
+    private List<Assignment> assignments;
+
+
 
     @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OrderBy("lastName")
     private Set<Student> students;
 
     public void removeStudent(Student student){
@@ -37,7 +43,21 @@ public class Course {
         student.getCourses().add(this);
     }
 
-
-
+    public List<Assignment> editAssignmentOrder(Assignment assignment, int count){
+        List<Assignment> assignmentsInNewOrder = new ArrayList<>();
+        int memory = assignment.getSerialNumber();
+        int newIndex = memory + count;
+        for (Assignment task : assignments) {
+            if(task.getSerialNumber() == newIndex){
+                task.setSerialNumber(memory);
+            }
+            assignmentsInNewOrder.add(task);
+        }
+        assignment.setSerialNumber(newIndex);
+        assignmentsInNewOrder.add(assignment);
+        return assignmentsInNewOrder;
+    }
 
 }
+
+

@@ -38,7 +38,7 @@ public class SubmittedVersionController {
 
     @GetMapping("/all")
     protected String showSubmittedVersionsOverview(Model model) {
-        model.addAttribute("allSubmittedVersions", submittedVersionRepository.findAll());
+        model.addAttribute("allSubmittedVersions", submittedVersionRepository.findByOrderByDateSubmittedDesc());
         return "submittedVersions/submittedVersionsOverview";
     }
 

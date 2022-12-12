@@ -43,14 +43,9 @@ public class AssignmentController {
     @PostMapping("/new")
     protected String addAssignment(@ModelAttribute("assignment") Assignment assignmentToAdd, BindingResult result){
       if(!result.hasErrors()){
-
+          assignmentToAdd.addAssignment();
           assignmentRepository.save(assignmentToAdd);
       }
-
-      if(result.hasErrors()){
-          System.out.println(result.getFieldError().toString());
-      }
-
         return "redirect:/assignments/all";
     }
 

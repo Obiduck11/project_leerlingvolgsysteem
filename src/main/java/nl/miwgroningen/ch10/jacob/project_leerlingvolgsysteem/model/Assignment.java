@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 /**
  * Author: Jacob Visser
  * <p>
@@ -22,15 +21,20 @@ public class Assignment {
     private String description;
     private int serialNumber;
 
+
     @ManyToOne
     private Course course;
-
-
 
 
     public String getTitle() {
         return title;
     }
 
-
+    public void addAssignment(){
+        for (Assignment assignment : course.getAssignments()) {
+            if(assignment.serialNumber >= this.serialNumber){
+                assignment.serialNumber += 1;
+            }
+        }
+    }
 }
