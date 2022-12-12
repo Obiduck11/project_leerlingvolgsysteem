@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -96,9 +97,10 @@ public class CourseController {
         model.addAttribute("course", course);
         model.addAttribute("allStudents", studentRepository.findAll());
         model.addAttribute("allAssignments", assignmentRepository.findAll());
+
         model.addAttribute("allAssessments", assessmentRepository.findAll());
         model.addAttribute("allSubmittedVersions", assessmentRepository.findAll());
-        Collections.sort(course.getAssignments());
+
 
         return "courseForm";
     }

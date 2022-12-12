@@ -14,7 +14,7 @@ import java.util.List;
  * Dit is wat het programma doet.
  */
 @Entity @Getter @Setter
-public class Assignment implements Comparable<Assignment> {
+public class Assignment implements Comparable<Assignment>{
 
     @Id
     @GeneratedValue
@@ -33,20 +33,8 @@ public class Assignment implements Comparable<Assignment> {
         return title;
     }
 
-
-
-
     @Override
     public int compareTo(Assignment assignment) {
-        {
-            if(serialNumber == assignment.serialNumber)
-                return 0;
-            else if (serialNumber > assignment.serialNumber)
-                return 1;
-            else
-                return -1;
-        }
-
-
+        return 0;
     }
 }
