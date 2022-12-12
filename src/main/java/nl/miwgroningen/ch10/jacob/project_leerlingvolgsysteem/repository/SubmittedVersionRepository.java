@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,4 +14,6 @@ import java.util.List;
 public interface SubmittedVersionRepository extends JpaRepository<SubmittedVersion, Long> {
 
     List<SubmittedVersion> findByOrderByDateSubmittedDesc();
+
+    List<SubmittedVersion> findByStudentOrderByDateSubmittedDesc(Student student);
 }
