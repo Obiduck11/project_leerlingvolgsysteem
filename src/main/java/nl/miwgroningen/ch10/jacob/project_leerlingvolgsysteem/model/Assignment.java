@@ -4,9 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
-
 
 /**
  * Author: Jacob Visser
@@ -14,7 +11,7 @@ import java.util.List;
  * Dit is wat het programma doet.
  */
 @Entity @Getter @Setter
-public class Assignment implements Comparable<Assignment>{
+public class Assignment {
 
     @Id
     @GeneratedValue
@@ -33,8 +30,11 @@ public class Assignment implements Comparable<Assignment>{
         return title;
     }
 
-    @Override
-    public int compareTo(Assignment assignment) {
-        return 0;
+    public void addAssignment(){
+        for (Assignment assignment : course.getAssignments()) {
+            if(assignment.serialNumber >= this.serialNumber){
+                assignment.serialNumber += 1;
+            }
+        }
     }
 }
