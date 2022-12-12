@@ -6,9 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class SeedController {
@@ -101,7 +99,7 @@ private final AssessmentRepository assessmentRepository;
     assignmentRepository.save(werkstuk);
     assignmentRepository.save(practicum);
 
-    Set<Assignment> assignments = new HashSet<>();
+   List<Assignment> assignments = new ArrayList<>();
     Collections.addAll(assignments, verslag,werkstuk,practicum);
 
 

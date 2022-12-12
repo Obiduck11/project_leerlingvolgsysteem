@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -12,7 +14,7 @@ import javax.persistence.*;
  * Dit is wat het programma doet.
  */
 @Entity @Getter @Setter
-public class Assignment {
+public class Assignment implements Comparable<Assignment> {
 
     @Id
     @GeneratedValue
@@ -22,10 +24,9 @@ public class Assignment {
     private String description;
     private int serialNumber;
 
+
     @ManyToOne
     private Course course;
-
-
 
 
     public String getTitle() {
@@ -33,4 +34,19 @@ public class Assignment {
     }
 
 
+
+
+    @Override
+    public int compareTo(Assignment assignment) {
+        {
+            if(serialNumber == assignment.serialNumber)
+                return 0;
+            else if (serialNumber > assignment.serialNumber)
+                return 1;
+            else
+                return -1;
+        }
+
+
+    }
 }
