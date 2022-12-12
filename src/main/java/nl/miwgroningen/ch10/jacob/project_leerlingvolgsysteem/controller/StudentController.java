@@ -29,9 +29,17 @@ public class StudentController {
         this.courseRepository = courseRepository;
     }
     @GetMapping("/all")
-    protected String showAll(Model model){
-        model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
-
+    protected String showAll(@RequestParam(required = false)String sortBy, Model model){
+        if(sortBy == null) {
+            System.out.println("ik ben null");
+            model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
+        } else if (sortBy.equals("voornaam")){
+            System.out.println("ik ben voornaam");
+            model.addAttribute("allStudents", studentRepository.findByOrderByFirstName());
+        } else {
+            System.out.println("ik ben achternaam");
+            model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
+        }
         return "studentOverview";
     }
     @GetMapping("/edit/{studentId}")
