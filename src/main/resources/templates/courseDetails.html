@@ -44,8 +44,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluit</button>
-                                <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}"></a>
-                                    <button type="button" class="btn btn-primary">Verwijder student</button>
+                                <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}">
+                                    <button type="button" class="btn btn-primary">Verwijder student </button>
+                                </a>
+
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,6 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
@@ -114,6 +113,7 @@ public class StudentController {
     }
     @GetMapping("/remove-student/{courseId}/{studentId}")
     protected String removeStudentFromCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId){
+        System.out.println("ik kom hier");
         Optional<Course> course = courseRepository.findById(courseId);
         if(course.isPresent()){
             Optional<Student> student = studentRepository.findById(studentId);
