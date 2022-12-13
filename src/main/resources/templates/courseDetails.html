@@ -64,13 +64,13 @@
         </tr>
         <tr th:each="assignment : ${courseToShow.assignments}">
             <td th:text="${assignment.title}"></td>
-            <td >
+            <td>
                 <span th:text="${assignment.serialNumber}"></span>
                 <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='plus', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
-                    <button type="button" class="btn"><i class="fa-solid fa-plus"></i></button>
+                    <i class="fa-solid fa-plus float-lg-end"></i>
                 </a>
                 <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='min', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
-                    <button type="button" class="btn"><i class="fa-solid fa-minus"></i></button>
+                    <i class="fa-solid fa-minus float-lg-end"></i>
                 </a>
             </td>
             <td th:text="${assignment.description}"></td>
