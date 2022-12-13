@@ -60,7 +60,6 @@ public class SubmittedVersionController {
     @GetMapping("/submittedVersionsPerStudent/{studentId}")
     protected String showSubmittedPerStudent(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
-
         if(student.isPresent()){
             return showVersionsPerStudent(model, student);
         }
@@ -85,6 +84,30 @@ public class SubmittedVersionController {
         return "redirect:/submittedVersions/all";
     }
 
+//    @GetMapping("/new/{studentId}")
+//    private String showNewSubmitFormPerStudent(Model model, Student student){
+//        return showSubmitFormPerStudent(model, new SubmittedVersion());
+//    }
+//
+//    private String showSubmitFormPerStudent(Model model, SubmittedVersion submittedVersion) {
+//        model.addAttribute("submittedVersion", submittedVersion);
+//        model.addAttribute("allAssignments", assignmentRepository.findById(submittedVersion.getAssignment().getAssignmentId()));
+//        model.addAttribute("allStudents", studentRepository.findById(submittedVersion.getStudent().getStudentId()));
+//        return "submittedVersions/submittedVersionForm";
+//    }
+
+//    @PostMapping("/new")
+//    private String addNewSubmittedVersionPerStudent(@ModelAttribute("submittedVersionPerStudent") SubmittedVersion newSubmit, Student student, BindingResult result){
+//        if(!result.hasErrors()) {
+//
+//            newSubmit.addSubmittedVersion((submittedVersionRepository));
+//            submittedVersionRepository.save(newSubmit);
+//        }
+//        return "redirect:/assessments/new/submittedVersionId";
+//
+//        }
+
+
     private String showSubmitForm(Model model, SubmittedVersion submittedVersion){
         model.addAttribute("submittedVersion", submittedVersion);
         model.addAttribute("allAssignments", assignmentRepository.findAll());
@@ -101,7 +124,4 @@ public class SubmittedVersionController {
         }
         return "redirect:/submittedVersions/all";
     }
-
-
-
 }

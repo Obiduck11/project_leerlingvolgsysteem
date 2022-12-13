@@ -20,21 +20,27 @@
 
     <h2>Studentresultaten</h2>
     <table class="table table-striped table-hover">
-        <tr>
-            <th>Naam student</th>
-            <th th:each="assignment : ${courseToShow.assignments}" th:text="${assignment.title}"></th>
-            <th></th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Naam student</th>
+                <th th:each="assignment : ${courseToShow.assignments}" th:text="${assignment.getTitle()}"></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.toString()}"></td>
-            <td th:each="assignment : ${courseToShow.assignments}">
-                <i class="fa-solid fa-circle-plus"></i></td>
+            <td th:each="assignment : ${courseToShow.assignments}"> <a th:href="@{/submittedVersions/new}">
+                <i class="fa-solid fa-circle-plus"></i></a>
+            </td>
             <td>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <i class="fa-solid fa-trash-can"></i>
             </button>
                 <!-- Modal -->
-                <div class="modal fade" th:id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" th:id="deleteModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -45,7 +51,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluit</button>
-                                <a th:href="@{/students/remove-student/{courseId}/{studentId}(studentId=${student.studentId}, courseId=${courseToShow.courseId})}">
+                                <a th:href="@{/students/remove-student/{courseId}/{studentId}
+                                (studentId=${student.studentId}, courseId=${courseToShow.courseId})}">
                                     <button type="button" class="btn btn-primary">Verwijder student </button>
                                 </a>
 
