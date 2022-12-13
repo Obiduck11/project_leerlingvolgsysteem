@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,6 +50,18 @@ public class Student {
         }
 
         return allCourses;
+    }
+
+    public List<SubmittedVersion> versionsPerAssignment (Assignment assignment) {
+        List<SubmittedVersion> versionList = new ArrayList<>();
+
+        for (SubmittedVersion submittedVersion : submittedVersions) {
+            if (submittedVersion.getAssignment().equals(assignment)) {
+                versionList.add(submittedVersion);
+            }
+
+        }
+        return versionList;
     }
 
     public void removeCourse(Course course){
