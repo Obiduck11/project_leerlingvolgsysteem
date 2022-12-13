@@ -51,9 +51,11 @@ public class CourseController {
     }
 
     protected void addCourseToStudents(Course course){
-        for (Student student : course.getStudents()) {
-            if (!course.getStudents().contains(student)) {
-                course.addStudent(student);
+        if(course.getStudents() != null) {
+            for (Student student : course.getStudents()) {
+                if (!course.getStudents().contains(student)) {
+                    course.addStudent(student);
+                }
             }
         }
     }
