@@ -79,12 +79,9 @@
     </table>
 
     <div class="center">
-        <a th:href="@{/courses/delete/{courseId}(courseId=${courseToShow.courseId})}">
-            <button type="button" class="btn btn-primary">Delete vak</button>
+          <a th:href="@{/courses/edit/id/{courseId}(courseId=${courseToShow.courseId})}">
+            <button type="button" class="btn btn-primary">Edit</button>
         </a>
-<!--        <a th:href="@{/courses/edit/id/{courseId}(courseId=${courseToShow.courseId})}">-->
-<!--            <button type="button" class="btn btn-primary">Edit</button>-->
-<!--        </a>-->
     </div>
 
     <div th:replace="fragments/general :: footer"></div>

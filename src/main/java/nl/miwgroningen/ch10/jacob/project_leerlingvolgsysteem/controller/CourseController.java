@@ -21,15 +21,10 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
-    private final AssignmentRepository assignmentRepository;
-    private final AssessmentRepository assessmentRepository;
 
-    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
+    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
-
-        this.assignmentRepository = assignmentRepository;
-        this.assessmentRepository = assessmentRepository;
     }
 
     @GetMapping ("/all")
@@ -57,7 +52,9 @@ public class CourseController {
 
     protected void addCourseToStudents(Course course){
         for (Student student : course.getStudents()) {
-            course.addStudent(student);
+            if (!course.getStudents().contains(student)) {
+                course.addStudent(student);
+            }
         }
     }
 
