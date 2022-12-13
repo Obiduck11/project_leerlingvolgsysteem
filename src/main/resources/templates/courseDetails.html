@@ -27,7 +27,8 @@
         </tr>
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.toString()}"></td>
-            <td th:each="assignment : ${courseToShow.assignments}"><i class="fa-solid fa-circle-plus"></i></td>
+            <td th:each="assignment : ${courseToShow.assignments}">
+                <i class="fa-solid fa-circle-plus"></i></td>
             <td>
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <i class="fa-solid fa-trash-can"></i>
@@ -66,10 +67,11 @@
             <td th:text="${assignment.title}"></td>
             <td>
                 <span th:text="${assignment.serialNumber}"></span>
-                <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='plus', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
+
+                <a th:unless="${assignment.serialNumber == courseToShow.assignments.size()}" th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='plus', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
                     <i class="fa-solid fa-plus float-lg-end"></i>
                 </a>
-                <a th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='min', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
+                <a th:unless="${assignment.serialNumber == 1}" th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='min', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
                     <i class="fa-solid fa-minus float-lg-end"></i>
                 </a>
             </td>
