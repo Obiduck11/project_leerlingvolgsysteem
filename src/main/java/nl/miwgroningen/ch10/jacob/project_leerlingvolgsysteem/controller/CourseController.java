@@ -110,23 +110,25 @@ public class CourseController {
     protected String editOrder(@PathVariable("courseId") Long courseId, @PathVariable("assignmentId") Long assignmentId, @RequestParam String add){
         Optional <Course> courseToEdit = courseRepository.findById(courseId);
         Assignment assignmentToReplace = new Assignment();
-        int count;
-        if (add.equals("plus")) {
-            count = 1;
-        } else {
-            count = -1;
-        }
 
         for (Assignment assignment : courseToEdit.get().getAssignments()) {
             if(assignment.getAssignmentId().equals(assignmentId)){
                 assignmentToReplace = assignment;
             }
         }
-        if(courseToEdit.isPresent()){
-           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, count));
+           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, count(add)));
            courseRepository.save(courseToEdit.get());
-        }
         return  "redirect:/courses/details/id/" + courseId;
+    }
+
+    private int count(String add){
+        int count;
+        if (add.equals("plus")) {
+            count = 1;
+        } else {
+            count = -1;
+        }
+        return count;
     }
     protected void deleteCourseFromStudent(Course course){
         for (Student student : studentRepository.findAll()) {
