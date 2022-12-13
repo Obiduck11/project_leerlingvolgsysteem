@@ -27,3 +27,15 @@ a.nav-link:hover {
 .padding-button{
     padding-top: 10px;
 }
+
+.fa-check-circle {
+    color: green;
+}
+
+.fa-times-circle {
+    color: red;
+}
+
+
+
+
