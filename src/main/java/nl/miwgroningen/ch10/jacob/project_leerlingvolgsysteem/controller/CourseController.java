@@ -116,20 +116,11 @@ public class CourseController {
                 assignmentToReplace = assignment;
             }
         }
-           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, count(add)));
+           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, assignmentToReplace.count(add)));
            courseRepository.save(courseToEdit.get());
         return  "redirect:/courses/details/id/" + courseId;
     }
 
-    private int count(String add){
-        int count;
-        if (add.equals("plus")) {
-            count = 1;
-        } else {
-            count = -1;
-        }
-        return count;
-    }
     protected void deleteCourseFromStudent(Course course){
         for (Student student : studentRepository.findAll()) {
             if(course.getStudents().contains(student)){

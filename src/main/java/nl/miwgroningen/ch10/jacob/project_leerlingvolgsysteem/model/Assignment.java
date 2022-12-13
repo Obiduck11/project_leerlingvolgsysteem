@@ -37,4 +37,13 @@ public class Assignment {
             }
         }
     }
+    public int count(String add){
+        int count;
+        if (add.equals("plus")) {
+            count = 1;
+        } else {
+            count = -1;
+        }
+        return count;
+    }
 }
