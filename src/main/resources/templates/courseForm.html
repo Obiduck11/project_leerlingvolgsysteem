@@ -19,7 +19,7 @@
             <label th:for="fieldOfStudy"></label>
             <input id="fieldOfStudy" type ="text" class="form-control" th:placeholder="Studierichting" th:field="*{fieldOfStudy}">
         </div>
-        <div class="form-group">
+        <div th:if="${courseId} == null" class="form-group">
             <label th:for="students" class="form-label"></label>
             <select id="students" class="form-control" th:field="*{students}" multiple>
                 <option th:each="student : ${allStudents}" th:value="${student.studentId}" th:text="${student.firstName}"></option>

@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@SpringBootTest (classes = ProjectLeerlingvolgsysteemApplicationTests.class)
 class ProjectLeerlingvolgsysteemApplicationTests {
 
 	@Test
@@ -30,6 +31,26 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 		String studentName = student.getDisplayName();
 
 		assertEquals(expectedStudentName, studentName);
+	}
+
+	@Test
+	@DisplayName("CheckforPlus")
+	void countTestPlus(){
+		Assignment assignment = new Assignment();
+		String plus = "plus";
+		int expected = 1;
+
+		assertEquals(expected, assignment.count(plus));
+	}
+
+	@Test
+	@DisplayName("checkForMinus")
+	void coutnTestMinus(){
+		Assignment assignment = new Assignment();
+		String minus = "minus";
+		int expected = -1;
+
+		assertEquals(expected, assignment.count(minus));
 	}
 
 }

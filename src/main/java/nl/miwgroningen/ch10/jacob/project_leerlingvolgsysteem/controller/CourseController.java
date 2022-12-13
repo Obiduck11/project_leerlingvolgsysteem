@@ -21,15 +21,10 @@ public class CourseController {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
-    private final AssignmentRepository assignmentRepository;
-    private final AssessmentRepository assessmentRepository;
 
-    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository, AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
+    public CourseController(CourseRepository courseRepository, StudentRepository studentRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
-
-        this.assignmentRepository = assignmentRepository;
-        this.assessmentRepository = assessmentRepository;
     }
 
     @GetMapping ("/all")
@@ -56,8 +51,12 @@ public class CourseController {
     }
 
     protected void addCourseToStudents(Course course){
-        for (Student student : course.getStudents()) {
-            course.addStudent(student);
+        if(course.getStudents() != null) {
+            for (Student student : course.getStudents()) {
+                if (!course.getStudents().contains(student)) {
+                    course.addStudent(student);
+                }
+            }
         }
     }
 
@@ -111,24 +110,17 @@ public class CourseController {
     protected String editOrder(@PathVariable("courseId") Long courseId, @PathVariable("assignmentId") Long assignmentId, @RequestParam String add){
         Optional <Course> courseToEdit = courseRepository.findById(courseId);
         Assignment assignmentToReplace = new Assignment();
-        int count;
-        if (add.equals("plus")) {
-            count = 1;
-        } else {
-            count = -1;
-        }
 
         for (Assignment assignment : courseToEdit.get().getAssignments()) {
             if(assignment.getAssignmentId().equals(assignmentId)){
                 assignmentToReplace = assignment;
             }
         }
-        if(courseToEdit.isPresent()){
-           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, count));
+           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, assignmentToReplace.count(add)));
            courseRepository.save(courseToEdit.get());
-        }
         return  "redirect:/courses/details/id/" + courseId;
     }
+
     protected void deleteCourseFromStudent(Course course){
         for (Student student : studentRepository.findAll()) {
             if(course.getStudents().contains(student)){

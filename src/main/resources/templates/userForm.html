@@ -10,8 +10,8 @@
 <div class="container">
     <h1>Nieuwe gebruiker</h1>
 
-    <form class="center" th:action="@{/user/new}" method="post" th:object="*{systemUser}">
-        <input type="hidden" th:field="${systemUserId}">
+    <form class="center" th:action="@{/user/new}" method="post" th:object="${systemUser}">
+        <input type="hidden" th:field="*{systemUserId}">
 
         <div class="form-group">
             <label for="title" class="form-label">Gebruikersnaam</label>
