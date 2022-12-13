@@ -2,7 +2,6 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssessmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.StudentRepository;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.SubmittedVersionRepository;
@@ -24,16 +23,15 @@ public class SubmittedVersionController {
     private final SubmittedVersionRepository submittedVersionRepository;
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
-    private final AssessmentRepository assessmentRepository;
+
 
     public SubmittedVersionController(
             SubmittedVersionRepository submittedVersionRepository,
             StudentRepository studentRepository,
-            AssignmentRepository assignmentRepository, AssessmentRepository assessmentRepository) {
+            AssignmentRepository assignmentRepository) {
         this.submittedVersionRepository = submittedVersionRepository;
         this.studentRepository = studentRepository;
         this.assignmentRepository = assignmentRepository;
-        this.assessmentRepository = assessmentRepository;
     }
 
     @GetMapping("/all")
@@ -113,6 +111,13 @@ public class SubmittedVersionController {
         model.addAttribute("allAssignments", assignmentRepository.findAll());
         model.addAttribute("allStudents", studentRepository.findAll());
         return "submittedVersions/submittedVersionForm";
+    }
+
+    @GetMapping("/new/{studentId}/{assignmentId}")
+    private String makeInstantSubmit(@PathVariable("studentId") Long studentId, @PathVariable("assignmentId") Long assignmentId, Model model){
+        Optional<Student> student = studentRepository.findById(studentId);
+        return "redirect:/courses/all";
+        //TODO verder uitwerken om direct in te kunnen leveren en te beoordelen.
     }
 
     @GetMapping("/delete/{versionId}")
