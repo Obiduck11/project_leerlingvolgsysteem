@@ -1,5 +1,6 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.AssignmentRepository;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 /**
@@ -91,9 +93,20 @@ public class SubmittedVersionController {
 
     @GetMapping("/new/{studentId}/{assignmentId}")
     private String makeInstantSubmit(@PathVariable("studentId") Long studentId,
-                                     @PathVariable("assignmentId") Long assignmentId, Model model){
+                                     @PathVariable("assignmentId") Long assignmentId){
         Optional<Student> student = studentRepository.findById(studentId);
-        return "redirect:/submittedVersions/new";
+        Optional<Assignment> assignment = assignmentRepository.findById(assignmentId);
+
+        SubmittedVersion submittedVersion = new SubmittedVersion();
+        submittedVersion.setDateSubmitted(LocalDate.now());
+        submittedVersion.setStudent(student.get());
+        submittedVersion.setAssignment(assignment.get());
+        submittedVersionRepository.save(submittedVersion);
+        System.out.println("ik kom hier");
+        long id = submittedVersion.getVersionId();
+        System.out.println(id);
+
+        return "redirect:/assessments/new/" + id;
         //TODO verder uitwerken om direct in te kunnen leveren en te beoordelen.
     }
 

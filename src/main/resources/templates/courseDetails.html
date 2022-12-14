@@ -28,7 +28,7 @@
         <tr th:each="student : ${courseToShow.students}">
             <td th:text="${student.displayName}"></td>
             <td th:each="assignment : ${courseToShow.assignments}">
-                <a th:if="${student.versionsPerAssignment(assignment).isEmpty() }" th:href="@{/submittedVersion/new/{studentId}/{assignmentId}(studentId=${student.studentId})(assignmentId=${assignment.assignmentId})}" class="fa-solid fa-circle-plus"></a>
+                <a th:if="${student.versionsPerAssignment(assignment).isEmpty() }" th:href="@{/submittedVersions/new/{studentId}/{assignmentId}(studentId=${student.studentId},assignmentId=${assignment.assignmentId})}" class="fa-solid fa-circle-plus"></a>
                 <span th:each="submittedVersion :${student.versionsPerAssignment(assignment)}">
                     <a th:if="${submittedVersion == null}" ><i class="fa-solid fa-circle-plus"></i></a>
                     <a th:if="${submittedVersion.assessment == null}" th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fas fa-hourglass-end"></i></a>
