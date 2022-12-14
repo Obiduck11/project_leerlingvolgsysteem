@@ -30,6 +30,7 @@ public class Student {
     private Set<Course> courses;
 
     @OneToMany(mappedBy = "student", cascade = {CascadeType.REMOVE})
+    @OrderBy("dateSubmitted")
     private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {
@@ -69,9 +70,15 @@ public class Student {
         course.getStudents().remove(this);
     }
 
-    public void addCourse(Course course) {
-        courses.add(course);
-        course.getStudents().add(this);
+    public boolean passedPreviousAssignment(Assignment assignment) {
+        int index = assignment.getCourse().getAssignments().indexOf(assignment);
+        Assignment previousAssignment = assignment.getCourse().getAssignments().get(index - 1);
+        for (SubmittedVersion submittedVersion : submittedVersions) {
+            if (submittedVersion.getAssignment().equals(previousAssignment)) {
+                return submittedVersion.getAssessment().isPass();
+            }
+        }
+        return false;
     }
 
     public String toString() {
