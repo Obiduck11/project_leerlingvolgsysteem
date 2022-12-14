@@ -11,35 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest (classes = ProjectLeerlingvolgsysteemApplicationTests.class)
 class ProjectLeerlingvolgsysteemApplicationTests {
 
-	@Test
-	@DisplayName("DisplayNameWithoutInfixName")
-	void StudentDisplayNameTest() {
-		Student student = new Student();
-		String expectedStudentName = "Robbin Drent";
 
-		String studentName = student.getDisplayName();
-
-		assertEquals(expectedStudentName, studentName);
-	}
-
-	@Test
-	@DisplayName("DisplayNameWithInfixName")
-	void StudentDisplayNameWithInfixTest() {
-		Student student = new Student();
-		String expectedStudentName = "Henk van Dijk";
-
-		String studentName = student.getDisplayName();
-
-		assertEquals(expectedStudentName, studentName);
-	}
 	@Test
 	@DisplayName("DisplayName")
 	void DisplayNameTest() {
-		Student student = new Student();
+		Student student = new Student("Henk", "van", "Dijk");
 		String expectedStudentName = "Henk van Dijk";
-		student.setFirstName("Henk");
-		student.setInFixName("van");
-		student.setLastName("Dijk");
+		String studentName = student.getDisplayName();
+		assertEquals(expectedStudentName, studentName);
+	}
+	@Test
+	@DisplayName("DisplayNameWithoutPrefix")
+	void DisplayNameTestWithoutPrefix() {
+		Student student = new Student("Kees","Test");
+		String expectedStudentName = "Kees Test";
+
 		String studentName = student.getDisplayName();
 		assertEquals(expectedStudentName, studentName);
 	}
