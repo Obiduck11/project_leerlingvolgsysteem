@@ -26,6 +26,21 @@ public class Student {
 
     private String githubAccount;
 
+    public Student(String firstName, String inFixName, String lastName) {
+        this.firstName = firstName;
+        this.inFixName = inFixName;
+        this.lastName = lastName;
+    }
+
+    public Student(String firstname, String lastName) {
+        this(firstname, "", lastName);
+    }
+
+    public Student() {
+        this("", "", "");
+
+    }
+
     @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Course> courses;
 

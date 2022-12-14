@@ -58,7 +58,6 @@ public class SubmittedVersionController {
     @GetMapping("/submittedVersionsPerStudent/{studentId}")
     protected String showSubmittedPerStudent(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
-
         if(student.isPresent()){
             return showVersionsPerStudent(model, student);
         }
@@ -83,6 +82,30 @@ public class SubmittedVersionController {
         return "redirect:/submittedVersions/all";
     }
 
+//    @GetMapping("/new/{studentId}")
+//    private String showNewSubmitFormPerStudent(Model model, Student student){
+//        return showSubmitFormPerStudent(model, new SubmittedVersion());
+//    }
+//
+//    private String showSubmitFormPerStudent(Model model, SubmittedVersion submittedVersion) {
+//        model.addAttribute("submittedVersion", submittedVersion);
+//        model.addAttribute("allAssignments", assignmentRepository.findById(submittedVersion.getAssignment().getAssignmentId()));
+//        model.addAttribute("allStudents", studentRepository.findById(submittedVersion.getStudent().getStudentId()));
+//        return "submittedVersions/submittedVersionForm";
+//    }
+
+//    @PostMapping("/new")
+//    private String addNewInstantSubmit(@ModelAttribute("submittedVersionPerStudent") SubmittedVersion newSubmit, Student student, BindingResult result){
+//        if(!result.hasErrors()) {
+//
+//            newSubmit.addSubmittedVersion((submittedVersionRepository));
+//            submittedVersionRepository.save(newSubmit);
+//        }
+//        return "redirect:/assessments/new/submittedVersionId";
+//
+//        }
+
+
     private String showSubmitForm(Model model, SubmittedVersion submittedVersion){
         model.addAttribute("submittedVersion", submittedVersion);
         model.addAttribute("allAssignments", assignmentRepository.findAll());
@@ -91,9 +114,10 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/new/{studentId}/{assignmentId}")
-    private String makeInstantSubmit(@PathVariable("studentId") Long studentId, @PathVariable("assignmentId") Long assignmentId, Model model){
+    private String makeInstantSubmit(@PathVariable("studentId") Long studentId,
+                                     @PathVariable("assignmentId") Long assignmentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
-        return "redirect:/courses/all";
+        return "redirect:/submittedVersions/new";
         //TODO verder uitwerken om direct in te kunnen leveren en te beoordelen.
     }
 
@@ -106,7 +130,4 @@ public class SubmittedVersionController {
         }
         return "redirect:/submittedVersions/all";
     }
-
-
-
 }
