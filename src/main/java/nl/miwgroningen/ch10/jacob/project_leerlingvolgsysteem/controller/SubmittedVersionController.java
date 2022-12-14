@@ -95,7 +95,7 @@ public class SubmittedVersionController {
 //    }
 
 //    @PostMapping("/new")
-//    private String addNewSubmittedVersionPerStudent(@ModelAttribute("submittedVersionPerStudent") SubmittedVersion newSubmit, Student student, BindingResult result){
+//    private String addNewInstantSubmit(@ModelAttribute("submittedVersionPerStudent") SubmittedVersion newSubmit, Student student, BindingResult result){
 //        if(!result.hasErrors()) {
 //
 //            newSubmit.addSubmittedVersion((submittedVersionRepository));
@@ -114,9 +114,10 @@ public class SubmittedVersionController {
     }
 
     @GetMapping("/new/{studentId}/{assignmentId}")
-    private String makeInstantSubmit(@PathVariable("studentId") Long studentId, @PathVariable("assignmentId") Long assignmentId, Model model){
+    private String makeInstantSubmit(@PathVariable("studentId") Long studentId,
+                                     @PathVariable("assignmentId") Long assignmentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
-        return "redirect:/courses/all";
+        return "redirect:/submittedVersions/new";
         //TODO verder uitwerken om direct in te kunnen leveren en te beoordelen.
     }
 

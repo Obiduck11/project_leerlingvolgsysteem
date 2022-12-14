@@ -32,6 +32,19 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 
 		assertEquals(expectedStudentName, studentName);
 	}
+	@Test
+	@DisplayName("DisplayName")
+	void DisplayNameTest() {
+		Student student = new Student();
+		String expectedStudentName = "Henk van Dijk";
+		student.setFirstName("Henk");
+		student.setInFixName("van");
+		student.setLastName("Dijk");
+		String studentName = student.getDisplayName();
+		assertEquals(expectedStudentName, studentName);
+	}
+
+
 
 	@Test
 	@DisplayName("CheckforPlus")
