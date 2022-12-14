@@ -91,7 +91,9 @@ public class Student {
             if(index != 0) {
             Assignment previousAssignment = assignment.getCourse().getAssignments().get(index - 1);
                 if (submittedVersion.getAssignment().equals(previousAssignment)) {
-                        return submittedVersion.getAssessment().isPass();
+                    if(submittedVersion.getAssessment().isPass()) {
+                        return true;
+                    }
                 }
             }
         }
