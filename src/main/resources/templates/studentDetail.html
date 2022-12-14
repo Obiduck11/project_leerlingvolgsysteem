@@ -30,7 +30,8 @@
             <th th:if="${course != null}" th:text="${course.name}"></th>
             <td th:each="assignment : ${course.assignments}">
                 <span th:each="submittedVersion : ${studentToShowDetailsFor.versionsPerAssignment(assignment)}">
-                    <i th:if="submittedVersion != null" class="fa-solid fa-circle-plus"></i>
+                    <i th:if="${submittedVersion.assessment.pass}" class="fas fa-check-circle"></i>
+                    <i th:if="${submittedVersion.assessment.pass == false}" class="fas fa-times-circle"></i>
                 </span>
             </td>
         </tr>
