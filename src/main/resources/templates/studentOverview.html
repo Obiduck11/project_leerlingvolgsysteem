@@ -7,28 +7,28 @@
     <div th:replace="fragments/general :: navbar"></div>
     <h1 class="text-center">Overzicht van alle studenten</h1>
 
+    <div class="center">
+        <a th:href="@{/students/new}"><button type="button" class="btn btn-primary" >Voeg nieuwe student toe</button></a>
+        <a th:href="@{/students/all(sortBy ='achternaam')}"><button type="button" class="btn btn-primary" >sorteer op achternaam</button></a>
+        <a th:href="@{/students/all(sortBy ='voornaam')}"><button type="button" class="btn btn-primary" >sorteer op voornaam</button></a>
+    </div>
+
     <table class="table table-striped table-hover">
         <tr>
-            <th>voornaam</th>
-            <th>tussenvoegsel</th>
-            <th>achternaam</th>
-            <th>githubaccount</th>
-            <th>vak</th>
+            <th>Voornaam</th>
+            <th>Tussenvoegsel</th>
+            <th>Achternaam</th>
+            <th>Githubaccount</th>
         </tr>
         <tr class="align-text-top align-content-lg-center" th:each="student : ${allStudents}">
             <td><a th:href="@{/students/details/{studentId}(studentId=${student.studentId})}"  th:text="${student.firstName}" class="link-dark"></a></td>
             <td th:text="${student.inFixName}"></td>
             <td th:text="${student.lastName}"></td>
             <td th:text="${student.githubAccount}"></td>
-            <td th:utext="${student.getCoursesToString()}"></td>
         </tr>
     </table>
 
-    <div class="center">
-        <a th:href="@{/students/new}"><button type="button" class="btn btn-primary" >Voeg nieuwe student toe</button></a>
-        <a th:href="@{/students/all(sortBy ='achternaam')}"><button type="button" class="btn btn-primary" >sorteer op achternaam</button></a>
-        <a th:href="@{/students/all(sortBy ='voornaam')}"><button type="button" class="btn btn-primary" >sorteer op voornaam</button></a>
-    </div>
+
 
     <div th:replace="fragments/general :: footer"></div>
 
