@@ -1,36 +1,67 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem;
 
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
+import org.hibernate.internal.util.collections.IdentitySet;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest (classes = ProjectLeerlingvolgsysteemApplicationTests.class)
 class ProjectLeerlingvolgsysteemApplicationTests {
 
+	@Test
+	@DisplayName("DisplayNameWithoutInfixName")
+	void studentDisplayNameTest() {
+		Student student = new Student();
+		String expectedStudentName = "Robbin Drent";
+
+		String studentName = student.getDisplayName();
+
+		assertEquals(expectedStudentName, studentName);
+	}
 
 	@Test
-	@DisplayName("DisplayName")
-	void DisplayNameTest() {
-		Student student = new Student("Henk", "van", "Dijk");
+	@Disabled
+	@DisplayName("checkCoursesToString")
+	void testCoursesToString() {
+		Student testStudent = new Student("Wytse", "Boiten");
+		Course rekenen = new Course();
+		rekenen.setName("Rekenen");
+		Course nederlands = new Course();
+		nederlands.setName("Nederlands");
+
+		Set<Course> testCourses = new HashSet<>();
+		testCourses.add(rekenen);
+		testCourses.add(nederlands);
+
+		testStudent.setCourses(testCourses);
+
+		String expectedCoursesList = ("Rekenen<br />Nederlands<br />");
+		String coursesList = testStudent.getCoursesToString();
+
+		assertEquals(expectedCoursesList, coursesList);
+	}
+
+
+	@Test
+	@DisplayName("DisplayNameWithInfixName")
+	void StudentDisplayNameWithInfixTest() {
+		Student student = new Student();
 		String expectedStudentName = "Henk van Dijk";
-		String studentName = student.getDisplayName();
-		assertEquals(expectedStudentName, studentName);
-	}
-	@Test
-	@DisplayName("DisplayNameWithoutPrefix")
-	void DisplayNameTestWithoutPrefix() {
-		Student student = new Student("Kees","Test");
-		String expectedStudentName = "Kees Test";
 
 		String studentName = student.getDisplayName();
+
 		assertEquals(expectedStudentName, studentName);
 	}
-
-
 
 	@Test
 	@DisplayName("CheckforPlus")

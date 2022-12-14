@@ -32,11 +32,13 @@
 
     <table class="table table-striped table-hover">
         <tr th:each="student : ${assignmentToShowDetailsFor.course.students}">
-            <th th:text="${student.displayName}"></th>
-            <td th:each="submittedVersion : ${student.versionsPerAssignment(assignmentToShowDetailsFor)}">
-                <span th:if="${submittedVersion.getAssessment() == null}">niet beoordeeld</span>
-                <i th:if="${submittedVersion.getAssessment() != null && submittedVersion.getAssessment().pass}" class="fas fa-check-circle"></i>
-                <i th:if="${submittedVersion.getAssessment() != null && submittedVersion.getAssessment().pass == false}" class="fas fa-times-circle"></i>
+            <td><a th:href="@{/students/details/{studentId}(studentId=${student.studentId})}"  th:text="${student.displayName}" class="link-dark"></a></td>
+            <td>
+                <span th:each="submittedVersion : ${student.versionsPerAssignment(assignmentToShowDetailsFor)}">
+                    <span th:if="${submittedVersion.getAssessment() == null}">niet beoordeeld</span>
+                    <i th:if="${submittedVersion.getAssessment() != null && submittedVersion.getAssessment().pass}" class="fas fa-check-circle"></i>
+                    <i th:if="${submittedVersion.getAssessment() != null && submittedVersion.getAssessment().pass == false}" class="fas fa-times-circle"></i>
+                </span>
             </td>
         </tr>
     </table>

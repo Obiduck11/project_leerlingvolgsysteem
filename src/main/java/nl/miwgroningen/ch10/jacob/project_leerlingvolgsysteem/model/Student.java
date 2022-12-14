@@ -41,6 +41,7 @@ public class Student {
 
     }
 
+
     @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Course> courses;
 
@@ -110,6 +111,11 @@ public class Student {
         }
         return false;
     }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
     public String toString() {
         return getDisplayName();
     }

@@ -26,7 +26,7 @@
             <th></th>
         </tr>
         <tr th:each="student : ${courseToShow.students}">
-            <td th:text="${student.displayName}"></td>
+            <td><a th:href="@{/students/details/{studentId}(studentId=${student.studentId})}"  th:text="${student.displayName}" class="link-dark"></a></td>
             <td th:each="assignment : ${courseToShow.assignments}">
                 <span th:each="submittedVersion :${student.versionsPerAssignment(assignment)}">
                     <a th:if="${submittedVersion.assessment == null}" th:href="@{/assessments/new/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fas fa-hourglass-end"></i></a>
