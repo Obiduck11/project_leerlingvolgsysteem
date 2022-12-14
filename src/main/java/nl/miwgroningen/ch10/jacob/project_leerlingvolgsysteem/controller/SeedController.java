@@ -68,39 +68,61 @@ private final AssessmentRepository assessmentRepository;
     student3.setGithubAccount("EssEmOh");
     student3.setCourses(courses);
 
+    Student student4 = new Student();
+    student4.setFirstName("Kees");
+    student4.setLastName("Test");
+    student4.setGithubAccount("Testkees");
+    student4.setCourses(courses);
+
+
     Set<Student> students = new HashSet<>();
-    Collections.addAll(students, student1, student2, student3);
+    Collections.addAll(students, student1, student2, student3, student4);
 
 
     studentRepository.save(student1);
     studentRepository.save(student2);
     studentRepository.save(student3);
+    studentRepository.save(student4);
 
-    Assignment verslag = new Assignment();
-    verslag.setTitle("reflectie");
-    verslag.setCourse(programming);
-    verslag.setDescription("Dit verslag is bedoeld om na te denken over de zin en onzin van programming");
-    verslag.setSerialNumber(1);
+    Assignment programming1 = new Assignment();
+    programming1.setTitle("Programming1");
+    programming1.setCourse(programming);
+    programming1.setDescription("Deze opdracht is bedoeld om na te denken over de zin en onzin van programming");
+    programming1.setSerialNumber(1);
 
-    Assignment werkstuk = new Assignment();
-    werkstuk.setTitle("werkstuk");
-    werkstuk.setCourse(programming);
-    werkstuk.setDescription("mooi werkstuk over programming maken");
-    werkstuk.setSerialNumber(2);
+    Assignment programming2 = new Assignment();
+    programming2.setTitle("Programming2");
+    programming2.setCourse(programming);
+    programming2.setDescription("mooi werkstuk over programming maken");
+    programming2.setSerialNumber(2);
 
-    Assignment practicum = new Assignment();
-    practicum.setTitle("practicum");
-    practicum.setCourse(programming);
-    practicum.setDescription("Oefenen met variabelen in Java.");
-    practicum.setSerialNumber(3);
+    Assignment programming3 = new Assignment();
+    programming3.setTitle("Programming3");
+    programming3.setCourse(programming);
+    programming3.setDescription("Oefenen met variabelen in Java.");
+    programming3.setSerialNumber(3);
 
+    Assignment oop1 = new Assignment();
+    oop1.setTitle("OOP1");
+    oop1.setCourse(OOP);
+    oop1.setDescription("Introduction in Object Oriented Programming");
+    oop1.setSerialNumber(1);
 
-    assignmentRepository.save(verslag);
-    assignmentRepository.save(werkstuk);
-    assignmentRepository.save(practicum);
+    Assignment oop2 = new Assignment();
+    oop2.setTitle("OOP2");
+    oop2.setCourse(OOP);
+    oop2.setDescription("vervolg Object Oriented Programming");
+    oop2.setSerialNumber(2);
+
+    assignmentRepository.save(programming1);
+    assignmentRepository.save(programming2);
+    assignmentRepository.save(programming3);
+    assignmentRepository.save(oop1);
+    assignmentRepository.save(oop2);
+
 
    List<Assignment> assignments = new ArrayList<>();
-    Collections.addAll(assignments, verslag,werkstuk,practicum);
+    Collections.addAll(assignments, programming1, programming2, programming3, oop1, oop2);
 
 
     programming.setAssignments(assignments);
@@ -124,20 +146,20 @@ private final AssessmentRepository assessmentRepository;
     feedbackRepository.saveAll(feedbacks);
 
     SubmittedVersion submittedVersion1 = new SubmittedVersion();
-    submittedVersion1.setAssignment(verslag);
+    submittedVersion1.setAssignment(programming1);
     submittedVersion1.setDateSubmitted(LocalDate.of(2022,9,11));
     submittedVersion1.setStudent(student1);
 
 
     SubmittedVersion submittedVersion2 = new SubmittedVersion();
-    submittedVersion2.setAssignment(practicum);
+    submittedVersion2.setAssignment(programming1);
     submittedVersion2.setDateSubmitted(LocalDate.of(2022,5,3));
-    submittedVersion2.setStudent(student2);
+    submittedVersion2.setStudent(student1);
 
     SubmittedVersion submittedVersion3 = new SubmittedVersion();
-    submittedVersion3.setAssignment(werkstuk);
+    submittedVersion3.setAssignment(programming1);
     submittedVersion3.setDateSubmitted(LocalDate.of(2022, 4, 12));
-    submittedVersion3.setStudent(student3);
+    submittedVersion3.setStudent(student2);
 
     submittedVersion1.addSubmittedVersion(submittedVersionRepository);
     submittedVersion2.addSubmittedVersion(submittedVersionRepository);
@@ -147,26 +169,28 @@ private final AssessmentRepository assessmentRepository;
     submittedVersionRepository.save(submittedVersion2);
     submittedVersionRepository.save(submittedVersion3);
 
-
     Assessment assessment1 = new Assessment();
     assessment1.setPass(false);
     assessment1.setFeedbacks(feedbacks);
-    assessment1.setSpecifiekeFeedback("goed gedaan");
+    assessment1.setSpecifiekeFeedback("Pas nog even de laatste dingen aan");
     assessment1.setSubmittedVersion(submittedVersion1);
 
     Assessment assessment2 = new Assessment();
     assessment2.setPass(true);
-    assessment2.setFeedbacks(feedbacks);
-    assessment2.setSpecifiekeFeedback("minder goed gedaan");
+    assessment2.setSpecifiekeFeedback("Goed gedaan");
     assessment2.setSubmittedVersion(submittedVersion2);
+
+    Assessment assessment3 = new Assessment();
+    assessment3.setPass(false);
+    assessment3.setSpecifiekeFeedback("Werk nog even de Magic Numbers weg");
+    assessment3.setSubmittedVersion(submittedVersion3);
 
     assessmentRepository.save(assessment1);
     assessmentRepository.save(assessment2);
-
-
-
+    assessmentRepository.save(assessment3);
 
     return "redirect:/students/all";
 }
-
 }
+
+

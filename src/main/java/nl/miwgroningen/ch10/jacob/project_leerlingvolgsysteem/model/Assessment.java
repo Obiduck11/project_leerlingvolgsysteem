@@ -25,6 +25,7 @@ public class Assessment {
 
     private String specifiekeFeedback;
 
+
     @ManyToMany
     private Set<Feedback> feedbacks;
 
