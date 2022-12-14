@@ -102,12 +102,9 @@ public class SubmittedVersionController {
         submittedVersion.setStudent(student.get());
         submittedVersion.setAssignment(assignment.get());
         submittedVersionRepository.save(submittedVersion);
-        System.out.println("ik kom hier");
         long id = submittedVersion.getVersionId();
-        System.out.println(id);
 
         return "redirect:/assessments/new/" + id;
-        //TODO verder uitwerken om direct in te kunnen leveren en te beoordelen.
     }
 
     @GetMapping("/delete/{versionId}")

@@ -87,7 +87,7 @@ public class AssessmentController {
                 submittedVersionRepository.save(submittedVersion.get());
             }
         }
-        return "redirect:/submittedVersions/all";
+        return "redirect:/courses/details/id/" + submittedVersion.get().getAssignment().getCourse().getCourseId();
     }
     @RequestMapping("/test")
     public String showCheckbox(Model model) {
