@@ -36,6 +36,11 @@ a.nav-link:hover {
     color: red;
 }
 
+.fa-circle-plus {
+    color: blue;
+    text-decoration: none;
+}
+
 
 
 
