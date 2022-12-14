@@ -101,6 +101,7 @@ public class SubmittedVersionController {
         submittedVersion.setDateSubmitted(LocalDate.now());
         submittedVersion.setStudent(student.get());
         submittedVersion.setAssignment(assignment.get());
+        submittedVersion.addSubmittedVersion(submittedVersionRepository);
         submittedVersionRepository.save(submittedVersion);
         long id = submittedVersion.getVersionId();
 
