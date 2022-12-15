@@ -24,8 +24,12 @@ a.nav-link:hover {
     color: lightskyblue;
 }
 
-.padding-button{
+.padding-button-top{
     padding-top: 10px;
+}
+
+.padding-button-bottom{
+    padding-bottom: 10px;
 }
 
 .fa-check-circle {
