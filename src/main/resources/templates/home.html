@@ -7,17 +7,28 @@
 <div th:replace="fragments/general :: navbar"></div>
 
 <h1>Welkom</h1>
-
-<div class="images">
-        <img class="homeimage"  alt="students" src="https://isobm2016congress.com/wp-content/uploads/2016/01/community-student-icon.png" th:width="300"/>
-        <img  alt="students" src="https://isobm2016congress.com/wp-content/uploads/2016/01/community-student-icon.png" th:width="300" th:align="center"/>
+<div th:class="imagesHome">
+    <div class="row">
+        <div class="column">
+            <a th:href="@{/students/all}">
+                <img src="/images/student.jpg" alt="Studenten">
+            </a>
+        </div>
+        <div class="column">
+            <a th:href="@{assignments/all}">
+                <img src="/images/assignments.jpg" alt="Opdrachten">
+            </a>
+        </div>
+        <div class="column">
+            <a th:href="@{/courses/all}">
+                <img src="/images/classes.jpg" alt="Vakken"></a>
+        </div>
+    </div>
 </div>
-
 
 <div th:replace="fragments/general :: footer"></div>
 
 <div th:replace="fragments/general :: bottomScripts"></div>
-
 
 </body>
 </html>

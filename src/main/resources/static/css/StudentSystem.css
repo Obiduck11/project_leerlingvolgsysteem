@@ -11,6 +11,12 @@ h2 {
     width: 70%;
 }
 
+.imagesHome {
+    padding: 10%;
+    margin: 0 auto;
+    width: 70%;
+}
+
 .centerSmall {
     margin: 0 auto;
     width: 40%;
@@ -55,6 +61,16 @@ a.nav-link:hover {
     content: "";
     clear: both;
     display: table;
+}
+
+img {
+    width: 90%;
+    border-color: red;
+    border-width: medium;
+}
+
+img:hover{
+    opacity: 50%;
 }
 
 
