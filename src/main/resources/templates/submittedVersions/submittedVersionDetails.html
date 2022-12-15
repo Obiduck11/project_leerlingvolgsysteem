@@ -6,41 +6,43 @@
 <body>
 <div th:replace="fragments/general :: navbar"></div>
 <h1><span th:text="${submittedVersionToShow.assignment.title}"></span> door <span th:text="${submittedVersionToShow.student.displayName}"></span></h1>
-<table class="table table-striped table-hover">
-    <tr>
-        <th>Naam student</th>
-        <td th:text="${submittedVersionToShow.student.displayName}"></td>
-    </tr>
-    <tr>
-        <th>Opdracht</th>
-        <td th:text="${submittedVersionToShow.assignment.getTitle()}"></td>
-    </tr>
-    <tr>
-        <th>Opdrachtbeschrijving</th>
-        <td th:text="${submittedVersionToShow.assignment.description}"></td>
-    </tr>
-    <tr>
-        <th>Inleverdatum</th>
-        <td th:text="${submittedVersionToShow.getDateSubmitted()}"></td>
-    </tr>
-    <tr>
-        <th>Beoordeling</th>
-        <td>
-            <span th:if="${submittedVersionToShow.assessment == null}">Nog niet beoordeeld</span>
-            <span th:if="${submittedVersionToShow.assessment != null and submittedVersionToShow.getAssessment().isPass()}">Voldoende</span>
-            <span th:if="${submittedVersionToShow.assessment != null and not submittedVersionToShow.getAssessment().isPass()}">Onvoldoende</span>
-        </td>
-    </tr>
-    <tr th:if="${submittedVersionToShow.assessment != null}">
-        <th>Feedback</th>
-        <td th:text="${submittedVersionToShow.assessment.getSpecifiekeFeedback()}"></td>
-    </tr>
-    <tr th:if="${submittedVersionToShow.assessment != null}">
-        <th>Feedbackregels</th>
-        <td th:utext="${submittedVersionToShow.assessment.getFeedbackLines()}"></td>
-    </tr>
+<div class="center">
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Naam student</th>
+            <td th:text="${submittedVersionToShow.student.displayName}"></td>
+        </tr>
+        <tr>
+            <th>Opdracht</th>
+            <td th:text="${submittedVersionToShow.assignment.getTitle()}"></td>
+        </tr>
+        <tr>
+            <th>Opdrachtbeschrijving</th>
+            <td th:text="${submittedVersionToShow.assignment.description}"></td>
+        </tr>
+        <tr>
+            <th>Inleverdatum</th>
+            <td th:text="${submittedVersionToShow.getDateSubmitted()}"></td>
+        </tr>
+        <tr>
+            <th>Beoordeling</th>
+            <td>
+                <span th:if="${submittedVersionToShow.assessment == null}">Nog niet beoordeeld</span>
+                <span th:if="${submittedVersionToShow.assessment != null and submittedVersionToShow.getAssessment().isPass()}">Voldoende</span>
+                <span th:if="${submittedVersionToShow.assessment != null and not submittedVersionToShow.getAssessment().isPass()}">Onvoldoende</span>
+            </td>
+        </tr>
+        <tr th:if="${submittedVersionToShow.assessment != null}">
+            <th>Feedback</th>
+            <td th:text="${submittedVersionToShow.assessment.getSpecifiekeFeedback()}"></td>
+        </tr>
+        <tr th:if="${submittedVersionToShow.assessment != null}">
+            <th>Feedbackregels</th>
+            <td th:utext="${submittedVersionToShow.assessment.getFeedbackLines()}"></td>
+        </tr>
 
-</table>
+    </table>
+</div>
 
 <div th:replace="fragments/general :: footer"></div>
 

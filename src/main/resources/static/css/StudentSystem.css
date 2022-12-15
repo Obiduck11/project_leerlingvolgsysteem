@@ -11,9 +11,9 @@ h2 {
     width: 70%;
 }
 
-.table {
-    width: 70%;
-    margin-left: 15%;
+.centerSmall {
+    margin: 0 auto;
+    width: 40%;
 }
 
 a.nav-link{
@@ -41,6 +41,17 @@ a.nav-link:hover {
     text-decoration: none;
 }
 
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 
 
