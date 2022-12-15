@@ -88,17 +88,21 @@ public class Student {
 
     public boolean passedPreviousAssignment(Assignment assignment) {
         int index = assignment.getCourse().getAssignments().indexOf(assignment);
-        for (SubmittedVersion submittedVersion : submittedVersions) {
-            if(index != 0) {
-            Assignment previousAssignment = assignment.getCourse().getAssignments().get(index - 1);
-                if (submittedVersion.getAssignment().equals(previousAssignment)) {
-                    if(submittedVersion.getAssessment().isPass()) {
-                        return true;
+            for (SubmittedVersion submittedVersion : submittedVersions) {
+                if (index != 0) {
+                    Assignment previousAssignment = assignment.getCourse().getAssignments().get(index - 1);
+                    if (submittedVersion.getAssignment().equals(previousAssignment)) {
+                        if (checkForAssesment(submittedVersion) && submittedVersion.getAssessment().isPass()) {
+                            return true;
+                        }
                     }
                 }
             }
-        }
         return false;
+    }
+
+    public boolean checkForAssesment(SubmittedVersion submittedVersion){
+        return submittedVersion.getAssessment() != null;
     }
 
     public boolean assignmentPassed(Assignment assignment) {
