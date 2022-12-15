@@ -7,30 +7,31 @@
 
 <div th:replace="fragments/general :: navbar"></div>
 
+<div class="center">
+    <h1>Overzicht van alle beoordelingen</h1>
+        <table class="table table-striped table-hover">
+        <tr>
+            <th>student</th>
+            <th>ingeleverde opdracht</th>
+            <th>gehaald/niet gehaald</th>
+            <th>feedback</th>
+            <th>extra feedback</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
 
-  <h1>Overzicht van alle beoordelingen</h1>
-    <table class="table table-striped table-hover">
-    <tr>
-      <th>student</th>
-      <th>ingeleverde opdracht</th>
-      <th>gehaald/niet gehaald</th>
-      <th>feedback</th>
-      <th>extra feedback</th>
-      <th>edit</th>
-      <th>delete</th>
-    </tr>
+        <tr th:each="assessment : ${allAssessments}">
+            <td th:text="${assessment.submittedVersion.student.displayName}">student</td>
+            <td th:text="${assessment.submittedVersion}">opdracht</td>
+            <td th:text="${assessment.passOrFail()}">resultaat</td>
+            <td th:text="${assessment.feedbacks}">tekst</td>
+            <td th:text="${assessment.specifiekeFeedback}">tekst</td>
 
-    <tr th:each="assessment : ${allAssessments}">
-      <td th:text="${assessment.submittedVersion.student.displayName}">student</td>
-      <td th:text="${assessment.submittedVersion}">opdracht</td>
-      <td th:text="${assessment.passOrFail()}">resultaat</td>
-      <td th:text="${assessment.feedbacks}">tekst</td>
-      <td th:text="${assessment.specifiekeFeedback}">tekst</td>
-
-      <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}">Edit</a></td>
-      <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}">Delete</a></td>
-    </tr>
-  </table>
+            <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}">Edit</a></td>
+            <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
 
 <div th:replace="fragments/general :: footer"></div>
 <div th:replace="fragments/general :: bottomScripts"></div>
