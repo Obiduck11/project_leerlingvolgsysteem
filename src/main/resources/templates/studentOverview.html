@@ -11,7 +11,7 @@
         <a th:href="@{/students/new}"><button type="button" class="btn btn-primary" >Voeg nieuwe student toe</button></a>
         <a th:href="@{/students/all(sortBy ='achternaam')}"><button type="button" class="btn btn-primary" >sorteer op achternaam</button></a>
         <a th:href="@{/students/all(sortBy ='voornaam')}"><button type="button" class="btn btn-primary" >sorteer op voornaam</button></a>
-    </div>
+
 
     <table class="table table-striped table-hover">
         <tr>
@@ -28,7 +28,7 @@
         </tr>
     </table>
 
-
+    </div>
 
     <div th:replace="fragments/general :: footer"></div>
 

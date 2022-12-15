@@ -9,21 +9,21 @@
 
     <div class="center">
         <a th:href="@{/courses/new}"><button type="button" class="btn btn-primary">Voeg nieuw vak toe</button></a>
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>Vaknaam</th>
+                <th>Studierichting</th>
+                <th>Aantal studenten</th>
+                <th>Aantal opdrachten</th>
+            </tr>
+            <tr th:each="course : ${allCourses}">
+                <td><a th:href="@{/courses/details/id/{courseId}(courseId=${course.courseId})}" th:text="${course.name}" class="link-dark"></a></td>
+                <td th:text="${course.fieldOfStudy}"></td>
+                <td th:text="${course.students.size()}"></td>
+                <td th:text="${course.assignments.size()}"></td>
+            </tr>
+        </table>
     </div>
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>Vaknaam</th>
-            <th>Studierichting</th>
-            <th>Aantal studenten</th>
-            <th>Aantal opdrachten</th>
-        </tr>
-        <tr th:each="course : ${allCourses}">
-            <td><a th:href="@{/courses/details/id/{courseId}(courseId=${course.courseId})}" th:text="${course.name}" class="link-dark"></a></td>
-            <td th:text="${course.fieldOfStudy}"></td>
-            <td th:text="${course.students.size()}"></td>
-            <td th:text="${course.assignments.size()}"></td>
-        </tr>
-    </table>
 
     <div th:replace="fragments/general :: footer"></div>
 
