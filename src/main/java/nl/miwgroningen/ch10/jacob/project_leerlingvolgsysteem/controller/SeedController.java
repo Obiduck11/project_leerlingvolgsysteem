@@ -153,7 +153,7 @@ private final AssessmentRepository assessmentRepository;
 
     SubmittedVersion submittedVersion2 = new SubmittedVersion();
     submittedVersion2.setAssignment(programming1);
-    submittedVersion2.setDateSubmitted(LocalDate.of(2022,5,3));
+    submittedVersion2.setDateSubmitted(LocalDate.of(2022,10,3));
     submittedVersion2.setStudent(student1);
 
     SubmittedVersion submittedVersion3 = new SubmittedVersion();
