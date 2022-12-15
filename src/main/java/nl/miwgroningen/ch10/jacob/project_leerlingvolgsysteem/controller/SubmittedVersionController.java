@@ -17,15 +17,15 @@ import java.util.Optional;
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
  * <p>
- * Dit is wat het programma doet.
+ * beheert functionaliteit betreft de eigenschappen van een Submitted Version
  */
+
 @Controller @RequestMapping("/submittedVersions")
 public class SubmittedVersionController {
 
     private final SubmittedVersionRepository submittedVersionRepository;
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
-
 
     public SubmittedVersionController(
             SubmittedVersionRepository submittedVersionRepository,
@@ -38,7 +38,8 @@ public class SubmittedVersionController {
 
     @GetMapping("/all")
     protected String showSubmittedVersionsOverview(Model model) {
-        model.addAttribute("allSubmittedVersions", submittedVersionRepository.findByOrderByDateSubmittedDesc());
+        model.addAttribute("allSubmittedVersions",
+                submittedVersionRepository.findByOrderByDateSubmittedDesc());
         return "submittedVersions/submittedVersionsOverview";
     }
 
@@ -63,20 +64,22 @@ public class SubmittedVersionController {
         if(student.isPresent()){
             return showVersionsPerStudent(model, student);
         }
-
         return "redirect:/students/all";
     }
+
     private String showVersionsPerStudent(Model model, Optional<Student> student) {
         model.addAttribute("studentToShow", student.get());
         return "/submittedVersions/submittedVersionsPerStudent";
     }
+
     @GetMapping("/new")
     private String showNewSubmitForm(Model model){
         return showSubmitForm(model, new SubmittedVersion());
     }
 
     @PostMapping("/new")
-    private String addNewSubmittedVersion(@ModelAttribute("submittedVersion") SubmittedVersion newSubmit, BindingResult result) {
+    private String addNewSubmittedVersion(@ModelAttribute("submittedVersion") SubmittedVersion newSubmit,
+                                          BindingResult result) {
         if(!result.hasErrors()){
             newSubmit.addSubmittedVersion(submittedVersionRepository);
             submittedVersionRepository.save(newSubmit);

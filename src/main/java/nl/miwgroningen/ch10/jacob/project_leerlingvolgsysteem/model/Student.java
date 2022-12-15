@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Author: Jacob Visser
  * <p>
- * Eigenschappen van een student
+ * De eigenschappen van een student
  */
 @Entity @Getter @Setter
 public class Student {
@@ -41,7 +41,6 @@ public class Student {
 
     }
 
-
     @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Course> courses;
 
@@ -60,13 +59,13 @@ public class Student {
     }
 
     public String getCoursesToString() {
-        String allCourses = "";
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (Course course : courses) {
-            allCourses += String.format("%s<br />", course.getName());
+            stringBuilder . append(String.format("%s<br />", course.getName()));
         }
 
-        return allCourses;
+        return stringBuilder.toString();
     }
 
     public List<SubmittedVersion> versionsPerAssignment (Assignment assignment) {
@@ -76,9 +75,19 @@ public class Student {
             if (submittedVersion.getAssignment().equals(assignment)) {
                 versionList.add(submittedVersion);
             }
-
         }
         return versionList;
+    }
+
+    public List<Assignment> studentInCourse (Student student) {
+        List<Assignment> assignmentList = new ArrayList<>();
+
+        for (Course course : student.getCourses()) {
+            for (Assignment assignment : course.getAssignments()) {
+                assignmentList.add(assignment);
+            }
+        }
+        return assignmentList;
     }
 
     public void removeCourse(Course course){
@@ -123,10 +132,6 @@ public class Student {
             }
         }
         return false;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
     }
 
     public String toString() {

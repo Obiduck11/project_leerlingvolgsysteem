@@ -28,26 +28,26 @@ public class StudentController {
     private final CourseRepository courseRepository;
     private final SubmittedVersionRepository submittedVersionRepository;
 
-
-    public StudentController(StudentRepository studentRepository, CourseRepository courseRepository, SubmittedVersionRepository submittedVersionRepository) {
+    public StudentController(StudentRepository studentRepository,
+                             CourseRepository courseRepository,
+                             SubmittedVersionRepository submittedVersionRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
         this.submittedVersionRepository = submittedVersionRepository;
     }
+
     @GetMapping("/all")
     protected String showAll(@RequestParam(required = false)String sortBy, Model model){
         if(sortBy == null) {
-            System.out.println("ik ben null");
             model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
         } else if (sortBy.equals("voornaam")){
-            System.out.println("ik ben voornaam");
             model.addAttribute("allStudents", studentRepository.findByOrderByFirstName());
         } else {
-            System.out.println("ik ben achternaam");
             model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
         }
         return "studentOverview";
     }
+
     @GetMapping("/edit/{studentId}")
     protected String editStudent(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
@@ -78,25 +78,19 @@ public class StudentController {
             }
             return "redirect:/students/all";
     }
+
     @GetMapping("/details/{studentId}")
     protected String showStudentDetail(@PathVariable("studentId") Long studentId, Model model){
         Optional<Student> student = studentRepository.findById(studentId);
-        List<Assignment> assignmentList = new ArrayList<>();
 
         if(student.isPresent()){
-            for (Course course : student.get().getCourses()) {
-                for (Assignment assignment : course.getAssignments()) {
-                    assignmentList.add(assignment);
-                }
-            }
-
             model.addAttribute("studentToShowDetailsFor", student.get());
-            model.addAttribute("versionsByDate", submittedVersionRepository.findByStudentOrderByDateSubmittedDesc(student.get()));
-            model.addAttribute("assignmentsToShow", assignmentList);
+            model.addAttribute("versionsByDate",
+                    submittedVersionRepository.findByStudentOrderByDateSubmittedDesc(student.get()));
+            model.addAttribute("assignmentsToShow", student.get().studentInCourse(student.get()));
 
             return "studentDetail";
         }
-
         return "redirect:/students/all";
     }
 
@@ -108,12 +102,12 @@ public class StudentController {
             deleteStudentFromAllCourses(student.get());
             studentRepository.delete(student.get());
         }
-
         return "redirect:/students/all";
     }
+
     @GetMapping("/remove-student/{courseId}/{studentId}")
-    protected String removeStudentFromCourse(@PathVariable("courseId") Long courseId, @PathVariable("studentId") Long studentId){
-        System.out.println("ik kom hier");
+    protected String removeStudentFromCourse(@PathVariable("courseId") Long courseId,
+                                             @PathVariable("studentId") Long studentId){
         Optional<Course> course = courseRepository.findById(courseId);
         if(course.isPresent()){
             Optional<Student> student = studentRepository.findById(studentId);
@@ -125,6 +119,7 @@ public class StudentController {
         }
         return "redirect:/courses/details/id/" + course.get().getCourseId();
     }
+
     protected void deleteStudentFromAllCourses(Student student){
         for (Course course : courseRepository.findAll()) {
             if(student.getCourses().contains(course)){

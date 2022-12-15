@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
  * <p>
- * Dit is wat het programma doet.
+ * De eigenschappen van een submitted version
  */
 @Entity
 @Getter @Setter
@@ -38,7 +38,6 @@ public class SubmittedVersion {
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<SubmittedVersion> submittedVersions = new HashSet<>();
 
-    //TODO deze kan weg volgens mij.
     public String getStudentDisplayName() {
         return student.toString();
     }
@@ -62,7 +61,7 @@ public class SubmittedVersion {
                 versionRepository.save(submittedVersion);
             if(this.submittedVersions.contains(submittedVersion))
                 this.submittedVersions.remove(submittedVersion);
-                versionRepository.save(this);
+                    versionRepository.save(this);
             }
         }
     }
