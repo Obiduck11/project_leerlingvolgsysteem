@@ -14,18 +14,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest (classes = ProjectLeerlingvolgsysteemApplicationTests.class)
 class ProjectLeerlingvolgsysteemApplicationTests {
 
 	@Test
-	@DisplayName("DisplayNameWithoutInfixName")
-	void studentDisplayNameTest() {
-		Student student = new Student();
-		String expectedStudentName = "Robbin Drent";
+	@DisplayName("Display student name with infix")
+	void displayStudentNameWithInfix() {
 
+		Student student = new Student("Henk", "van", "Dijk");
+		String expectedStudentName = "Henk van Dijk";
 		String studentName = student.getDisplayName();
+		assertEquals(expectedStudentName, studentName);
+	}
 
+	@Test
+	@DisplayName("Display student name without infix")
+	void displayStudentNameWithoutInfix() {
+
+		Student student = new Student("Kees","Test");
+		String expectedStudentName = "Kees Test";
+		String studentName = student.getDisplayName();
 		assertEquals(expectedStudentName, studentName);
 	}
 
