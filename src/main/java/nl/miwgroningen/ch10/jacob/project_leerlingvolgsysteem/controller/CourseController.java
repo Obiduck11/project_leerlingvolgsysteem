@@ -96,7 +96,6 @@ public class CourseController {
     @GetMapping("/delete/{courseId}")
     protected String deleteCourse(@PathVariable("courseId") Long courseId){
         Optional<Course> course = courseRepository.findById(courseId);
-
         if(course.isPresent()){
             deleteCourseFromAssignment(course.get());
             deleteCourseFromStudent(course.get());
@@ -107,16 +106,18 @@ public class CourseController {
     }
 
     @GetMapping("/editOrderAssignment/{courseId}/{assignmentId}")
-    protected String editOrder(@PathVariable("courseId") Long courseId, @PathVariable("assignmentId") Long assignmentId, @RequestParam String add){
+    protected String editOrder(@PathVariable("courseId") Long courseId,
+                               @PathVariable("assignmentId") Long assignmentId,
+                               @RequestParam String add){
         Optional <Course> courseToEdit = courseRepository.findById(courseId);
         Assignment assignmentToReplace = new Assignment();
-
         for (Assignment assignment : courseToEdit.get().getAssignments()) {
             if(assignment.getAssignmentId().equals(assignmentId)){
                 assignmentToReplace = assignment;
             }
         }
-           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace, assignmentToReplace.count(add)));
+           courseToEdit.get().setAssignments(courseToEdit.get().editAssignmentOrder(assignmentToReplace,
+                                                assignmentToReplace.count(add)));
            courseRepository.save(courseToEdit.get());
         return  "redirect:/courses/details/id/" + courseId;
     }
