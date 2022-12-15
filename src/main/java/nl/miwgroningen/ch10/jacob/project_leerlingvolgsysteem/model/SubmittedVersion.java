@@ -15,6 +15,7 @@ import java.util.Set;
  * <p>
  * De eigenschappen van een submitted version
  */
+
 @Entity
 @Getter @Setter
 public class SubmittedVersion {
@@ -51,7 +52,6 @@ public class SubmittedVersion {
                 }
             }
         }
-
     }
 
     public void removeSubmittedVersion(SubmittedVersionRepository versionRepository){
@@ -65,6 +65,7 @@ public class SubmittedVersion {
             }
         }
     }
+
     public String toString(){
         return String.format("%s%d", assignment.getTitle(), versionId);
     }
