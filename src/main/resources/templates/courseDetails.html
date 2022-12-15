@@ -37,11 +37,9 @@
                     <a th:if="${submittedVersion.assessment != null && submittedVersion.assessment.pass}" th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fas fa-check-circle"></i></a>
                     <a th:if="${submittedVersion.assessment != null && submittedVersion.assessment.pass == false}" th:href="@{/submittedVersions/details/{versionId}(versionId=${submittedVersion.versionId})}"><i class="fas fa-times-circle"></i></a>
                 </span>
-                    <a th:if="${student.passedPreviousAssignment(assignment) == true
-                    && student.assignmentPassed(assignment) == false && student.checkForUnassedSubmit(assignment) == true
-                    || assignment.serialNumber == 1 && student.assignmentPassed(assignment) == false && student.checkForUnassedSubmit(assignment) == true
-                    || student.passedPreviousAssignment(assignment) && student.versionsPerAssignment(assignment).isEmpty()
-                    || assignment.serialNumber == 1 && student.versionsPerAssignment(assignment).isEmpty()
+                    <a th:if="${assignment.serialNumber == 1 && student.versionsPerAssignment(assignment).isEmpty()
+                    || assignment.serialNumber == 1 && student.assignmentPassed(assignment) == false && student.checkForUnassedSubmit(assignment) == false
+                    || student.passedPreviousAssignment(assignment) == true && student.checkForUnassedSubmit(assignment) == false && student.assignmentPassed(assignment) == false
                     }" th:href="@{/submittedVersions/new/{studentId}/{assignmentId}(studentId=${student.studentId},assignmentId=${assignment.assignmentId})}" class="fa-solid fa-circle-plus"></a>
             </td>
 
