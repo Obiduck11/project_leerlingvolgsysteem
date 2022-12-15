@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * @author Maaike Feenstra <mk.feenstra@st.hanze.nl><
  * <p>
- * het programma beheert alle feedback
+ * het programma beheert alle standaard feedback
  */
 
 @Controller
