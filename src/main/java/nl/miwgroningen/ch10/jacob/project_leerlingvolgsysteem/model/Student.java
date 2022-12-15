@@ -92,7 +92,7 @@ public class Student {
                 if (index != 0) {
                     Assignment previousAssignment = assignment.getCourse().getAssignments().get(index - 1);
                     if (submittedVersion.getAssignment().equals(previousAssignment)) {
-                        if (checkForAssesment(submittedVersion) && submittedVersion.getAssessment().isPass()) {
+                        if (checkForAssessment(submittedVersion) && submittedVersion.getAssessment().isPass()) {
                             return true;
                         }
                     }
@@ -101,7 +101,7 @@ public class Student {
         return false;
     }
 
-    public boolean checkForAssesment(SubmittedVersion submittedVersion){
+    public boolean checkForAssessment(SubmittedVersion submittedVersion){
         return submittedVersion.getAssessment() != null;
     }
 
@@ -111,6 +111,15 @@ public class Student {
                 if (submittedVersion.getAssessment().isPass()) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean checkForUnassedSubmit(Assignment assignment){
+        for (SubmittedVersion submittedVersion : versionsPerAssignment(assignment)) {
+            if(checkForAssessment(submittedVersion)){
+                return true;
             }
         }
         return false;
