@@ -79,14 +79,15 @@
             </tr>
             <tr th:each="assignment : ${courseToShow.assignments}">
                 <td th:text="${assignment.title}"></td>
-                <td>
-                    <span th:text="${assignment.serialNumber}"></span>
+                <td style="text-align: left; width: fit-content">
+                    <span th:text="${assignment.serialNumber}" style="width: 20%"></span>
+
 
                     <a th:unless="${assignment.serialNumber == courseToShow.assignments.size()}" th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='plus', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
-                        <i class="fa-solid fa-plus float-lg-end"></i>
+                        <i class="fa-solid fa-plus float-lg-end" style="width: 20%"></i>
                     </a>
                     <a th:unless="${assignment.serialNumber == 1}" th:href="@{/courses/editOrderAssignment/{courseId}/{assignmentId}(add='min', courseId=${courseToShow.courseId}, assignmentId=${assignment.assignmentId})}">
-                        <i class="fa-solid fa-minus float-lg-end"></i>
+                        <i class="fa-solid fa-minus float-lg-end" style="width: 20%"></i>
                     </a>
                 </td>
                 <td th:text="${assignment.description}"></td>
