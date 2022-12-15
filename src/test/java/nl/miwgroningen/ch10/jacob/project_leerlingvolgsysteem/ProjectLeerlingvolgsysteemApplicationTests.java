@@ -62,16 +62,7 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 	}
 
 
-	@Test
-	@DisplayName("DisplayNameWithInfixName")
-	void StudentDisplayNameWithInfixTest() {
-		Student student = new Student();
-		String expectedStudentName = "Henk van Dijk";
 
-		String studentName = student.getDisplayName();
-
-		assertEquals(expectedStudentName, studentName);
-	}
 
 	@Test
 	@DisplayName("CheckforPlus")
