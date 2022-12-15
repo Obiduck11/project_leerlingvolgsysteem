@@ -114,10 +114,11 @@ public class SubmittedVersionController {
     @GetMapping("/delete/{versionId}")
     private String deleteSubmission(@PathVariable ("versionId") Long versionId){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
+        Long id = submittedVersion.get().getAssignment().getCourse().getCourseId();
         if(submittedVersion.isPresent()){
             submittedVersion.get().removeSubmittedVersion(submittedVersionRepository);
             submittedVersionRepository.delete(submittedVersion.get());
         }
-        return "redirect:/submittedVersions/all";
+        return "redirect:/courses/details/id/" + id;
     }
 }
