@@ -16,7 +16,8 @@
 
         <div class="form-group">
             <label th:for="pass">gehaald</label>
-            <input type="checkbox"
+            <input id="pass"
+                    type="checkbox"
                    name="pass"
                    th:checked="${pass}"/>
         </div>
@@ -35,10 +36,13 @@
             <input id="specifiekeFeedback" type="text" class="form-control" th:field="*{specifiekeFeedback}">
         </div>
 
-        <div class="form-group">
+        <div class="form-group padding-button-top">
             <button type="submit" class="btn btn-primary">Sla assessment op</button>
         </div>
     </form>
+    <div class="center padding-button-top">
+    <a th:href="@{/submittedVersions/delete/{versionId}(versionId=${assessment.submittedVersion.versionId})}"><button class="btn-primary btn">Annuleer assessment en verwijder poging</button></a>
+    </div>
 </div>
 
 <div th:replace="fragments/general :: footer"></div>

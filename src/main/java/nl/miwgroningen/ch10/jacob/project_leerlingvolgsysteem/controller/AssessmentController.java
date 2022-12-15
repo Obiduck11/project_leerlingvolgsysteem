@@ -17,6 +17,7 @@ import java.util.Optional;
  */
 
 @Controller
+@RequestMapping("/assessments")
 public class AssessmentController {
     private final AssessmentRepository assessmentRepository;
     private final FeedbackRepository feedbackRepository;
@@ -29,7 +30,7 @@ public class AssessmentController {
         this.submittedVersionRepository = submittedVersionRepository;
     }
 
-    @GetMapping({"/assessments/all"})
+    @GetMapping({"/all"})
     protected String showAssessmentOverview(Model model) {
         model.addAttribute("allAssessments", assessmentRepository.findAll());
         model.addAttribute("allFeedback", feedbackRepository.findAll());
@@ -45,7 +46,7 @@ public class AssessmentController {
     }
 
 
-    @GetMapping("assessments/edit/{assessmentId}")
+    @GetMapping("/edit/{assessmentId}")
     protected String showEditAssessmentForm(@PathVariable("assessmentId") Long AssessmentId, Model model) {
         Optional<Assessment> assessment = assessmentRepository.findById(AssessmentId);
 
@@ -55,7 +56,7 @@ public class AssessmentController {
         return "redirect:/assessments/all";
     }
 
-    @GetMapping("/assessments/delete/{assessmentId}")
+    @GetMapping("/delete/{assessmentId}")
     protected String deleteAssessment(@PathVariable("assessmentId") Long assessmentId) {
         Optional<Assessment> assessment = assessmentRepository.findById(assessmentId);
 
@@ -65,7 +66,7 @@ public class AssessmentController {
         return "redirect:/assessments/all";
     }
 
-    @GetMapping("/assessments/new/{versionId}")
+    @GetMapping("/new/{versionId}")
     protected String showAssessmentFormForSubmittedVersion(@PathVariable ("versionId") Long versionId, Model model){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
         Assessment assessment = new Assessment();
@@ -76,7 +77,7 @@ public class AssessmentController {
     }
 
 
-    @PostMapping("/assessments/new/{versionId}")
+    @PostMapping("/new/{versionId}")
     protected String addAssessmentToSubmittedVersion(@PathVariable ("versionId") Long versionId, @ModelAttribute ("assessment") Assessment assessment, BindingResult result){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
         if(submittedVersion.isPresent()){
