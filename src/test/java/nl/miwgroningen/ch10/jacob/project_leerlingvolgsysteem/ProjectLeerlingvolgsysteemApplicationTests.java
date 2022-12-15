@@ -3,8 +3,6 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
-import org.hibernate.internal.util.collections.IdentitySet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 @SpringBootTest (classes = ProjectLeerlingvolgsysteemApplicationTests.class)
 class ProjectLeerlingvolgsysteemApplicationTests {
@@ -61,9 +59,6 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 		assertEquals(expectedCoursesList, coursesList);
 	}
 
-
-
-
 	@Test
 	@DisplayName("CheckforPlus")
 	void countTestPlus(){
@@ -83,5 +78,4 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 
 		assertEquals(expected, assignment.count(minus));
 	}
-
 }
