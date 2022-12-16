@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Author: Jacob Visser
  * <p>
- * Cointains data about a course..
+ * Contains data about a course.
  */
 @Entity @Getter @Setter
 public class Course {

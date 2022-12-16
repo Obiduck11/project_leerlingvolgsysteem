@@ -6,7 +6,6 @@
 <body>
     <div th:replace="fragments/general :: navbar"></div>
     <h1>Overzicht van alle vakken</h1>
-
     <div class="center">
         <div class="padding-button-bottom">
         <a th:href="@{/courses/new}"><button type="button" class="btn btn-primary">Voeg nieuw vak toe</button></a>
@@ -26,11 +25,8 @@
             </tr>
         </table>
     </div>
-
     <div th:replace="fragments/general :: footer"></div>
 
     <div th:replace="fragments/general :: bottomScripts"></div>
-
-
 </body>
 </html>
