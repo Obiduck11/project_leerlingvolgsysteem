@@ -57,7 +57,8 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 		assertEquals(expectedSize, student.versionsPerAssignment(assignment).size());
 	}
 
-	private static Set<SubmittedVersion> getSubmittedVersions(Assignment assignment, SubmittedVersion attempt1, SubmittedVersion attempt2) {
+	private static Set<SubmittedVersion> getSubmittedVersions(Assignment assignment, SubmittedVersion attempt1,
+															  SubmittedVersion attempt2) {
 		Set<SubmittedVersion> attemptsForAssignment = new HashSet<>();
 		attemptsForAssignment.add(attempt1);
 		attemptsForAssignment.add(attempt2);

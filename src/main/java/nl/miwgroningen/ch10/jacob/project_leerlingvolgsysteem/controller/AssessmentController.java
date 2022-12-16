@@ -67,7 +67,7 @@ public class AssessmentController {
     }
 
     @GetMapping("/new/{versionId}")
-    protected String showAssessmentFormForSubmittedVersion(@PathVariable ("versionId") Long versionId, Model model){
+    protected String showAssessmentFormForSubmit(@PathVariable ("versionId") Long versionId, Model model){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
         Assessment assessment = new Assessment();
         if(submittedVersion.isPresent()){
@@ -78,7 +78,8 @@ public class AssessmentController {
 
 
     @PostMapping("/new/{versionId}")
-    protected String addAssessmentToSubmittedVersion(@PathVariable ("versionId") Long versionId, @ModelAttribute ("assessment") Assessment assessment, BindingResult result){
+    protected String addAssessmentToSubmit(@PathVariable ("versionId") Long versionId,
+                                           @ModelAttribute ("assessment") Assessment assessment, BindingResult result){
         Optional<SubmittedVersion> submittedVersion = submittedVersionRepository.findById(versionId);
         if(submittedVersion.isPresent()){
             if(!result.hasErrors()){
