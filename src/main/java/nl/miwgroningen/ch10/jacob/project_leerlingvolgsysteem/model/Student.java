@@ -26,6 +26,13 @@ public class Student {
 
     private String githubAccount;
 
+    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<Course> courses;
+
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.REMOVE})
+    @OrderBy("dateSubmitted")
+    private Set<SubmittedVersion> submittedVersions;
+
     public Student(String firstName, String inFixName, String lastName) {
         this.firstName = firstName;
         this.inFixName = inFixName;
@@ -40,13 +47,6 @@ public class Student {
         this("", "", "");
 
     }
-
-    @ManyToMany (cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Course> courses;
-
-    @OneToMany(mappedBy = "student", cascade = {CascadeType.REMOVE})
-    @OrderBy("dateSubmitted")
-    private Set<SubmittedVersion> submittedVersions;
 
     public String getDisplayName() {
         String displayName = firstName;

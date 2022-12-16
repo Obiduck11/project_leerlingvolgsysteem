@@ -27,8 +27,6 @@ public class Course {
     @OrderBy("serialNumber")
     private List<Assignment> assignments;
 
-
-
     @ManyToMany (mappedBy = "courses", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @OrderBy("lastName")
     private Set<Student> students;

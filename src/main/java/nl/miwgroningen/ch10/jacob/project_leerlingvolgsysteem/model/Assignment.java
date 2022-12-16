@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Author: Jacob Visser
  * <p>
- * Dit is wat het programma doet.
+ * Contains data from the Assignment entity
  */
 @Entity @Getter @Setter
 public class Assignment {
@@ -22,10 +22,8 @@ public class Assignment {
     private String description;
     private int serialNumber;
 
-
     @ManyToOne
     private Course course;
-
 
     public String getTitle() {
         return title;
@@ -38,6 +36,7 @@ public class Assignment {
             }
         }
     }
+
     public int count(String add){
         int count;
         if (add.equals("plus")) {

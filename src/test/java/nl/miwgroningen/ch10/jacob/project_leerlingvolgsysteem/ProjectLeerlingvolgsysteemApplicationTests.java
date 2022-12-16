@@ -3,6 +3,7 @@ package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
+import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.SubmittedVersion;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,33 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 		String coursesList = testStudent.getCoursesToString();
 
 		assertEquals(expectedCoursesList, coursesList);
+	}
+
+	@Test
+	@DisplayName("versionPerAssignment")
+	void versionPerAssignment() {
+		Student student = new Student();
+		Assignment assignment = new Assignment();
+
+		SubmittedVersion attempt1 = new SubmittedVersion();
+		attempt1.setStudent(student);
+		SubmittedVersion attempt2 = new SubmittedVersion();
+		attempt2.setStudent(student);
+
+		Set<SubmittedVersion> attemptsForAssignment = new HashSet<>();
+		attemptsForAssignment.add(attempt1);
+		attemptsForAssignment.add(attempt2);
+		attempt1.setAssignment(assignment);
+		attempt2.setAssignment(assignment);
+
+		student.setSubmittedVersions(attemptsForAssignment);
+		student.versionsPerAssignment(assignment);
+
+		System.out.println(student.getSubmittedVersions().size());
+
+		int expectedSize = 2;
+
+		assertEquals(expectedSize, student.versionsPerAssignment(assignment).size());
 	}
 
 	@Test
