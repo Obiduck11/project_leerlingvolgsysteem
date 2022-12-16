@@ -79,7 +79,7 @@ class ProjectLeerlingvolgsysteemApplicationTests {
 
 	@Test
 	@DisplayName("checkForMinus")
-	void coutnTestMinus(){
+	void countTestMinus(){
 		Assignment assignment = new Assignment();
 		String minus = "minus";
 		int expected = -1;
