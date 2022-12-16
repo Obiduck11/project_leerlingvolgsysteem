@@ -6,8 +6,12 @@
 <body>
 <div th:replace="fragments/general :: navbar"></div>
 <h1><span th:text="${submittedVersionToShow.assignment.title}"></span> door <span th:text="${submittedVersionToShow.student.displayName}"></span></h1>
-<div class="center">
+        <div class="center">
+        <div class="padding-button-bottom">
+        <a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${submittedVersionToShow.getAssessment().getAssessmentId()})}"><button class="btn btn-primary ">Edit</button></a>
+        </div>
     <table class="table table-striped table-hover">
+
         <tr>
             <th>Naam student</th>
             <td th:text="${submittedVersionToShow.student.displayName}"></td>
@@ -40,7 +44,6 @@
             <th>Feedbackregels</th>
             <td th:utext="${submittedVersionToShow.assessment.getFeedbackLines()}"></td>
         </tr>
-
     </table>
 </div>
 
