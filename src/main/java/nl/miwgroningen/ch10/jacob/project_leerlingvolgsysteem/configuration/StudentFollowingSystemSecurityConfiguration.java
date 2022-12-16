@@ -27,8 +27,8 @@ public class StudentFollowingSystemSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests((authorize) -> authorize
-                        .antMatchers("/css/**", "/webjars/**").permitAll()
-                        .antMatchers("/**").permitAll()
+                        .antMatchers("/css/**", "/webjars/**", "/images/**").permitAll()
+                        .antMatchers("/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin().and()
