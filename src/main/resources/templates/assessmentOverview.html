@@ -27,8 +27,8 @@
             <td th:text="${assessment.feedbacks}">tekst</td>
             <td th:text="${assessment.specifiekeFeedback}">tekst</td>
 
-            <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}">Edit</a></td>
-            <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}">Delete</a></td>
+            <td><a th:href="@{/assessments/edit/{assessmentId}(assessmentId=${assessment.assessmentId})}"><i class="fas fa-edit"></i></a></td>
+            <td><a th:href="@{/assessments/delete/{assessmentId}(assessmentId=${assessment.assessmentId})}"><i class="fa-solid fa-trash-can"></i></a></td>
         </tr>
     </table>
 </div>
