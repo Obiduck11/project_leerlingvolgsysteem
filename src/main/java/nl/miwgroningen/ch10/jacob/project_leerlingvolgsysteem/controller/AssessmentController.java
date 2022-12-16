@@ -38,13 +38,11 @@ public class AssessmentController {
         return "assessmentOverview";
     }
 
-
     private String showAssessmentForm(Model model, Assessment assessment) {
         model.addAttribute("assessment", assessment);
         model.addAttribute("allFeedback", feedbackRepository.findAll());
         return "assessmentForm";
     }
-
 
     @GetMapping("/edit/{assessmentId}")
     protected String showEditAssessmentForm(@PathVariable("assessmentId") Long AssessmentId, Model model) {
@@ -75,7 +73,6 @@ public class AssessmentController {
         }
         return showAssessmentForm(model, assessment);
     }
-
 
     @PostMapping("/new/{versionId}")
     protected String addAssessmentToSubmittedVersion(@PathVariable ("versionId") Long versionId, @ModelAttribute ("assessment") Assessment assessment, BindingResult result){

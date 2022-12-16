@@ -1,6 +1,5 @@
 package nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.controller;
 
-import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Assignment;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Course;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.Student;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.CourseRepository;
@@ -11,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,6 +17,7 @@ import java.util.Optional;
  * <p>
  * beheert functionaliteit betreft de eigenschappen van een student
  */
+
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -37,7 +35,7 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    protected String showAll(@RequestParam(required = false)String sortBy, Model model){
+    protected String showStudentOverview(@RequestParam(required = false)String sortBy, Model model){
         if(sortBy == null) {
             model.addAttribute("allStudents", studentRepository.findByOrderByLastNameAsc());
         } else if (sortBy.equals("voornaam")){
@@ -73,10 +71,10 @@ public class StudentController {
 
     @PostMapping("/new")
     protected String addStudent(@ModelAttribute ("student") Student studentToAdd, BindingResult result){
-            if(!result.hasErrors()){
-                studentRepository.save(studentToAdd);
-            }
-            return "redirect:/students/all";
+        if(!result.hasErrors()){
+            studentRepository.save(studentToAdd);
+        }
+        return "redirect:/students/all";
     }
 
     @GetMapping("/details/{studentId}")
