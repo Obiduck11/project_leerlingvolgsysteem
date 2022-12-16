@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * @author Robbin Drent <r.v.drent@st.hanze.nl>
  * <p>
- * Dit is wat het programma doet.
+ * Beheert het verkeer tussen model en view voor courses.
  */
 @Controller
 @RequestMapping("/courses")

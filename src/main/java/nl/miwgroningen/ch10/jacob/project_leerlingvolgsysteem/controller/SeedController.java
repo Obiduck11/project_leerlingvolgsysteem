@@ -4,7 +4,6 @@ import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.model.*;
 import nl.miwgroningen.ch10.jacob.project_leerlingvolgsysteem.repository.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -77,7 +76,6 @@ private final AssessmentRepository assessmentRepository;
 
     Set<Student> students = new HashSet<>();
     Collections.addAll(students, student1, student2, student3, student4);
-
 
     studentRepository.save(student1);
     studentRepository.save(student2);
